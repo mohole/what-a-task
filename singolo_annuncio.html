@@ -1,42 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <title>Document</title>
-  <style>/*
-  .container .btn-primary{
-    margin: 20px 0;
-  }
-  .btn-danger{
-    margin-left: 15px;
-  }
-  .container:nth-child(2){
-    border: 1px solid  #000;
-    padding: 15px;
-    border-radius: 5px;
-  }
-  .row.imgs{
-    margin-bottom: 15px;
-  }*/
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style>
+	.top-bar-wrapper{
+		position: fixed;
+		top:0;
+		left: 0;
+		width: 100%;
+		z-index: 10;
+		height: 50px;
+		background-color: #ebebeb;
+	}
+	.bottom-bar-wrapper{
+		position: fixed;
+		bottom:0;
+		left: 0;
+		width: 100%;
+		z-index: 10;
+		height: 50px;
+		background-color: #ebebeb;
+	}
+	.content{
+		padding-top: 50px;
+		padding-bottom: 50px;
+	}
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-          <a href="index.html" class="btn btn-primary"><i class="glyphicon glyphicon-arrow-left"></i> BACK</a>
-      </div>
-    </div>
-  </div>
-<div class="container">
+<div class="top-bar-wrapper">
+	<div class="top-inner">
+		<div class="col-xs-4">
+			<a href="elenco_annunci.html" class="btn btn-primary"><i class="glyphicon glyphicon-arrow-left"></i></a>
+		</div>
+		<div class="col-xs-4 text-center">WAT</div>
+		<div class="col-xs-4 text-right">
+			
+		</div>
+	</div>
+</div>
+<div class="container-fluid content">
   <div class="row">
     <div class="col-xs-12">
+      <h2>Titolo annuncio</h2>
       <small>Categoria: <a href="#">lorem</a></small>
       <a href="#" class="pull-right"><span class="glyphicon glyphicon-pencil"></span></a>
-      <h2>Titolo annuncio</h2>
+    </div>
+  </div>
+   <div class="row">
+    <div class="col-xs-12">
+      <img src="http://lorempixel.com/640/360" alt="" class="img-responsive">
     </div>
   </div>
   <hr>
@@ -46,20 +63,29 @@
     </div>
   </div>
 
+ 
   <div class="row">
-    <div class="col-xs-12">
-      <a href="#"><img src="http://lorempixel.com/75/75" alt="" class="img-thumbnail"></a>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12"><button class="btn btn-success">Contatta</button><button class="btn btn-danger">Segnala</button></div>
+	  <div class="col-xs-12"><button class="btn btn-success btn-block">Contatta</button></div>
   </div>
   <hr>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-xs-12">
       <p>Creato da <a href="#">John Doe</a> il 00/00/0000</p>
     </div>
   </div>
+</div>
+	<div class="bottom-bar-wrapper">
+	<div class="top-inner">
+		<div class="col-xs-4">
+			<a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></a>
+		</div>
+		<div class="col-xs-4 text-center">
+			<a href="profilo.html" class="btn btn-primary"><i class="glyphicon glyphicon-user"></i></a>
+		</div>
+		<div class="col-xs-4 text-right">
+			<a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-cog"></i></a>
+		</div>
+	</div>
 </div>
 </body>
 </html>
