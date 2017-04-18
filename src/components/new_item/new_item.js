@@ -1,15 +1,15 @@
 'use strict';
 import React from 'react';
-import NewItem from './new_item/new_item'
-export default class App extends React.Component{
+
+export default class NewItem extends React.Component{
     constructor(){
         super();
-        console.log('app started');    
+        console.log('new item ready');    
     }
 	render(){
         return(
             <section>
-			<NewItem/>
+			
 			</section>
         )
     }
