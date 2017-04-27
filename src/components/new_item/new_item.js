@@ -2,32 +2,15 @@
 import React from 'react';
 
 export default class NewItem extends React.Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         console.log('new item ready');
 		this.state ={
             newItem:{},
 			title:'',
 			text:'',
 			image:{},
-			cat:[
-				{
-					_id:1,
-					name:'cat1'
-				},
-				{
-					_id:2,
-					name:'cat2'
-				},
-				{
-					_id:3,
-					name:'cat3'
-				},
-				{
-					_id:4,
-					name:'cat4'
-				},
-			],
+			cat:this.props.categoryList,
 			ClassNameTitle:'form-group',
 			ClassNameText:'form-group',
 			ClassNamePrivacy:'form-group',
@@ -40,7 +23,6 @@ export default class NewItem extends React.Component{
 	writing(evt){
         console.log('sto scrivendo');
         const input = evt.target.value;
-		//console.log(evt.target.getAttribute('name'));
 		const elem=evt.target.getAttribute('name');
         this.setState({
             [elem] : input
@@ -120,7 +102,17 @@ export default class NewItem extends React.Component{
 			})
 		}
 		if(error==0){
-			console.log('ok');
+			console.log('ok tutto giusto');
+			const newItem = {
+				title:this.state.title,
+				category:this.state.selectedCat,
+				description:this.state.text,
+				type:this.state.type,
+				thumbnail:this.state.image
+			}
+			this.setState({
+				newItem:newItem
+			})
 		}
 	}
 	
@@ -165,7 +157,7 @@ export default class NewItem extends React.Component{
 							</div>
 							<div className={this.state.ClassNamePrivacy}>
 								<label htmlFor="">Termini e condizioni</label><br/>
-								<input type="checkbox" checked={this.state.privacyCheck} onChange={this.checkPrivacy.bind(this)}/><span>Acetto i <a href="#">termini della privacy</a></span>
+								<input type="checkbox" checked={this.state.privacyCheck} onChange={this.checkPrivacy.bind(this)}/><span>Accetto i <a href="#">termini della privacy</a></span>
 							</div>
 							<div className="form-group">
 								<button type="submit" className="btn btn-block btn-success">Inserisci</button>
