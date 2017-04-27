@@ -116,13 +116,13 @@ export default class EditItem extends React.Component{
 
         return(
             <section>
-			<div className="container content">
-				<div className="row">
-					<div className="col-xs-12">
+			<div className="mui-container content">
+				<div className="mui-row">
+					<div className="mui-col-xs-12">
 						<h1>Modifica annuncio</h1>
 					</div>
-					<div className="col-xs-12">
-						<form action="#" encType="multipart/form-data" method="POST" onSubmit={this.submitAnnuncio.bind(this)}>
+					<div className="mui-col-xs-12">
+						<form action="#" encType="multipart/form-data" method="POST" onSubmit={this.submitAnnuncio.bind(this)} className="mui-form">
 						<div className={this.state.ClassNameCategory}>
 						<label htmlFor="">Categoria</label>
             <select name="" id="ann_category" className="form-control" value={this.state.selectedCat} onChange={this.getCat.bind(this)}>
@@ -151,8 +151,8 @@ export default class EditItem extends React.Component{
 								<input type="checkbox" checked={this.state.privacyCheck} onChange={this.checkPrivacy.bind(this)}/><span>Accetto i <a href="#">termini della privacy</a></span>
 							</div>
 							<div className="form-group">
-								<button type="submit" className="btn btn-block btn-success">Inserisci</button>
-								<button type="reset" className="btn btn-block btn-danger">Annulla</button>
+								<button type="submit" className="mui-btn mui-btn--primary">Inserisci</button>
+								<button type="reset" className="mui-btn mui-btn--danger">Annulla</button>
 							</div>
 						</form>
 					</div>
