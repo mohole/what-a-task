@@ -1,8 +1,7 @@
 'use strict';
 import React from 'react';
-import List  from './list';
 
-export default class App extends React.Component{
+export default class List extends React.Component{
     constructor(){
         super();
         console.log('app started');    
@@ -10,7 +9,8 @@ export default class App extends React.Component{
 	render(){
         return(
             <section>
-			<List />
+            <h3>Titolo</h3>
+			<p>testo testo testo testo testo testo testo</p>
 			</section>
         )
     }
