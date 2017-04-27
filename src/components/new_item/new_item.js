@@ -115,7 +115,22 @@ export default class NewItem extends React.Component{
 			})
 		}
 	}
-	
+	resetFrom(){
+		console.log('reset');
+		this.setState({
+			newItem:{},
+			title:'',
+			text:'',
+			image:{},
+			ClassNameTitle:'form-group',
+			ClassNameText:'form-group',
+			ClassNamePrivacy:'form-group',
+			ClassNameCategory:'form-group',
+			selectedCat:0,
+			type:'offro',
+			privacyCheck:false
+		});
+	}
 	render(){
 		const catList =this.state.cat.map((e,i) =>{
 			return(
@@ -131,7 +146,7 @@ export default class NewItem extends React.Component{
 						<h1>Inserisci annuncio</h1>
 					</div>
 					<div className="col-xs-12">
-						<form action="#" encType="multipart/form-data" method="POST" onSubmit={this.submitAnnuncio.bind(this)}>
+						<form action="#" onSubmit={this.submitAnnuncio.bind(this)}>
 						<div className={this.state.ClassNameCategory}>
 						<label htmlFor="">Categoria</label>
 							<select name="" id="ann_category" className="form-control" value={this.state.selectedCat} onChange={this.getCat.bind(this)}>
@@ -161,7 +176,7 @@ export default class NewItem extends React.Component{
 							</div>
 							<div className="form-group">
 								<button type="submit" className="btn btn-block btn-success">Inserisci</button>
-								<button type="reset" className="btn btn-block btn-danger">Annulla</button>
+								<button type="button" onClick={this.resetFrom.bind(this)} className="btn btn-block btn-danger">Annulla</button>
 							</div>
 						</form>
 					</div>
