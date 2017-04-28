@@ -29,22 +29,24 @@ export default class ModifyProfile extends React.Component{
                 <div className="mui-container">
                   <div className="mui-row">
                   <div className="mui-col-xs-12">
-                  <form className="mui-form">
+                    <form className="mui-form">
                     <div className="mui-textfield">
-                    <input type="file" name="avatar_urls" value={this.state.avatar_urls} onChange={this.modificaInfo.bind(this)} />
-                      <input type="text" placeholder="Nome" name="first_name" value={this.state.first_name} onChange={this.modificaInfo.bind(this)} />
+                      <input type="file" name="avatar_urls" value={this.state.avatar_urls} onChange={this.modificaInfo.bind(this)} />
                     </div>
-                    <div className="mui-textfield">
-                      <input type="text" placeholder="Cognome" name="last_name" value={this.state.last_name} onChange={this.modificaInfo.bind(this)} />
-                    </div>
-                    <div className="mui-textfield">
-                        <input type="text" placeholder="Email" name="email" value={this.state.email} onChange={this.modificaInfo.bind(this)} />
-                    </div>
-                    <div className="mui-textfield">
-                     <input placeholder="Descriviti in poche parole" name="description" value={this.state.description} onChange={this.modificaInfo.bind(this)} />
-                   </div>
-                    <button type="submit" className="mui-btn mui-btn--primary">Submit</button>
-                    </form>
+                      <div className="mui-textfield">
+                        <input type="text" placeholder="Nome" name="first_name" value={this.state.first_name} onChange={this.modificaInfo.bind(this)} />
+                      </div>
+                      <div className="mui-textfield">
+                        <input type="text" placeholder="Cognome" name="last_name" value={this.state.last_name} onChange={this.modificaInfo.bind(this)} />
+                      </div>
+                      <div className="mui-textfield">
+                          <input type="text" placeholder="Email" name="email" value={this.state.email} onChange={this.modificaInfo.bind(this)} />
+                      </div>
+                      <div className="mui-textfield">
+                       <input placeholder="Descriviti in poche parole" name="description" value={this.state.description} onChange={this.modificaInfo.bind(this)} />
+                     </div>
+                      <button type="submit" className="mui-btn mui-btn--primary">Submit</button>
+                      </form>
                     </div>
                   </div>
                 </div>
