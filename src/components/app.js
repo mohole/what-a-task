@@ -1,5 +1,6 @@
 'use strict';
 import React from 'react';
+import Login from './login/login';
 
 export default class App extends React.Component{
     constructor(){
@@ -9,7 +10,7 @@ export default class App extends React.Component{
 	render(){
         return(
             <section>
-			
+			<Login/>
 			</section>
         )
     }
