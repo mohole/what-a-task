@@ -1,0 +1,25 @@
+.img-fluid{
+  max-width: 100%;
+  height: auto;
+  display:block;
+}
+.mui-radio>label,
+.mui-checkbox>label {
+    padding-left: 0;
+    position: absolute;
+    top: 0;
+    display: block;
+    width: 100%;
+    color: rgba(0,0,0,.54);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.form-group.error>textarea,
+.form-group.error>input{
+    border-color: #f00;
+    border-width: 2px;
+}

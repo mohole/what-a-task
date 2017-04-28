@@ -5,32 +5,39 @@ export default class Single extends React.Component{
   constructor(props){
       super(props);
   }
+
+  isAuthor(userId){
+    if(userId===this.props.authorId){
+      return <a href="#" className="float-xs-right"><span className="glyphicon glyphicon-pencil"></span>MODIFICA</a>;
+    }
+  }
+
 	render(){
         return(
           <section>
-            <div className="container content">
-              <div className="row">
-                <div className="col-xs-12">
+            <div className="mui-container content">
+              <div className="mui-row">
+                <div className="mui-col-xs-12">
                   <h2>{this.props.title.charAt(0).toUpperCase() + this.props.title.slice(1)}</h2>
                   <small>Categoria: <a href="#">{this.props.category}</a></small>
-                  <a href="#" className="float-xs-right"><span className="glyphicon glyphicon-pencil"></span>MODIFICA</a>
+                  {this.isAuthor(this.props.userId)}
                 </div>
               </div>
-              <div className="row">
-                <div className="col-xs-12">
+              <div className="mui-row">
+                <div className="mui-col-xs-12">
                   <img src={this.props.img} className="img img-fluid"/>
                 </div>
               </div>
               <hr />
-              <div className="row">
-                <div className="col-xs-12">
+              <div className="mui-row">
+                <div className="mui-col-xs-12">
                   <p>{this.props.description}</p>
-                  <button className="btn btn-success btn-block">Contatta</button>
+                  <button className="mui-btn mui-btn--primary">Contatta</button>
                 </div>
               </div>
               <hr />
-              <div className="row">
-                <div className="col-xs-12">
+              <div className="mui-row">
+                <div className="mui-col-xs-12">
                   <p>Creato da <a href="#">{this.props.name}</a> il {this.props.date}</p>
                 </div>
               </div>

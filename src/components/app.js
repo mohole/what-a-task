@@ -31,10 +31,10 @@ export default class App extends React.Component{
     					name:'cat4'
     				},
     			],
-    			ClassNameTitle:'form-group',
-    			ClassNameText:'form-group',
-    			ClassNamePrivacy:'form-group',
-    			ClassNameCategory:'form-group',
+    			ClassNameTitle:'form-group mui-textfield',
+    			ClassNameText:'form-group mui-textfield',
+    			ClassNamePrivacy:'form-group mui-checkbox',
+    			ClassNameCategory:'form-group mui-select',
     			selectedCat:0,
     			type:'offro',
     			privacyCheck:false
@@ -66,6 +66,8 @@ export default class App extends React.Component{
               <hr/>
    		        <Single
                  id="1"
+                 authorId="1"
+                 userId="1"
                  title="titolo"
                  category="categoria"
                  img="http://lorempixel.com/640/360"

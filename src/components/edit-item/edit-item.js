@@ -64,7 +64,7 @@ export default class EditItem extends React.Component{
 		var error=0;
 		if(this.state.title===''||this.state.title.length<3){
 			this.setState({
-				ClassNameTitle:'form-group error'
+				ClassNameTitle:'form-group error mui-textfield'
 			})
 			error++;
 		}else{
@@ -74,7 +74,7 @@ export default class EditItem extends React.Component{
 		}
 		if(this.state.text===''||this.state.text.length<5){
 			this.setState({
-				ClassNameText:'form-group error'
+				ClassNameText:'form-group error mui-textfield'
 			})
 			error++;
 		}else{
@@ -94,17 +94,35 @@ export default class EditItem extends React.Component{
 		}
 		if(this.state.privacyCheck==false){
 			this.setState({
-				ClassNamePrivacy:'form-group error'
+				ClassNamePrivacy:'form-group error mui-checkbox'
 			})
 			error++;
 		}else{
 			this.setState({
-				ClassNamePrivacy:'form-group success'
+				ClassNamePrivacy:'form-group success mui-checkbox'
 			})
 		}
 		if(error==0){
 			console.log('ok');
 		}
+	}
+
+
+	resetForm(){
+		console.log('reset');
+		this.setState({
+      type:this.props.type,
+      text:this.props.text,
+      title:this.props.title,
+      image:this.props.image,
+      type:this.props.type,
+      privacyCheck:this.props.privacyCheck,
+      selectedCat: this.props.selectedCat,
+      ClassNameTitle:this.props.ClassNameTitle,
+      ClassNameText:this.props.ClassNameText,
+      ClassNamePrivacy:this.props.ClassNamePrivacy,
+      ClassNameCategory:this.props.ClassNameCategory
+		});
 	}
 
 	render(){
@@ -116,13 +134,13 @@ export default class EditItem extends React.Component{
 
         return(
             <section>
-			<div className="container content">
-				<div className="row">
-					<div className="col-xs-12">
+			<div className="mui-container content">
+				<div className="mui-row">
+					<div className="mui-col-xs-12">
 						<h1>Modifica annuncio</h1>
 					</div>
-					<div className="col-xs-12">
-						<form action="#" encType="multipart/form-data" method="POST" onSubmit={this.submitAnnuncio.bind(this)}>
+					<div className="mui-col-xs-12">
+						<form action="#" encType="multipart/form-data" method="POST" onSubmit={this.submitAnnuncio.bind(this)} className="mui-form">
 						<div className={this.state.ClassNameCategory}>
 						<label htmlFor="">Categoria</label>
             <select name="" id="ann_category" className="form-control" value={this.state.selectedCat} onChange={this.getCat.bind(this)}>
@@ -130,19 +148,19 @@ export default class EditItem extends React.Component{
             {catList}
             </select>
 						</div>
-							<div className="form-group">
+							<div className="mui-radio">
 								<label htmlFor="">Tipologia</label><br/>
 								<input type="radio" name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type==='offro'} value="offro"/> <span>Offro</span> <input type="radio" name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type==='cerco'} value="cerco"/> <span>Cerco</span>
 							</div>
-							<div className="form-group">
+							<div className="mui-textfield">
 								<label htmlFor="">Immagine</label><br/>
 								<input type="file" placeholder="Immagine" onChange={this.uploadFile.bind(this)}/>
 							</div>
-							<div className={this.state.ClassNameTitle}>
+							<div className={this.state.ClassNameTitle+" mui-textfield"}>
 								<label htmlFor="">Titolo annuncio</label>
 								<input type="text" className="form-control" placeholder="Titolo" value={this.state.title} onChange={this.writing.bind(this)} name="title"/>
 							</div>
-							<div className={this.state.ClassNameText}>
+							<div className={this.state.ClassNameText+" mui-textfield"}>
 								<label htmlFor="">Testo annuncio</label>
 								<textarea name="" id="" cols="30" rows="10" className="form-control" value={this.state.text} onChange={this.writing.bind(this)} name="text"></textarea>
 							</div>
@@ -151,8 +169,8 @@ export default class EditItem extends React.Component{
 								<input type="checkbox" checked={this.state.privacyCheck} onChange={this.checkPrivacy.bind(this)}/><span>Accetto i <a href="#">termini della privacy</a></span>
 							</div>
 							<div className="form-group">
-								<button type="submit" className="btn btn-block btn-success">Inserisci</button>
-								<button type="reset" className="btn btn-block btn-danger">Annulla</button>
+								<button type="submit" className="mui-btn mui-btn--primary">Inserisci</button>
+								<button type="button" onClick={this.resetForm.bind(this)}  className="mui-btn mui-btn--danger">Annulla</button>
 							</div>
 						</form>
 					</div>
