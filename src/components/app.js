@@ -1,7 +1,7 @@
 'use strict';
 import React from 'react';
 import Profile from './profile/profile';
-import ModifyProfile from './modify_profile/modify_profile';
+import ModifyProfile from './profile/modify_profile';
 
 export default class App extends React.Component{
     constructor(){
