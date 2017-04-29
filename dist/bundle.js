@@ -22107,6 +22107,12 @@ var _react = __webpack_require__(50);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _backend = __webpack_require__(189);
+
+var _itemSearchBar = __webpack_require__(188);
+
+var _itemSearchBar2 = _interopRequireDefault(_itemSearchBar);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22124,12 +22130,36 @@ var Topbar = function (_React$Component) {
 		var _this = _possibleConstructorReturn(this, (Topbar.__proto__ || Object.getPrototypeOf(Topbar)).call(this));
 
 		console.log('topbar started');
+		_this.state = {
+			searchIsActive: false,
+			postCategory: []
+		};
 		return _this;
 	}
 
 	_createClass(Topbar, [{
+		key: 'activeSearch',
+		value: function activeSearch(evt) {
+			var _this2 = this;
+
+			console.log('search is active ' + this.state.searchIsActive);
+
+			_backend.Backend.getCategory().then(function (data) {
+				_this2.setState({
+					postCategory: data
+				});
+			}).then(function () {
+				_this2.setState({
+					searchIsActive: !_this2.state.searchIsActive
+				});
+			});
+		}
+	}, {
 		key: 'render',
 		value: function render() {
+			if (this.state.searchIsActive) {
+				var topSearchBar = _react2.default.createElement(_itemSearchBar2.default, { categoryList: this.state.postCategory });
+			}
 			return _react2.default.createElement(
 				'section',
 				null,
@@ -22157,13 +22187,14 @@ var Topbar = function (_React$Component) {
 							'div',
 							{ className: 'col-xs-4' },
 							_react2.default.createElement(
-								'a',
-								{ href: '', id: 'search', className: 'btn btn-primary' },
+								'button',
+								{ id: 'search', className: 'btn btn-primary', onClick: this.activeSearch.bind(this) },
 								_react2.default.createElement('i', { className: 'fa fa-search' })
 							)
 						)
 					)
-				)
+				),
+				topSearchBar
 			);
 		}
 	}]);
@@ -22206,7 +22237,7 @@ var Bottombar = function (_React$Component) {
 
 		var _this = _possibleConstructorReturn(this, (Bottombar.__proto__ || Object.getPrototypeOf(Bottombar)).call(this));
 
-		console.log('topbar started');
+		console.log('bottombar started');
 		return _this;
 	}
 
@@ -22259,6 +22290,185 @@ var Bottombar = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Bottombar;
+
+/***/ }),
+/* 188 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(50);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ItemSearchBar = function (_React$Component) {
+	_inherits(ItemSearchBar, _React$Component);
+
+	function ItemSearchBar(props) {
+		_classCallCheck(this, ItemSearchBar);
+
+		var _this = _possibleConstructorReturn(this, (ItemSearchBar.__proto__ || Object.getPrototypeOf(ItemSearchBar)).call(this, props));
+
+		console.log('item search started');
+		_this.state = {
+			categoryList: _this.props.categoryList,
+			searchTerm: '',
+			selectedCat: 0
+		};
+		return _this;
+	}
+
+	_createClass(ItemSearchBar, [{
+		key: 'getCat',
+		value: function getCat(evt) {
+			console.log(evt.target.value);
+			this.setState({
+				selectedCat: evt.target.value
+			});
+		}
+	}, {
+		key: 'writing',
+		value: function writing(evt) {
+			console.log('sto scrivendo');
+			var input = evt.target.value;
+			var elem = evt.target.getAttribute('name');
+			this.setState(_defineProperty({}, elem, input));
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var _this2 = this;
+
+			if (this.state.categoryList.lenght != 0) {
+				var catList = this.state.categoryList.map(function (e, i) {
+					return _react2.default.createElement(
+						'option',
+						{ value: e.id, key: e.id, onChange: _this2.getCat.bind(_this2) },
+						e.name
+					);
+				});
+				return _react2.default.createElement(
+					'section',
+					null,
+					_react2.default.createElement(
+						'div',
+						{ id: 'item-search-bar' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'form col-xs-12' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'form-group' },
+								_react2.default.createElement(
+									'select',
+									{ className: 'form-control' },
+									_react2.default.createElement(
+										'option',
+										{ value: '0' },
+										'Categoria'
+									),
+									catList
+								)
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'form-group' },
+								_react2.default.createElement('input', { className: 'form-control', name: 'searchTerm', type: 'text', placeholder: 'cosa cerchi', value: this.state.searchTerm, onChange: this.writing.bind(this) })
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'form-group' },
+								_react2.default.createElement(
+									'button',
+									{ type: 'button', className: 'btn btn-primary btn-block' },
+									'CERCA'
+								)
+							)
+						)
+					)
+				);
+			} else {
+				_react2.default.createElement(
+					'section',
+					null,
+					'spinner'
+				);
+			}
+		}
+	}]);
+
+	return ItemSearchBar;
+}(_react2.default.Component);
+
+exports.default = ItemSearchBar;
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var WAT_Backend = function () {
+    function WAT_Backend() {
+        _classCallCheck(this, WAT_Backend);
+
+        this.url = 'http://localhost/whatatask/wp-json/wp/v2';
+    }
+
+    _createClass(WAT_Backend, [{
+        key: '_parseRaw',
+        value: function _parseRaw(response) {
+            return response.json();
+        }
+    }, {
+        key: 'getCategory',
+        value: function getCategory() {
+            return fetch(this.url + '/tags').then(this._parseRaw);
+        }
+    }, {
+        key: 'postAnnuncio',
+        value: function postAnnuncio(annuncio) {
+            return fetch(this.url + '/annunci', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(annuncio)
+            }).then(this._parseRaw);
+        }
+    }]);
+
+    return WAT_Backend;
+}();
+
+var Backend = exports.Backend = new WAT_Backend();
 
 /***/ })
 /******/ ]);

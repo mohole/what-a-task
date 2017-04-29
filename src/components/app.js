@@ -5,8 +5,8 @@ import Bottombar from './appbar/bottombar';
 export default class App extends React.Component{
     constructor(){
         super();
-        console.log('app started');    
-    }
+        console.log('app started');
+	}
 	render(){
         return(
             <section>

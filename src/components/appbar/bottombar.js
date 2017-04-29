@@ -4,7 +4,7 @@ import React from 'react';
 export default class Bottombar extends React.Component{
     constructor(){
         super();
-        console.log('topbar started');    
+        console.log('bottombar started');    
     }
 	render(){
         return(
