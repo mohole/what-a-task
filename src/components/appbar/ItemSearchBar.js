@@ -8,13 +8,14 @@ export default class ItemSearchBar extends React.Component{
 		this.state={
 			categoryList:this.props.categoryList,
 			searchTerm:'',
-			selectedCat:0
+			selectedCat:0,
+			searchArgs:{}
 		}
     }
 	getCat(evt){
 		console.log(evt.target.value);
 		this.setState({
-			selectedCat:evt.target.value
+			selectedCat:parseInt(evt.target.value)
 		})
 	}
 	writing(evt){
@@ -25,11 +26,19 @@ export default class ItemSearchBar extends React.Component{
             [elem] : input
         });
     }
+	searchItem(){
+		this.setState({
+			searchArgs:{
+				tags:this.state.selectedCat,
+				search:this.state.searchTerm
+			}
+		})
+	}
 	render(){
 		if(this.state.categoryList.lenght!=0){
-			const catList =this.state.categoryList.map((e,i) =>{
+			const catList = this.state.categoryList.map((e,i) =>{
 				return(
-					<option value={e.id} key={e.id} onChange={this.getCat.bind(this)}>{e.name}</option>
+					<option value={e.id} key={e.id}>{e.name}</option>
 				)
 			});
         return(
@@ -37,8 +46,8 @@ export default class ItemSearchBar extends React.Component{
 				<div id="item-search-bar">
 					<div className="form col-xs-12">
 						<div className="form-group">
-							<select className="form-control">
-							<option value="0">Categoria</option>
+							<select className="form-control" onChange={this.getCat.bind(this)}>
+							<option value="0" >Categoria</option>
 								{catList}
 							</select>
 						</div>
@@ -46,7 +55,7 @@ export default class ItemSearchBar extends React.Component{
 							<input className="form-control" name="searchTerm" type="text" placeholder="cosa cerchi" value={this.state.searchTerm} onChange={this.writing.bind(this)}/>
 						</div>
 						<div className="form-group">
-							<button type="button" className="btn btn-primary btn-block">CERCA</button>
+							<button type="button" className="btn btn-primary btn-block" onClick={this.searchItem.bind(this)}>CERCA</button>
 						</div>
 					</div>
 				</div>
