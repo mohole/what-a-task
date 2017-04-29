@@ -1,6 +1,7 @@
 'use strict';
 import React from 'react';
-
+import Topbar from './appbar/topbar';
+import Bottombar from './appbar/bottombar';
 export default class App extends React.Component{
     constructor(){
         super();
@@ -9,7 +10,8 @@ export default class App extends React.Component{
 	render(){
         return(
             <section>
-			
+				<Topbar/>
+				<Bottombar/>
 			</section>
         )
     }
