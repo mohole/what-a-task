@@ -43,7 +43,7 @@ export default class NewItem extends React.Component{
 	getCat(evt){
 		console.log(evt.target.value);
 		this.setState({
-			selectedCat:evt.target.value
+			selectedCat:parseInt(evt.target.value)
 		})
 	}
 	uploadFile(evt){
@@ -116,7 +116,7 @@ export default class NewItem extends React.Component{
 			this.setState({
 				newItem:newItem
 			});
-			this.props.postAnnuncio(newItem);
+			//this.props.postAnnuncio(newItem);
 		}
 	}
 	resetForm(){
