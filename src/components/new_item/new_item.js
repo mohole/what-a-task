@@ -1,6 +1,5 @@
 'use strict';
 import React from 'react';
-
 export default class NewItem extends React.Component{
     constructor(props){
         super(props);
@@ -16,10 +15,11 @@ export default class NewItem extends React.Component{
 			ClassNamePrivacy:'form-group',
 			ClassNameCategory:'form-group',
 			selectedCat:0,
-			type:'offro',
+			type:5, /*5=offro,3=cerco*/
 			privacyCheck:false,
         }
-    }
+	}
+	
 	writing(evt){
         console.log('sto scrivendo');
         const input = evt.target.value;
@@ -35,7 +35,7 @@ export default class NewItem extends React.Component{
         });
     }
 	checkType(evt){
-		const input = evt.target.value;
+		const input = parseInt(evt.target.value);
 		this.setState({
             type : input
         });
@@ -105,18 +105,23 @@ export default class NewItem extends React.Component{
 			console.log('ok tutto giusto');
 			const newItem = {
 				title:this.state.title,
-				category:this.state.selectedCat,
-				description:this.state.text,
-				type:this.state.type,
-				thumbnail:this.state.image
+				tags:[this.state.selectedCat],
+				content:this.state.text,
+				categories:[this.state.type],
+				acf: {
+					url_img: ''
+				},
+				author:1 //utente loggato
 			}
 			this.setState({
 				newItem:newItem
-			})
+			});
+			this.props.postAnnuncio(newItem);
 		}
 	}
-	resetFrom(){
+	resetForm(){
 		console.log('reset');
+		console.log(this.state);
 		this.setState({
 			newItem:{},
 			title:'',
@@ -127,14 +132,16 @@ export default class NewItem extends React.Component{
 			ClassNamePrivacy:'form-group',
 			ClassNameCategory:'form-group',
 			selectedCat:0,
-			type:'offro',
+			type:5,
 			privacyCheck:false
 		});
 	}
 	render(){
+		
+		if(this.state.cat.lenght!=0){
 		const catList =this.state.cat.map((e,i) =>{
 			return(
-				<option value={e._id} key={e._id} onChange={this.getCat.bind(this)}>{e.name}</option>
+				<option value={e.id} key={e.id} onChange={this.getCat.bind(this)}>{e.name}</option>
 			)
 		});
 							
@@ -156,7 +163,7 @@ export default class NewItem extends React.Component{
 						</div>
 							<div className="form-group">
 								<label htmlFor="">Tipologia</label><br/>
-								<input type="radio" name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type==='offro'} value="offro"/> <span>Offro</span> <input type="radio" name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type==='cerco'} value="cerco"/> <span>Cerco</span>
+								<input type="radio" name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type===5} value="5"/> <span>Offro</span> <input type="radio" name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type===3} value="3"/> <span>Cerco</span>
 							</div>
 							<div className="form-group">
 								<label htmlFor="">Immagine</label><br/>
@@ -176,7 +183,7 @@ export default class NewItem extends React.Component{
 							</div>
 							<div className="form-group">
 								<button type="submit" className="btn btn-block btn-success">Inserisci</button>
-								<button type="button" onClick={this.resetFrom.bind(this)} className="btn btn-block btn-danger">Annulla</button>
+								<button type="button" onClick={this.resetForm.bind(this)} className="btn btn-block btn-danger">Annulla</button>
 							</div>
 						</form>
 					</div>
@@ -184,5 +191,10 @@ export default class NewItem extends React.Component{
 			</div>
 			</section>
         )
+		}else{
+			return(
+				<section>NO</section>
+			)
+		}
     }
 }
