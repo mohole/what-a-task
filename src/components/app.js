@@ -1,7 +1,10 @@
 'use strict';
 import React from 'react';
+import {Backend} from './../backend';
+import List from './list/list';
+import {Annunci} from './data.js';
 import Single from './single-item/single-item';
-import EditItem from './edit-item/edit-item';
+import EditItem from './single-item/edit-item';
 
 export default class App extends React.Component{
   constructor(){
@@ -9,6 +12,8 @@ export default class App extends React.Component{
       console.log('app started');
 
       this.state ={
+        //annunci da modificare
+          annunci: Annunci,
           newItem:{},
     			title:'titolo',
     			text:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae odit, ad nobis inventore neque. Atque cum voluptate tempora debitis!',
@@ -43,6 +48,8 @@ export default class App extends React.Component{
 	render(){
         return(
           <section>
+            <List
+            annunci={this.state.annunci} />
             <hr/>
             <h2>MODIFICA ANNUNCIO</h2>
             <hr/>
