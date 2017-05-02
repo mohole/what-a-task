@@ -22110,6 +22110,11 @@ var WAT_Backend = function () {
                 body: JSON.stringify(annuncio)
             }).then(this._parseRaw);
         }
+    }, {
+        key: 'getAnnunci',
+        value: function getAnnunci() {
+            return fetch(this.url + '/annunci').then(this._parseRaw);
+        }
     }]);
 
     return WAT_Backend;

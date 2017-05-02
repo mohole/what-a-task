@@ -23,5 +23,9 @@ class WAT_Backend{
         })
         .then(this._parseRaw);
     }
+	getAnnunci(){
+		return fetch(`${this.url}/annunci`)
+        .then(this._parseRaw)
+	}
 }
 export const Backend = new WAT_Backend;
