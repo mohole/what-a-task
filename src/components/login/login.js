@@ -2,11 +2,44 @@
 import React from 'react';
 
 export default class Login extends React.Component{
-    constructor(){
-        super();
-        console.log('Login started');    
+    constructor(props){
+        super(props);
+        
+        this.state = {
+                email: '',
+                password: '',
+            userCredentials: {}
+        };
     }
+    
+     writing(evt){
+         const input = evt.target;
+         const elemento = input.getAttribute('name');
+         this.setState({
+            [elemento]: input.value 
+        }); 
+      }
+    
+    checkLogin(){
+        if(this.state.email != '' && this.state.password != ''){
+            console.log("ok");
+            const user = {
+                email: this.state.email,
+                password: this.state.password
+            }
+            this.setState({
+                userCredentials : user
+            })
+            
+        }
+        
+        if(this.state.email == '' || this.state.password == '' ){
+            console.log("manca un campo");
+        }
+    }
+    
 	render(){
+        
         return(
             <section>
                
@@ -18,16 +51,16 @@ export default class Login extends React.Component{
                    <legend>Entra in What A Task</legend>
                    
                    <div className="mui-textfield mui-textfield--float-label">
-                   <input type="email" />
+                   <input name="email" type="text" onChange={this.writing.bind(this)} value={this.state.email} />
                    <label>Email Address</label>
                    </div>
                    
                    <div className="mui-textfield mui-textfield--float-label">
-                   <input type="password" />
+                   <input name="password" type="password" onChange={this.writing.bind(this)} />
                    <label>Password</label>
                    </div>
                    
-                   <button type="submit" className="mui-btn mui-btn--raised">Submit</button>
+                   <button type="button" className="mui-btn mui-btn--raised" onClick={this.checkLogin.bind(this)}>Entra</button>
                    
                    </form>
                     
@@ -36,5 +69,5 @@ export default class Login extends React.Component{
             
 			</section>
         )
-    }
+    }    
 }
