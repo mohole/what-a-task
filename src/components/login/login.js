@@ -1,6 +1,6 @@
 'use strict';
 import React from 'react';
-
+import {Backend} from './../../backend';
 export default class Login extends React.Component{
     constructor(){
         super();
@@ -8,8 +8,7 @@ export default class Login extends React.Component{
         this.state = {
                 utente: '',
                 password: '',
-                ClassNameControl:'mui-textfield',
-                userCredentials: {}
+                ClassNameControl:'mui-textfield'
         };
     }
     
@@ -23,15 +22,15 @@ export default class Login extends React.Component{
     
     checkLogin(){
         if(this.state.utente != '' && this.state.password != ''){
-            console.log("ok!");
-            const user = {
-                utente: this.state.utente,
-                password: this.state.password
-            }
-            this.setState({
-                userCredentials : user,
-                ClassNameControl:'mui-textfield success'
-            })      
+			Backend.setCredentials(this.state.utente,this.state.password);
+			Backend.checkAuth().then((data)=>{
+				this.setState({
+					ClassNameControl:'mui-textfield success'
+				})
+				console.log("Login ok");
+				console.log(data);
+				
+			})
         }
         
         if(this.state.utente == '' || this.state.password == '' ){
