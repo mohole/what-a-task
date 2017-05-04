@@ -6,22 +6,22 @@ export default class List extends React.Component{
 
     constructor(props){
         super(props);
-
     }
-
 
     render(){
         const items = this.props.annunci.map((e,i) => {
         return(
-          <div className="mui-container" key={i}>
-            <div className="mui-row">
-              <div className="mui-col-xs-12">
-                <div><img src={e.image} /></div>
-                <h4><strong>{e.title}</strong></h4>
-                <p>{e.text}</p>
+          <a href={e.id}>
+            <div className="mui-container" key={i}>
+              <div className="mui-row">
+                <div className="mui-col-xs-12">
+                  <div><img src={e.image} /></div>
+                  <h4><strong>{e.title}</strong></h4>
+                  <p>{e.text}</p>
+                </div>
               </div>
             </div>
-          </div>
+          </a>
         )
         });
         return(
