@@ -1,5 +1,7 @@
 'use strict';
 import React from 'react';
+import List from './list/list';
+import {Annunci} from './data.js';
 import {Backend} from './../backend';
 import Single from './single-item/single-item';
 import EditItem from './single-item/edit-item';
@@ -15,6 +17,7 @@ export default class App extends React.Component{
 
 		this.state={
 			postCategory:[],
+      annunci: Annunci,
        newItem:{},
     			title:'titolo',
     			text:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae odit, ad nobis inventore neque. Atque cum voluptate tempora debitis!',
@@ -109,6 +112,9 @@ export default class App extends React.Component{
                 name="Nome Cognome"
                 date="18/04/2017"
               />
+
+                <List
+                annunci={this.state.annunci} />
     			</section>
 			</section>
         )
