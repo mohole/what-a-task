@@ -44,7 +44,7 @@ export default class App extends React.Component{
     			selectedCat:0,
     			type:'offro',
     			privacyCheck:false
-      
+
 		}
 
 		Backend.getCategory()
@@ -60,16 +60,14 @@ export default class App extends React.Component{
 
   hasCategory(){
   		if(this.state.postCategory.length!=0){
-  			return(
+  			return
   				<section>
   				<NewItem categoryList={this.state.postCategory}/>
-  				</section>
-  			)
+        </section>
   		}
   		else{
-  			return(
+  			return
   				<section>NO</section>
-  			)
   		}
   }
 	render(){
@@ -78,7 +76,7 @@ export default class App extends React.Component{
 				<Topbar/>
 				<Bottombar/>
   			<Spinner/>
-        {hasCategory}
+        {this.hasCategory()}
     <section>
             <h2>MODIFICA ANNUNCIO</h2>
             <hr/>

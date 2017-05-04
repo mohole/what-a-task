@@ -1,7 +1,7 @@
 'use strict';
 import React from 'react';
 import {Backend} from './../../backend';
-import ItemSearchBar from './itemSearchBar';
+import ItemSearchBar from './ItemSearchBar';
 export default class Topbar extends React.Component{
     constructor(){
         super();
@@ -13,7 +13,7 @@ export default class Topbar extends React.Component{
     }
 	activeSearch(evt){
 		console.log('search is active '+this.state.searchIsActive);
-		
+
 		Backend.getCategory()
 		.then((data)=>{
 			this.setState({
@@ -27,7 +27,7 @@ export default class Topbar extends React.Component{
 	}
 	render(){
 		if(this.state.searchIsActive){
-			var topSearchBar = <ItemSearchBar categoryList={this.state.postCategory}/>	
+			var topSearchBar = <ItemSearchBar categoryList={this.state.postCategory}/>
 		}
         return(
             <section>

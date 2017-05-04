@@ -7,6 +7,12 @@ export default class Single extends React.Component{
       super(props);
   }
 
+  isAuthor(userId, authorId){
+    if(userId===authorId){
+      return <a href="#" className="float-xs-right"><span className="glyphicon glyphicon-pencil"></span>MODIFICA</a>;
+    }
+  }
+
 	render(){
         return(
           <section>
@@ -15,7 +21,7 @@ export default class Single extends React.Component{
                 <div className="mui-col-xs-12">
                   <h2>{this.props.title.charAt(0).toUpperCase() + this.props.title.slice(1)}</h2>
                   <small>Categoria: <a href="#">{this.props.category}</a></small>
-                  {Backend.isAuthor(this.props.userId, this.props.authorId)}
+                  {this.isAuthor(this.props.userId, this.props.authorId)}
                 </div>
               </div>
               <div className="mui-row">
