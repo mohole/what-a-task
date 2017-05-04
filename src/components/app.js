@@ -1,8 +1,6 @@
 'use strict';
 import React from 'react';
 import {Backend} from './../backend';
-import List from './list/list';
-import {Annunci} from './data.js';
 import Single from './single-item/single-item';
 import EditItem from './single-item/edit-item';
 
@@ -48,9 +46,6 @@ export default class App extends React.Component{
 	render(){
         return(
           <section>
-            <List
-            annunci={this.state.annunci} />
-            <hr/>
             <h2>MODIFICA ANNUNCIO</h2>
             <hr/>
             <EditItem
@@ -68,20 +63,20 @@ export default class App extends React.Component{
         			ClassNameCategory={this.state.ClassNameCategory}
              />
 
-              <hr/>
-              <h2>SINGOLO ANNUNCIO</h2>
-              <hr/>
-   		        <Single
-                 id="1"
-                 authorId="1"
-                 userId="1"
-                 title="titolo"
-                 category="categoria"
-                 img="http://lorempixel.com/640/360"
-                 description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae odit, ad nobis inventore neque. Atque cum voluptate tempora debitis!"
-                 name="Nome Cognome"
-                 date="18/04/2017"
-               />
+             <hr/>
+             <h2>SINGOLO ANNUNCIO</h2>
+             <hr/>
+  		        <Single
+                id="1"
+                authorId="1"
+                userId="1"
+                title="titolo"
+                category="categoria"
+                img="http://lorempixel.com/640/360"
+                description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae odit, ad nobis inventore neque. Atque cum voluptate tempora debitis!"
+                name="Nome Cognome"
+                date="18/04/2017"
+              />
     			</section>
         )
     }

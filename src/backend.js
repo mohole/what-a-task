@@ -1,4 +1,5 @@
 'use strict';
+import React from 'react';
 
 class WAT_Backend {
 
@@ -101,8 +102,8 @@ class WAT_Backend {
 
 
 
-  isAuthor(userId){
-    if(userId===this.props.authorId){
+  isAuthor(userId, authorId){
+    if(userId===authorId){
       return <a href="#" className="float-xs-right"><span className="glyphicon glyphicon-pencil"></span>MODIFICA</a>;
     }
   }

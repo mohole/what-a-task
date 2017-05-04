@@ -1,6 +1,6 @@
 'use strict';
 import React from 'react';
-import {Backend} from './../backend';
+import {Backend} from './../../backend';
 
 export default class Single extends React.Component{
   constructor(props){
@@ -15,7 +15,7 @@ export default class Single extends React.Component{
                 <div className="mui-col-xs-12">
                   <h2>{this.props.title.charAt(0).toUpperCase() + this.props.title.slice(1)}</h2>
                   <small>Categoria: <a href="#">{this.props.category}</a></small>
-                  {Backend.isAuthor(this.props.userId)}
+                  {Backend.isAuthor(this.props.userId, this.props.authorId)}
                 </div>
               </div>
               <div className="mui-row">
