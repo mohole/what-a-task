@@ -105,7 +105,7 @@ export default class ModifyProfile extends React.Component{
                        <input placeholder="Descriviti in poche parole" name="description" value={this.state.description} onChange={this.modificaInfo.bind(this)} />
                      </div>
                       <button type="button"  onClick={this.submitForm.bind(this)} className="mui-btn mui-btn--primary">Modifica</button>
-                      <button onClick={this.props.undo} className="mui-btn mui-btn--fab mui-btn--primary">back</button>
+                      <button type="button" onClick={this.props.undo} className="mui-btn mui-btn--fab mui-btn--primary">back</button>
                       </form>
 
                     </div>
