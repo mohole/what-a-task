@@ -10,8 +10,6 @@ export default class App extends React.Component{
       console.log('app started');
 
       this.state ={
-        //annunci da modificare
-          annunci: Annunci,
           newItem:{},
     			title:'titolo',
     			text:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae odit, ad nobis inventore neque. Atque cum voluptate tempora debitis!',

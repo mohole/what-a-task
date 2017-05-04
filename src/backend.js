@@ -125,32 +125,6 @@ class WAT_Backend {
 		});
 	}
 
-
-  getMovies(){
-    return fetch(`${this.url}/movies`)
-      .then(this._parseRaw);
-  }
-
-  getSingleMovie(id){
-    return fetch(`${this.url}/movie/${id}`)
-      .then(this._parseRaw);
-  }
-
-//di default fetch fa una chiamata get, altrimenti va specificato tramite un oggetto (secondo argomento della funzione fetch)
-  postMovie(obj){
-    return fetch(`${this.url}/movies`, {
-      method: 'POST',
-      body: JSON.stringify(obj)
-    }).then(this._parseRaw);
-  }
-
-  editMovie(id,data){
-    return fetch(`${this.url}/movie/${id}`,{
-      method: 'PUT',
-      body: JSON.stringify(obj)
-    }).then(this._parseRaw);
-  }
-
 }
 
 export const Backend = new WAT_Backend();
