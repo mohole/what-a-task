@@ -9,6 +9,8 @@ import NewItem from './new_item/new_item'
 import Spinner from './common/spinner';
 import Topbar from './appbar/topbar';
 import Bottombar from './appbar/bottombar';
+import Profile from './profile/profile';
+import ModifyProfile from './profile/modify_profile';
 
 export default class App extends React.Component{
     constructor(){
@@ -80,6 +82,13 @@ export default class App extends React.Component{
 				<Bottombar/>
   			<Spinner/>
         {this.hasCategory()}
+    <Profile
+      first_name= 'Tiziano'
+      last_name= 'Borgato'
+      avatar_urls= 'http://lorempixel.com/200/200'
+      email= 'tiziano.borgato@gmail.com'
+      description= 'Sono uno studente del secondo anno di Web & Apps. Per maggiori info contattatemi al 334 1301904'
+      />
     <section>
             <h2>MODIFICA ANNUNCIO</h2>
             <hr/>
