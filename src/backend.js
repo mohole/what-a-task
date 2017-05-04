@@ -1,21 +1,35 @@
 'use strict';
 import React from 'react';
 
-class WAT_Backend {
-
-  constructor(){
-    //se avessimo creato una variabile sarebbe stata disponibile solo all'interno del costruttore.
-    //Usando this diventa una proprietà della classe, accessibile anche dall'esterno
-    this.url = '';
-  }
-
-//underscore davanti è una convenzione per dire che voglio usare questo metodo solo internamente
-  _parseRaw(reponse){
-    return response.json();
-  }
-
-
-  	writing(evt){
+class WAT_Backend{
+    constructor(){
+        this.url = 'http://localhost/whatatask/wp-json/wp/v2';
+    }
+    _parseRaw(response){
+        return response.json();
+    }
+	getCategory(){
+        return fetch(`${this.url}/tags`)
+        .then(this._parseRaw)
+    }
+	postAnnuncio(annuncio){
+        return fetch(`${this.url}/annunci`,
+        {
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(annuncio)
+        })
+        .then(this._parseRaw);
+    }
+  	getAnnunci(){
+  		return fetch(`${this.url}/annunci`)
+          .then(this._parseRaw)
+  	}
+  /*front-end single-item*/
+  writing(evt){
       const input = evt.target.value;
   		const elem=evt.target.getAttribute('name');
       this.setState({
@@ -124,7 +138,6 @@ class WAT_Backend {
       ClassNameCategory:this.props.ClassNameCategory
 		});
 	}
-
+  /*front-end single-item*/
 }
-
-export const Backend = new WAT_Backend();
+export const Backend = new WAT_Backend;

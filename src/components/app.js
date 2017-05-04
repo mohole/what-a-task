@@ -3,14 +3,19 @@ import React from 'react';
 import {Backend} from './../backend';
 import Single from './single-item/single-item';
 import EditItem from './single-item/edit-item';
+import NewItem from './new_item/new_item'
+import Spinner from './common/spinner';
+import Topbar from './appbar/topbar';
+import Bottombar from './appbar/bottombar';
 
 export default class App extends React.Component{
-  constructor(){
-      super();
-      console.log('app started');
+    constructor(){
+        super();
+        console.log('app started');
 
-      this.state ={
-          newItem:{},
+		this.state={
+			postCategory:[],
+       newItem:{},
     			title:'titolo',
     			text:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae odit, ad nobis inventore neque. Atque cum voluptate tempora debitis!',
     			image:'http://lorempixel.com/640/360',
@@ -39,11 +44,42 @@ export default class App extends React.Component{
     			selectedCat:0,
     			type:'offro',
     			privacyCheck:false
-      }
+      
+		}
+
+		Backend.getCategory()
+		.then((data)=>{
+			this.setState({
+				postCategory:data
+			})
+		})
+    }
+	postAnnuncio(annuncio){
+		Backend.postAnnuncio(annuncio);
+	}
+
+  hasCategory(){
+  		if(this.state.postCategory.length!=0){
+  			return(
+  				<section>
+  				<NewItem categoryList={this.state.postCategory}/>
+  				</section>
+  			)
+  		}
+  		else{
+  			return(
+  				<section>NO</section>
+  			)
+  		}
   }
 	render(){
-        return(
-          <section>
+  return(
+      <section>
+				<Topbar/>
+				<Bottombar/>
+  			<Spinner/>
+        {hasCategory}
+    <section>
             <h2>MODIFICA ANNUNCIO</h2>
             <hr/>
             <EditItem
@@ -76,15 +112,7 @@ export default class App extends React.Component{
                 date="18/04/2017"
               />
     			</section>
+			</section>
         )
     }
 }
-
-/*
-
-
-
-
-
-
-*/
