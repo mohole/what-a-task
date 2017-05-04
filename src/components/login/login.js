@@ -2,8 +2,8 @@
 import React from 'react';
 
 export default class Login extends React.Component{
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         
         this.state = {
                 utente: '',
@@ -40,7 +40,9 @@ export default class Login extends React.Component{
 				ClassNameControl:'mui-textfield error'
 			})
         }
-    }
+    }   
+    
+    
     
 	render(){
         
