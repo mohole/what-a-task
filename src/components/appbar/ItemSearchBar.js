@@ -9,7 +9,8 @@ export default class ItemSearchBar extends React.Component{
 			categoryList:this.props.categoryList,
 			searchTerm:'',
 			selectedCat:0,
-			searchArgs:{}
+			searchArgs:{},
+			type:5
 		}
     }
 	getCat(evt){
@@ -30,9 +31,16 @@ export default class ItemSearchBar extends React.Component{
 		this.setState({
 			searchArgs:{
 				tags:this.state.selectedCat,
-				search:this.state.searchTerm
+				search:this.state.searchTerm,
+				category:this.state.type
 			}
 		})
+	}
+	checkType(evt){
+		const input = parseInt(evt.target.value);
+		this.setState({
+            type : input
+        });
 	}
 	render(){
 		if(this.state.categoryList.lenght!=0){
@@ -50,6 +58,9 @@ export default class ItemSearchBar extends React.Component{
 							<option value="0" >Categoria</option>
 								{catList}
 							</select>
+						</div>
+						<div className="form-group">
+							<input type="radio" name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type===5} value="5"/> <span>Offro</span> <input type="radio" name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type===3} value="3"/> <span>Cerco</span>
 						</div>
 						<div className="form-group">
 							<input className="form-control" name="searchTerm" type="text" placeholder="cosa cerchi" value={this.state.searchTerm} onChange={this.writing.bind(this)}/>

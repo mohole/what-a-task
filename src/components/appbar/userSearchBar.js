@@ -7,7 +7,6 @@ export default class UserSearchBar extends React.Component{
         console.log('item search started');
 		this.state={
 			searchTerm:'',
-			selectedCat:0,
 			searchArgs:{}
 		}
     }
@@ -22,7 +21,6 @@ export default class UserSearchBar extends React.Component{
 	searchUser(){
 		this.setState({
 			searchArgs:{
-				tags:this.state.selectedCat,
 				search:this.state.searchTerm
 			}
 		})
