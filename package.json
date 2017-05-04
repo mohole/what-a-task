@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run server & webpack -w",
     "server": "http-server ./dist -s",
     "webpack": "webpack -w"
   },
@@ -20,6 +21,7 @@
   "homepage": "https://github.com/mohole/what-a-task#readme",
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.5",
+    "muicss": "^0.9.16",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
   },
