@@ -66,10 +66,10 @@ export default class App extends React.Component{
 
   hasCategory(){
   		if(this.state.postCategory.length!=0){
-  			return
+  			return(
   				<section>
   				<NewItem categoryList={this.state.postCategory}/>
-        </section>
+        </section>)
   		}
   		else{
   			return

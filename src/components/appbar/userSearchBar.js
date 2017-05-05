@@ -29,12 +29,12 @@ export default class UserSearchBar extends React.Component{
         return(
             <section>
 				<div id="user-search-bar">
-					<div className="form col-xs-12">
-						<div className="form-group">
-							<input className="form-control" name="searchTerm" type="text" placeholder="chi cerchi" value={this.state.searchTerm} onChange={this.writing.bind(this)}/>
+					<div className="mui-col-xs-12">
+						<div className="mui-textfield">
+							<input name="searchTerm" type="text" placeholder="chi cerchi" value={this.state.searchTerm} onChange={this.writing.bind(this)}/>
 						</div>
-						<div className="form-group">
-							<button type="button" className="btn btn-primary btn-block" onClick={this.searchUser.bind(this)}>CERCA</button>
+						<div className="mui-textfield">
+							<button type="button" className="mui-btn mui-btn--primary" onClick={this.searchUser.bind(this)}>CERCA</button>
 						</div>
 					</div>
 				</div>

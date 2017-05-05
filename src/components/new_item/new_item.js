@@ -10,10 +10,10 @@ export default class NewItem extends React.Component{
 			text:'',
 			image:{},
 			cat:this.props.categoryList,
-			ClassNameTitle:'form-group',
-			ClassNameText:'form-group',
-			ClassNamePrivacy:'form-group',
-			ClassNameCategory:'form-group',
+			ClassNameTitle:'mui-textfield',
+			ClassNameText:'mui-textfield',
+			ClassNamePrivacy:'mui-checkbox',
+			ClassNameCategory:'mui-select',
 			selectedCat:0,
 			type:5, /*5=offro,3=cerco*/
 			privacyCheck:false,
@@ -63,42 +63,42 @@ export default class NewItem extends React.Component{
 		var error=0;
 		if(this.state.title===''||this.state.title.length<3){
 			this.setState({
-				ClassNameTitle:'form-group error'
+				ClassNameTitle:'mui-textfield error'
 			})
 			error++;
 		}else{
 			this.setState({
-				ClassNameTitle:'form-group success'
+				ClassNameTitle:'mui-textfield success'
 			})
 		}
 		if(this.state.text===''||this.state.text.length<5){
 			this.setState({
-				ClassNameText:'form-group error'
+				ClassNameText:'mui-textfield error'
 			})
 			error++;
 		}else{
 			this.setState({
-				ClassNameText:'form-group success'
+				ClassNameText:'mui-textfield success'
 			})
 		}
 		if(this.state.selectedCat==0){
 			this.setState({
-				ClassNameCategory:'form-group error'
+				ClassNameCategory:'mui-select error'
 			})
 			error++;
 		}else{
 			this.setState({
-				ClassNameCategory:'form-group success'
+				ClassNameCategory:'mui-select success'
 			})
 		}
 		if(this.state.privacyCheck==false){
 			this.setState({
-				ClassNamePrivacy:'form-group error'
+				ClassNamePrivacy:'mui-checkbox error'
 			})
 			error++;
 		}else{
 			this.setState({
-				ClassNamePrivacy:'form-group success'
+				ClassNamePrivacy:'mui-checkbox success'
 			})
 		}
 		if(error==0){
@@ -127,10 +127,10 @@ export default class NewItem extends React.Component{
 			title:'',
 			text:'',
 			image:{},
-			ClassNameTitle:'form-group',
-			ClassNameText:'form-group',
-			ClassNamePrivacy:'form-group',
-			ClassNameCategory:'form-group',
+			ClassNameTitle:'mui-textfield',
+			ClassNameText:'mui-textfield',
+			ClassNamePrivacy:'mui-checkbox',
+			ClassNameCategory:'mui-select',
 			selectedCat:0,
 			type:5,
 			privacyCheck:false
@@ -147,43 +147,43 @@ export default class NewItem extends React.Component{
 							
         return(
             <section>
-			<div className="container content">
-				<div className="row">
-					<div className="col-xs-12">
+			<div className="mui-container content">
+				<div className="mui-row">
+					<div className="mui-col-xs-12">
 						<h1>Inserisci annuncio</h1>
 					</div>
-					<div className="col-xs-12">
-						<form action="#" onSubmit={this.submitAnnuncio.bind(this)}>
+					<div className="mui-col-xs-12">
+						<form action="#" onSubmit={this.submitAnnuncio.bind(this)} className="mui-form">
 						<div className={this.state.ClassNameCategory}>
 						<label htmlFor="">Categoria</label>
-							<select name="" id="ann_category" className="form-control" value={this.state.selectedCat} onChange={this.getCat.bind(this)}>
+							<select name="" id="ann_category" value={this.state.selectedCat} onChange={this.getCat.bind(this)}>
 							<option value="0">Categoria</option>
 							{catList}
 							</select>
 						</div>
-							<div className="form-group">
+							<div className="mui-radio">
 								<label htmlFor="">Tipologia</label><br/>
 								<input type="radio" name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type===5} value="5"/> <span>Offro</span> <input type="radio" name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type===3} value="3"/> <span>Cerco</span>
 							</div>
-							<div className="form-group">
+							<div className="mui-textfield">
 								<label htmlFor="">Immagine</label><br/>
 								<input type="file" placeholder="Immagine" onChange={this.uploadFile.bind(this)}/>
 							</div>
 							<div className={this.state.ClassNameTitle}>
 								<label htmlFor="">Titolo annuncio</label>
-								<input type="text" className="form-control" placeholder="Titolo" value={this.state.title} onChange={this.writing.bind(this)} name="title"/>
+								<input type="text" placeholder="Titolo" value={this.state.title} onChange={this.writing.bind(this)} name="title"/>
 							</div>
 							<div className={this.state.ClassNameText}>
 								<label htmlFor="">Testo annuncio</label>
-								<textarea name="" id="" cols="30" rows="10" className="form-control" value={this.state.text} onChange={this.writing.bind(this)} name="text"></textarea>
+								<textarea name="" id="" cols="30" rows="10" value={this.state.text} onChange={this.writing.bind(this)} name="text"></textarea>
 							</div>
 							<div className={this.state.ClassNamePrivacy}>
 								<label htmlFor="">Termini e condizioni</label><br/>
 								<input type="checkbox" checked={this.state.privacyCheck} onChange={this.checkPrivacy.bind(this)}/><span>Accetto i <a href="#">termini della privacy</a></span>
 							</div>
-							<div className="form-group">
-								<button type="submit" className="btn btn-block btn-success">Inserisci</button>
-								<button type="button" onClick={this.resetForm.bind(this)} className="btn btn-block btn-danger">Annulla</button>
+							<div className="mui-textfield">
+								<button type="submit" className="mui-btn mui-btn--primary">Inserisci</button>
+								<button type="button" onClick={this.resetForm.bind(this)} className="mui-btn mui-btn--danger">Annulla</button>
 							</div>
 						</form>
 					</div>

@@ -13,18 +13,16 @@
     "type": "git",
     "url": "git+https://MatteoBosi@github.com/mohole/what-a-task.git"
   },
-  "author": "Tiziano Borgato <tiziano.borgato@gmail.com>,Matteo Bosi <matteo.bosi95@hotmail.it>,Martina Donati <martina.donati01@gmail.com>,Rebecca Guzzo <rebiguzzo@gmail.com>,Giovanni Pignataro <giovanni.pignataro1@gmail.com>,Sachin Tempini <sachin.tempini@gmail.com>",
+  "author": "Tiziano Borgato <tiziano.borgato@gmail.com>,Matteo Bosi <matteo.bosi95@hotmail.it>,Martina Donati <martina.donati01@gmail.com>,Rebecca Guzzo <rebiguzzo@gmail.com>,Giovanni Pignataro <giovannipignataro1@gmail.com>,Sachin Tempini <sachin.tempini@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mohole/what-a-task/issues"
   },
   "homepage": "https://github.com/mohole/what-a-task#readme",
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.5",
     "muicss": "^0.9.16",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "wpapi": "^1.0.3"
+    "react-dom": "^15.5.4"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",

@@ -33,12 +33,12 @@ export default class Topbar extends React.Component{
             <section>
 			<div className="top-bar-wrapper">
 				<div className="top-inner">
-					<div className="col-xs-4">
-						<a href="#" className="btn btn-primary"><i className="fa fa-plus"></i></a>
+					<div className="mui-col-xs-4">
+						<a href="#" className="mui-btn mui-btn--primary"><i className="fa fa-plus"></i></a>
 					</div>
-					<div className="col-xs-4 text-center">WAT</div>
-					<div className="col-xs-4">
-						<button id="search" className="btn btn-primary" onClick={this.activeSearch.bind(this)}><i className="fa fa-search"></i></button>
+					<div className="mui-col-xs-4 text-center">WAT</div>
+					<div className="mui-col-xs-4">
+						<button id="search" className="mui-btn mui-btn--primary" onClick={this.activeSearch.bind(this)}><i className="fa fa-search"></i></button>
 					</div>
 				</div>
 			</div>

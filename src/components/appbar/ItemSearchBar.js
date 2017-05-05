@@ -52,21 +52,21 @@ export default class ItemSearchBar extends React.Component{
         return(
             <section>
 				<div id="item-search-bar">
-					<div className="form col-xs-12">
-						<div className="form-group">
-							<select className="form-control" onChange={this.getCat.bind(this)}>
+					<div className="mui-col-xs-12">
+						<div className="mui-select">
+							<select onChange={this.getCat.bind(this)}>
 							<option value="0" >Categoria</option>
 								{catList}
 							</select>
 						</div>
-						<div className="form-group">
-							<input type="radio" name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type===5} value="5"/> <span>Offro</span> <input type="radio" name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type===3} value="3"/> <span>Cerco</span>
+						<div className="mui-radio">
+							<input type="radio" name="tipologia" onChange={this.checkType.bind(this)} checked={this.state.type===5} value="5"/> <span>Offro</span> <input type="radio" name="tipologia" onChange={this.checkType.bind(this)} checked={this.state.type===3} value="3"/> <span>Cerco</span>
 						</div>
-						<div className="form-group">
-							<input className="form-control" name="searchTerm" type="text" placeholder="cosa cerchi" value={this.state.searchTerm} onChange={this.writing.bind(this)}/>
+						<div className="mui-textfield">
+							<input name="searchTerm" type="text" placeholder="cosa cerchi" value={this.state.searchTerm} onChange={this.writing.bind(this)}/>
 						</div>
-						<div className="form-group">
-							<button type="button" className="btn btn-primary btn-block" onClick={this.searchItem.bind(this)}>CERCA</button>
+						<div className="mui-textfield">
+							<button type="button" className="mui-btn mui-btn--primary" onClick={this.searchItem.bind(this)}>CERCA</button>
 						</div>
 					</div>
 				</div>

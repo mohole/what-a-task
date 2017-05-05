@@ -24,14 +24,14 @@ export default class Bottombar extends React.Component{
             <section>
 			<div className="bottom-bar-wrapper">
 				<div className="top-inner">
-					<div className="col-xs-4">
-						<button className="btn btn-primary" onClick={this.activeSearch.bind(this)}><i className="fa fa-search"></i></button>
+					<div className="mui-col-xs-4">
+						<button className="mui-btn mui-btn--primary" onClick={this.activeSearch.bind(this)}><i className="fa fa-search"></i></button>
 					</div>
-					<div className="col-xs-4 text-center">
-						<button className="btn btn-primary"><i className="fa fa-user"></i></button>
+					<div className="mui-col-xs-4 text-center">
+						<button className="mui-btn mui-btn--primary"><i className="fa fa-user"></i></button>
 					</div>
-					<div className="col-xs-4 text-right">
-						<button className="btn btn-primary"><i className="fa fa-cog"></i></button>
+					<div className="mui-col-xs-4 text-right">
+						<button className="mui-btn mui-btn--primary"><i className="fa fa-cog"></i></button>
 					</div>
 				</div>
 			</div>
