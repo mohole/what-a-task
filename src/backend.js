@@ -11,6 +11,7 @@ class WAT_Backend{
     _parseRaw(response){
         return response.json();
     }
+
     checkAuth(){
         return fetch(`${this.url}/settings`,{
           headers: this.headers
@@ -21,7 +22,26 @@ class WAT_Backend{
         const auth ={Authorization:`Basic ${encoded}`};
         this.headers = Object.assign({},this.headers,auth);
     }
-    
-    
+
+	getCategory(){
+        return fetch(`${this.url}/tags`)
+        .then(this._parseRaw)
+    }
+	postAnnuncio(annuncio){
+        return fetch(`${this.url}/annunci`,
+        {
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(annuncio)
+        })
+        .then(this._parseRaw);
+    }
+  	getAnnunci(){
+  		return fetch(`${this.url}/annunci`)
+          .then(this._parseRaw)
+  	}
 }
 export const Backend = new WAT_Backend;
