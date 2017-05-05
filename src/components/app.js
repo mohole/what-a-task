@@ -1,5 +1,7 @@
 'use strict';
 import React from 'react';
+
+import Login from './login/login';
 import List from './list/list';
 import {Annunci} from './data.js';
 import {Backend} from './../backend';
@@ -11,7 +13,6 @@ import Topbar from './appbar/topbar';
 import Bottombar from './appbar/bottombar';
 import Profile from './profile/profile';
 import ModifyProfile from './profile/modify_profile';
-
 export default class App extends React.Component{
     constructor(){
         super();
@@ -78,6 +79,7 @@ export default class App extends React.Component{
 	render(){
   return(
       <section>
+    <Login/>
 				<Topbar/>
 				<Bottombar/>
   			<Spinner/>
