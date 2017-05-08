@@ -5,6 +5,7 @@ import Login from './login/login';
 import List from './list/list';
 import {Annunci} from './data.js';
 import {Backend} from './../backend';
+import {Store} from './../store';
 import Single from './single-item/single-item';
 import EditItem from './single-item/edit-item';
 import NewItem from './new_item/new_item'
@@ -52,7 +53,7 @@ export default class App extends React.Component{
     			privacyCheck:false
 
 		}
-
+		
 		Backend.getCategory()
 		.then((data)=>{
 			this.setState({
