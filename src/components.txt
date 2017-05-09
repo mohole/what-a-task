@@ -1,0 +1,47 @@
+ 	<Topbar/>
+				<Bottombar/>
+  			<Spinner/>
+        {this.hasCategory()}
+    <Profile
+      first_name= 'Tiziano'
+      last_name= 'Borgato'
+      avatar_urls= 'http://lorempixel.com/200/200'
+      email= 'tiziano.borgato@gmail.com'
+      description= 'Sono uno studente del secondo anno di Web & Apps. Per maggiori info contattatemi al 334 1301904'
+      />
+    <section>
+            <h2>MODIFICA ANNUNCIO</h2>
+            <hr/>
+            <EditItem
+              id="1"
+              text={this.state.text}
+              title={this.state.title}
+              image={this.state.image}
+              cat={this.state.cat}
+              privacyCheck={this.state.privacyCheck}
+              selectedCat={this.state.selectedCat}
+              type={this.state.type}
+        			ClassNameTitle={this.state.ClassNameTitle}
+        			ClassNameText={this.state.ClassNameText}
+        			ClassNamePrivacy={this.state.ClassNamePrivacy}
+        			ClassNameCategory={this.state.ClassNameCategory}
+             />
+
+             <hr/>
+             <h2>SINGOLO ANNUNCIO</h2>
+             <hr/>
+  		        <Single
+                id="1"
+                authorId="1"
+                userId="1"
+                title="titolo"
+                category="categoria"
+                img="http://lorempixel.com/640/360"
+                description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae odit, ad nobis inventore neque. Atque cum voluptate tempora debitis!"
+                name="Nome Cognome"
+                date="18/04/2017"
+              />
+
+                <List
+                annunci={this.state.annunci} />
+    			</section>

@@ -2,8 +2,8 @@
 import React from 'react';
 import {Backend} from './../../backend';
 export default class Login extends React.Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         
         this.state = {
                 utente: '',
@@ -29,6 +29,7 @@ export default class Login extends React.Component{
 				})
 				console.log("Login ok");
 				console.log(data);
+				this.props.makeLogin();
 				
 			})
         }

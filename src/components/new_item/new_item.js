@@ -1,5 +1,6 @@
 'use strict';
 import React from 'react';
+import Spinner from './../common/spinner';
 export default class NewItem extends React.Component{
     constructor(props){
         super(props);
@@ -193,7 +194,7 @@ export default class NewItem extends React.Component{
         )
 		}else{
 			return(
-				<section>NO</section>
+				<Spinner/>
 			)
 		}
     }
