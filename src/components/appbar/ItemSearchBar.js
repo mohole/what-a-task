@@ -55,7 +55,7 @@ export default class ItemSearchBar extends React.Component{
 					<div className="mui-col-xs-12">
 						<div className="mui-select">
 							<select onChange={this.getCat.bind(this)}>
-							<option value="0" >Categoria</option>
+								<option value="0" >Categoria</option>
 								{catList}
 							</select>
 						</div>

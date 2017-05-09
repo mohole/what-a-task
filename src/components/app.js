@@ -21,13 +21,6 @@ export default class App extends React.Component{
 		this.state={
 			logged:false,
 		}
-		
-		Backend.getCategory()
-		.then((data)=>{
-			this.setState({
-				postCategory:data
-			})
-		})
     }
 	postAnnuncio(annuncio){
 		Backend.postAnnuncio(annuncio);
@@ -49,6 +42,7 @@ export default class App extends React.Component{
 	makeLogin(){
 		this.setState({
 			logged:!this.state.logged,
+			activePage:'login',
 			postCategory:[],
 			annunci: Annunci,
 			newItem:{},
@@ -83,25 +77,41 @@ export default class App extends React.Component{
 		})
 		console.log('load app state');
 	}
+	goToPage(page){
+		this.setState({
+			activePage: page
+		})
+		console.log(page);
+	}
 	render(){
 		if(this.state.logged){
+			var contentElem= <Spinner/>
 			if(this.state.annunci){
-				return(
-					<section>
-						<Topbar/>
-						<List annunci={this.state.annunci}/>
-						<Bottombar/>
-					</section>
-				)
-			}else{
-				return(
-					<section>
-						<Topbar/>
-						<Spinner/>
-						<Bottombar/>
-					</section>
-				)
+				contentElem = <List annunci={this.state.annunci}/>
 			}
+			if(this.state.activePage=='NewItem'){
+				contentElem= <Spinner/>
+				Backend.getCategory()
+				.then((data)=>{
+					this.setState({
+						postCategory:data
+					})
+				})
+				if(this.state.postCategory.length!=0){
+					contentElem = <NewItem categoryList={this.state.postCategory}/>
+				}
+			}
+			if(this.state.activePage=='Profile'){
+				contentElem= <Spinner/>
+					contentElem = <Profile first_name= 'Tiziano' last_name= 'Borgato' avatar_urls= 'http://lorempixel.com/200/200' email= 'tiziano.borgato@gmail.com' description= 'Sono uno studente del secondo anno di Web & Apps. Per maggiori info contattatemi al 334 1301904' />
+			}
+			return(
+				<section>
+					<Topbar goToPage={this.goToPage.bind(this)}/>
+					{contentElem}
+					<Bottombar goToPage={this.goToPage.bind(this)}/>
+				</section>
+			)	
 		}else{
 			return(
 				<section>

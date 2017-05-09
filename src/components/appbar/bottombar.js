@@ -28,7 +28,7 @@ export default class Bottombar extends React.Component{
 						<button className="mui-btn mui-btn--primary" onClick={this.activeSearch.bind(this)}><i className="fa fa-search"></i></button>
 					</div>
 					<div className="mui-col-xs-4 text-center">
-						<button className="mui-btn mui-btn--primary"><i className="fa fa-user"></i></button>
+						<button className="mui-btn mui-btn--primary" onClick={()=>{this.props.goToPage('Profile')}}><i className="fa fa-user"></i></button>
 					</div>
 					<div className="mui-col-xs-4 text-right">
 						<button className="mui-btn mui-btn--primary"><i className="fa fa-cog"></i></button>
