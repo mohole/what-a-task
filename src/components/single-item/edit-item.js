@@ -20,9 +20,9 @@ export default class EditItem extends React.Component{
           ClassNamePrivacy:this.props.ClassNamePrivacy,
           ClassNameCategory:this.props.ClassNameCategory
         }
+
+
     }
-
-
 
     writing(evt){
         const input = evt.target.value;
@@ -161,7 +161,7 @@ postEditedItem(){
 
 
 	render(){
-		const catList =this.props.cat.map((e,i) =>{
+		const catList =this.props.postCategory.map((e,i) =>{
 			return(
 				<option value={e._id} key={e._id} onChange={this.getCat.bind(this)}>{e.name}</option>
 			)

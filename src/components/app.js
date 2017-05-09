@@ -14,6 +14,7 @@ import Topbar from './appbar/topbar';
 import Bottombar from './appbar/bottombar';
 import Profile from './profile/profile';
 import ModifyProfile from './profile/modify_profile';
+
 export default class App extends React.Component{
     constructor(){
         super();
@@ -37,12 +38,12 @@ export default class App extends React.Component{
 			return
 				<section>NO</section>
 		}
-		
+
 	}
 	makeLogin(){
 		this.setState({
 			logged:!this.state.logged,
-			activePage:'login',
+			activePage:'Single',
 			postCategory:[],
 			annunci: Annunci,
 			newItem:{},
@@ -105,19 +106,40 @@ export default class App extends React.Component{
 				contentElem= <Spinner/>
 					contentElem = <Profile first_name= 'Tiziano' last_name= 'Borgato' avatar_urls= 'http://lorempixel.com/200/200' email= 'tiziano.borgato@gmail.com' description= 'Sono uno studente del secondo anno di Web & Apps. Per maggiori info contattatemi al 334 1301904' />
 			}
+            if(this.state.activePage=='Single'){
+                Backend.getCategory()
+                .then((data)=>{
+                    this.setState({
+                        postCategory:data
+                    })
+                })
+                contentElem=
+      		        <Single
+                    id="1"
+                    postCategory={this.state.postCategory}
+                    authorId="1"
+                    userId="1"
+                    title="titolo"
+                    category="categoria"
+                    img="http://lorempixel.com/640/360"
+                    description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae odit, ad nobis inventore neque. Atque cum voluptate tempora debitis!"
+                    name="Nome Cognome"
+                    date="18/04/2017"
+                  />
+            }
 			return(
 				<section>
 					<Topbar goToPage={this.goToPage.bind(this)}/>
 					{contentElem}
 					<Bottombar goToPage={this.goToPage.bind(this)}/>
 				</section>
-			)	
+			)
 		}else{
 			return(
 				<section>
 					<Login makeLogin={this.makeLogin.bind(this)}/>
 				</section>
-			)	
+			)
 		}
     }
 }
