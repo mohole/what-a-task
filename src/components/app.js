@@ -3,7 +3,7 @@ import React from 'react';
 
 import Login from './login/login';
 import List from './list/list';
-import {Annunci} from './data.js';
+//import {Annunci} from './data.js';
 import {Backend} from './../backend';
 import {Store} from './../store';
 import NewItem from './new_item/new_item';
@@ -19,6 +19,8 @@ export default class App extends React.Component{
         console.log('app started');
 		this.state={
 			logged:false,
+            annunci:[],
+            annuncio:[]
 		}
     }
 	postAnnuncio(annuncio){
@@ -36,14 +38,14 @@ export default class App extends React.Component{
 			return
 				<section>NO</section>
 		}
-		
+
 	}
 	makeLogin(){
+        //Store.set({ loggedin: 'true'});
 		this.setState({
 			logged:!this.state.logged,
 			activePage:'login',
 			postCategory:[],
-			annunci: Annunci,
 			newItem:{},
 			title:'titolo',
 			text:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae odit, ad nobis inventore neque. Atque cum voluptate tempora debitis!',
@@ -82,8 +84,15 @@ export default class App extends React.Component{
 		})
 		console.log(page);
 	}
+
 	render(){
 		if(this.state.logged){
+            Backend.getAnnunci()
+            .then((data)=>{
+                this.setState({
+                    annunci:data
+                })
+            })
 			var contentElem= <Spinner/>
 			if(this.state.annunci){
 				contentElem = <List annunci={this.state.annunci} goToPage={this.goToPage.bind(this)}/>
@@ -105,8 +114,42 @@ export default class App extends React.Component{
 				contentElem = <Profile first_name= 'Tiziano' last_name= 'Borgato' avatar_urls= 'http://lorempixel.com/200/200' email= 'tiziano.borgato@gmail.com' description= 'Sono uno studente del secondo anno di Web & Apps. Per maggiori info contattatemi al 334 1301904' />
 			}
 			if(this.state.activePage.includes('Single|')){
+				contentElem= <Spinner/>
 				const postP = this.state.activePage.split('|');
-				contentElem= <Single id={postP[1]} authorId="1" userId="1" title="titolo" category="categoria" img="http://lorempixel.com/640/360" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae odit, ad nobis inventore neque. Atque cum voluptate tempora debitis!" name="Nome Cognome" date="18/04/2017"/>
+                Backend.getAnnuncio(postP[1])
+                .then((data)=>{
+                    this.setState({
+                        annuncio:data
+                    })
+                })
+
+				Backend.getCategory()
+				.then((data)=>{
+					this.setState({
+						postCategory:data
+					})
+				})
+
+                //se rimuovo l'if ci mettono un po', da sistemare (se lo lascio errori in console)
+                if(this.state.annuncio.length!=0){
+                    Backend.getUserInfo(this.state.annuncio.author)
+    				.then((data)=>{
+    					this.setState({
+    						author:data
+    					})
+    				})
+
+                    Backend.getCurrentCategoryName(this.state.annuncio.tags)
+    				.then((data)=>{
+    					this.setState({
+    						currentCat:data
+    					})
+    				})
+                }
+
+				if(this.state.annuncio.length!=0 && this.state.postCategory.length!=0 && this.state.author.length!=0 && this.state.currentCat.length!=0){
+                    contentElem= <Single id={postP[1]} annuncio={this.state.annuncio} categoryList={this.state.postCategory} userId="6" currCat={this.state.currentCat.name} author={this.state.author} />
+                }
 			}
 			return(
 				<section>
@@ -114,13 +157,13 @@ export default class App extends React.Component{
 					{contentElem}
 					<Bottombar goToPage={this.goToPage.bind(this)}/>
 				</section>
-			)	
+			)
 		}else{
 			return(
 				<section>
 					<Login makeLogin={this.makeLogin.bind(this)}/>
 				</section>
-			)	
+			)
 		}
     }
 }

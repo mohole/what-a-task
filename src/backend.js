@@ -27,6 +27,7 @@ class WAT_Backend{
         return fetch(`${this.url}/tags`)
         .then(this._parseRaw)
     }
+
 	postAnnuncio(annuncio){
         return fetch(`${this.url}/annunci`,
         {
@@ -43,5 +44,17 @@ class WAT_Backend{
   		return fetch(`${this.url}/annunci`)
           .then(this._parseRaw)
   	}
+  	getAnnuncio(postId){
+  		return fetch(`${this.url}/annunci/${postId}`)
+          .then(this._parseRaw)
+  	}
+    getCurrentCategoryName(cat){
+  		return fetch(`${this.url}/tags/${cat}`)
+          .then(this._parseRaw)
+    }
+    getUserInfo(userId){
+  		return fetch(`${this.url}/users/${userId}`)
+          .then(this._parseRaw)
+    }
 }
 export const Backend = new WAT_Backend;
