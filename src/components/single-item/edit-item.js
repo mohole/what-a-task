@@ -9,14 +9,13 @@ export default class EditItem extends React.Component{
 
         this.state={
           id:this.props.id,
-          type:this.props.type,
           text:this.props.text,
           title:this.props.title,
           image:this.props.image,
           type:this.props.type,
           cat:this.props.categoryList,
-          privacyCheck:false,
           selectedCat: this.props.selectedCat,
+          privacyCheck:false,
           ClassNameTitle:'',
           ClassNameText:'',
           ClassNamePrivacy:'',
@@ -136,12 +135,12 @@ export default class EditItem extends React.Component{
           title:this.props.title,
           image:this.props.image,
           type:this.props.type,
-          privacyCheck:this.props.privacyCheck,
           selectedCat: this.props.selectedCat,
-          ClassNameTitle:this.props.ClassNameTitle,
-          ClassNameText:this.props.ClassNameText,
-          ClassNamePrivacy:this.props.ClassNamePrivacy,
-          ClassNameCategory:this.props.ClassNameCategory
+          privacyCheck:this.state.privacyCheck,
+          ClassNameTitle:'form-group mui-textfield',
+          ClassNameText:'form-group mui-textfield',
+          ClassNamePrivacy:'form-group mui-checkbox',
+          ClassNameCategory:'form-group mui-select',
         });
       }
 

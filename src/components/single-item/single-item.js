@@ -19,17 +19,18 @@ export default class Single extends React.Component{
     })
   }
 
-  isAuthor(userId, authorId){
-    if(userId==authorId){
-      return <button onClick={()=>{this.editItem()}}>MODIFICA</button>;
+    isAuthor(userId, authorId){
+        if(userId===authorId){
+          return <button onClick={()=>{this.editItem()}}>MODIFICA</button>;
+        }
     }
-  }
-printDate(date){
-  	var year=date.substr(0,4);
-  	var month=date.substr(5,2);
-  	var day=date.substr(8,2);
-  	return(day+'/'+month+'/'+year);
-  }
+
+    printDate(date){
+      	var year=date.substr(0,4);
+      	var month=date.substr(5,2);
+      	var day=date.substr(8,2);
+      	return(day+'/'+month+'/'+year);
+      }
 
 	render(){
         if(this.props.annuncio.length!=0){
@@ -37,12 +38,13 @@ printDate(date){
                 return(
                     <EditItem
                         id={this.props.annuncio.id}
+                        type={this.props.annuncio.categories}
                         text={this.props.annuncio.content.rendered}
                         title={this.props.annuncio.title.rendered}
                         image={this.props.annuncio.acf.url_img}
+                        type={this.props.annuncio.categories}
                         selectedCat={this.props.annuncio.tags}
                         categoryList={this.props.categoryList}
-                        type={this.props.annuncio.categories}
                     />
                 )
             } else {
@@ -79,9 +81,8 @@ printDate(date){
                 )
             }
         } else {
-            console.log('no props');
             return(
-                <div>NO PROPS.</div>
+                <div>NOT FOUND.</div>
             )
         }
     }

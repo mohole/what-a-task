@@ -12,9 +12,8 @@ export default class List extends React.Component{
 		const elemId = evt.currentTarget.getAttribute('data-item-id');
 		console.log(elemId);
 		this.props.goToPage('Single|'+elemId)
-	} 
+	}
     render(){
-        if(this.props.annunci.length>0){
     		const items = this.props.annunci.map((e,i) => {
     		return(
         			<a href="#" onClick={this.showAnnuncio.bind(this)} data-item-id={e.id} key={i}>
@@ -35,12 +34,5 @@ export default class List extends React.Component{
     			{items}
     		</div>
     		)
-        } else {
-            return(
-                <div>
-                    <p>no items found.</p>
-                </div>
-            )
-        }
     }
 }

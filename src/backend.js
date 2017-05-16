@@ -2,7 +2,7 @@
 
 class WAT_Backend{
     constructor(){
-        this.url = 'http://www.moholepeople.it/whatatask/wp-json/wp/v2',
+        this.url = 'http://moholepeople.it/whatatask/wp-json/wp/v2',
         this.headers={
               'Accept': 'application/json',
               'Content-Type': 'application/json'
