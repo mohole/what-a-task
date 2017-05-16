@@ -29,15 +29,16 @@ class WAT_Backend{
         .then(this._parseRaw)
     }
 	postAnnuncio(annuncio){
-		
+		const data=JSON.stringify(annuncio);
         return fetch(`${this.url}/annunci`,
         {
             headers:  this.headers,
             method: "POST",
-            body: JSON.stringify(annuncio)
+            body: data
         })
         .then(this._parseRaw);
     }
+	
   	getAnnunci(){
   		return fetch(`${this.url}/annunci`)
           .then(this._parseRaw)
@@ -45,19 +46,40 @@ class WAT_Backend{
 	upLoadMedia(imgPath,callback){
 		var data = new FormData();
 		data.append("file", imgPath);
-		var xhr = new XMLHttpRequest();
-		xhr.withCredentials = true;
-		xhr.addEventListener("readystatechange", function () {
-			if (this.readyState === 4) {
-				if (typeof callback == "function") {
-					callback.apply(xhr);
-				}	
+		return fetch(`${this.url}/media`,
+        {
+            headers:{
+				Authorization: this.auth,
+				'Accept': 'application/json',
+			},
+            method: "POST",
+            body: data
+        })
+        .then(this._parseRaw);
+	}
+	searchAnnuncio(searchTerm,cat,tag){
+		var searchString ='?';
+		if(searchTerm!=null){
+			searchString+='search='+searchTerm;
+		}
+		if(cat!=null){
+			if(searchString!='?'){
+				searchString+='&'
 			}
-		});
-		xhr.open("POST", `${this.url}/media`);
-		xhr.setRequestHeader("Authorization", this.auth);
-		xhr.setRequestHeader("Accept", "application/json");
-		xhr.send(data);
+			searchString+='categories='+cat
+		}
+		if(tag!=null){
+			if(searchString!='?'){
+				searchString+='&'
+			}
+			searchString+='tags='+tag
+		}
+		if(searchString=='?'){
+			searchString='';
+		}
+		console.log(searchString);
+		return fetch(`${this.url}/annunci${searchString}`)
+          .then(this._parseRaw)
 	}
 }
 export const Backend = new WAT_Backend;

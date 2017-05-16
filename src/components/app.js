@@ -21,9 +21,6 @@ export default class App extends React.Component{
 			logged:false,
 		}
     }
-	postAnnuncio(annuncio){
-		Backend.postAnnuncio(annuncio);
-	}
 	hasCategory(){
 		if(this.state.postCategory.length!=0){
 			return(
@@ -41,10 +38,9 @@ export default class App extends React.Component{
 	makeLogin(){
 		this.setState({
 			logged:!this.state.logged,
-			activePage:'login',
+			activePage:'List',
 			postCategory:[],
 			annunci: Annunci,
-			newItem:{},
 			title:'titolo',
 			text:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae odit, ad nobis inventore neque. Atque cum voluptate tempora debitis!',
 			image:'http://lorempixel.com/640/360',
@@ -84,9 +80,14 @@ export default class App extends React.Component{
 	}
 	render(){
 		if(this.state.logged){
-			var contentElem= <Spinner/>
-			if(this.state.annunci){
-				contentElem = <List annunci={this.state.annunci} goToPage={this.goToPage.bind(this)}/>
+			var contentElem = <Spinner/>
+			if(this.state.activePage=='List'){
+				contentElem= <Spinner/>
+				
+				if(this.state.annunci){
+					contentElem = <List annunci={this.state.annunci} goToPage={this.goToPage.bind(this)}/>;
+					console.log(this.state.annunci);
+				}
 			}
 			if(this.state.activePage=='NewItem'){
 				contentElem= <Spinner/>
@@ -97,7 +98,7 @@ export default class App extends React.Component{
 					})
 				})
 				if(this.state.postCategory.length!=0){
-					contentElem = <NewItem categoryList={this.state.postCategory}/>
+					contentElem = <NewItem categoryList={this.state.postCategory} goToPage={this.goToPage.bind(this)}/>
 				}
 			}
 			if(this.state.activePage=='Profile'){
