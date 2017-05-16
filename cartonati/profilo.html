@@ -1,76 +1,91 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>profilo</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<style>
-	.top-bar-wrapper{
-		position: fixed;
-		top:0;
-		left: 0;
-		width: 100%;
-		z-index: 10;
-		height: 50px;
-		background-color: #ebebeb;
-	}
-	.bottom-bar-wrapper{
-		position: fixed;
-		bottom:0;
-		left: 0;
-		width: 100%;
-		z-index: 10;
-		height: 50px;
-		background-color: #ebebeb;
-	}
-	.content{
-		padding-top: 50px;
-		padding-bottom: 50px;
-	}
-	</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- CDN MUI FRAMEWORK -->
+  <link href="//cdn.muicss.com/mui-latest/css/mui.min.css" rel="stylesheet" type="text/css" />
+  <!-- GOOGLE FONTS -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:200,300,400,500,600,700,800,900" rel="stylesheet">
+  <!-- CDN IONICONS -->
+  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- CSS ESTERNO -->
+  <link rel="stylesheet" href="css/style.css">
+  <title>Document</title>
 </head>
 <body>
-<div class="top-bar-wrapper">
-	<div class="top-inner">
-		<div class="col-xs-4">
-			<a href="elenco_annunci.html" class="btn btn-primary"><i class="glyphicon glyphicon-arrow-left"></i></a>
-		</div>
-		<div class="col-xs-4 text-center">WAT</div>
-		<div class="col-xs-4 text-right">
-			
-		</div>
-	</div>
+<div class="container">
+	<section>
+      <div class="top-bar-wrapper">
+        <div class="top-inner">
+          <div class="mui-col-xs-4">
+            <button class="top-bar-button mui-btn mui-btn--small mui-btn mui-btn--fab"><i class="icon ion-ios-plus-empty"></i></button>
+          </div>
+          <div class="main-title mui-col-xs-4">
+            <span>WHAT A TASK</span>
+          </div>
+          <div class="mui-col-xs-4">
+            <button id="search" class="mui-btn mui-btn--flat"><i class="icon ion-ios-search"></i></button>
+          </div>
+        </div>
+      </div>
+      </section>
+
+  <section>
+    <div class="poster-utente">
+      <div class="mui-container">
+        <div class="mui-row">
+          <div class="mui-col-xs-offset-9 mui-col-xs-2">
+						<button id="search" class="button-modify mui-btn mui-btn--flat"><i class="icon-big ion-edit"></i></button>
+					</div>
+        </div>
+      </div>
+    </div>
+		</section>
+
+		<section>
+				<div class="mui-container">
+					<div class="mui-row">
+						<div class="mui-col-xs-12">
+							<div class="info-profilo">
+							<span>nome utente</span>
+							<span class="info-personali">Tiziano Borgato</span>
+							<div class="hr"></div>
+							<span>ruolo</span>
+							<span class="info-personali">Studente</span>
+							<div class="hr"></div>
+							<span>corso seguito</span>
+							<span class="info-personali">Web & App</span>
+							<div class="hr"></div>
+							<span>numero di telefono</span>
+							<span class="info-personali">334 9473856</span></div>
+						</div>
+					</div>
+				</div>
+		</section>
+
+<!-- bottom bar -->
+<section>
+    <div class="bottom-bar-wrapper">
+      <div class="bottom-inner">
+        <div class="mui-col-xs-3">
+          <button id="search" class="mui-btn mui-btn--flat"><i class="icon ion-android-home"></i></button>
+        </div>
+        <div class="mui-col-xs-3">
+          <button id="search" class="mui-btn mui-btn--flat"><i class="icon ion-person-add"></i></button>
+        </div>
+        <div class="mui-col-xs-3">
+          <button id="search" class="mui-btn mui-btn--flat"><i class="icon ion-person"></i></button>
+        </div>
+        <div class="mui-col-xs-3">
+          <button id="search" class="mui-btn mui-btn--flat"><i class="icon ion-ios-gear"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- end bottom bar -->
 </div>
-	<div class="container content">
-		<div class="row">
-			<div class="col-xs-12 text-center"><img src="http://lorempixel.com/200/200" alt="" style="border-radius:50%"></div>
-			<h1 class="col-xs-12 text-center">Nome Cognome</h1>
-		</div>
-		<div class="col-xs-12">
-			<p>Corso: Lorem ipsum.</p>
-			<p>Mail: pippo@pip.po</p>
-			<p>Tel: 0123456789</p>
-		</div>
-		<div class="col-xs-12">
-			<a href="btn btn-primary"><i class="glyphicon glyphicon-certificate"></i></a>
-			<a href="btn btn-primary"><i class="glyphicon glyphicon-certificate"></i></a>
-			<a href="btn btn-primary"><i class="glyphicon glyphicon-certificate"></i></a>
-		</div>
-	</div>
-	<div class="bottom-bar-wrapper">
-	<div class="top-inner">
-		<div class="col-xs-4">
-			<a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></a>
-		</div>
-		<div class="col-xs-4 text-center">
-			<a href="profilo.html" class="btn btn-primary"><i class="glyphicon glyphicon-user"></i></a>
-		</div>
-		<div class="col-xs-4 text-right">
-			<a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-cog"></i></a>
-		</div>
-	</div>
-</div>
+
 </body>
 </html>
