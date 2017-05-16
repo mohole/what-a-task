@@ -7,7 +7,11 @@ export default class Signup extends React.Component{
         super(props);
         
         this.state = {
-                newUser:{},
+                newUser:{},     
+                ruolo:this.props.ruoloList,
+                corso:this.props.corsoList,  
+                selectedRuolo:0,
+                selectedCorso:0,
                 utente:'',
                 email:'',
                 password:'',
@@ -40,12 +44,36 @@ export default class Signup extends React.Component{
         this.setState({
             privacyCheck : !this.state.privacyCheck
         });
-    }    
+    }  
+	getCat(evt){
+		console.log(evt.target.value);
+		this.setState({
+			selectedCat:parseInt(evt.target.value),
+		})
+	}
+    
+	getRuolo(evt){
+		console.log(evt.target.value);
+		this.setState({
+            selectedRuolo:parseInt(evt.target.value)
+		})
+	}
+    
+	getCorso(evt){
+		console.log(evt.target.value);
+		this.setState({
+            selectedCorso:parseInt(evt.target.value)
+		})
+	}   
     resetForm(){
 		console.log('reset');
 		console.log(this.state);
 		this.setState({
-                newUser:{},
+                newUser:{},     
+                ruolo:this.props.ruoloList,
+                corso:this.props.corsoList,  
+                selectedRuolo:0,
+                selectedCorso:0,
                 utente:'',
                 email:'',
                 password:'',
@@ -55,7 +83,18 @@ export default class Signup extends React.Component{
 		});
 	}
 	render(){
-        
+    
+        const ruoloList=this.state.ruolo.map((e,i) =>{
+			return(
+				<option value={e._id} key={e._id} onChange={this.getCat.bind(this)}>{e.name}</option>
+			)
+		});
+
+        const corsoList=this.state.corso.map((e,i) =>{
+			return(
+				<option value={e._id} key={e._id} onChange={this.getCorso.bind(this)}>{e.name}</option>
+			)
+		});
         return(
             <section>
                 <div className="mui-container content">
@@ -79,37 +118,30 @@ export default class Signup extends React.Component{
                                     value={this.state.prs}></textarea>
                                     <label>Presentazione</label>
                                 </div>
-
-                                <div className="mui-select">
-                                    <select>
-                                        <option value="prof">Professore</option>
-                                        <option value="staff">Staff</option>
-                                        <option value="studente">Studente</option>  
-                                    </select>
-                                    <label>Ruolo</label>
-                                </div>
                                         
                                 <div className="mui-select">
-                                    <select defaultValue="web">
-                                        <option value="animation">3D Animation</option>
-                                         <option value="acting">Acting</option>
-                                        <option value="film">Filmaking</option>   
-                                        <option value="foto">Fotografia</option>
-                                        <option value="fumetto">Fumetto</option>  
-                                        <option value="grafica">Grafica</option> 
-                                        <option value="story">Storytelling</option>                   
-                                        <option value="web">Web&App</option>
+                                    <select value={this.state.selectedCorso} onChange={this.getCorso.bind(this)}>
+                                    <option value="0">Scegli il tuo corso</option>
+                                    {corsoList}
+                                    </select>
+                                    <label>Corso</label>
+                                </div>
+                                    
+                               <div className="mui-select">
+                                    <select value={this.state.selectedRuolo} onChange={this.getRuolo.bind(this)}>
+                                    <option value="0">Scegli ruolo</option>
+                                    {ruoloList}
                                     </select>
                                     <label>Ruolo</label>
-                                </div>
+                                </div>                                    
 
                                 <div className="mui-textfield mui-textfield--float-label">
-                                    <input type="email" value={this.state.email} onChange={this.writing.bind(this)} />
+                                    <input name="email" type="email" value={this.state.email} onChange={this.writing.bind(this)} />
                                     <label>Email</label> 
                                 </div>
 
                                 <div className="mui-textfield mui-textfield--float-label">
-                                    <input name="password" type="password" onChange={this.writing.bind(this)} />
+                                    <input name="password" type="password" value={this.state.password} onChange={this.writing.bind(this)} />
                                     <label>Password</label>
                                 </div>
     

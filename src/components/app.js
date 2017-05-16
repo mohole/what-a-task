@@ -2,6 +2,7 @@
 import React from 'react';
 
 import Login from './login/login';
+import Signup from './login/signup';
 import List from './list/list';
 import {Annunci} from './data.js';
 import {Backend} from './../backend';
@@ -41,7 +42,7 @@ export default class App extends React.Component{
 	makeLogin(){
 		this.setState({
 			logged:!this.state.logged,
-			activePage:'login',
+			activePage:'signup',
 			postCategory:[],
 			annunci: Annunci,
 			newItem:{},
@@ -66,11 +67,61 @@ export default class App extends React.Component{
 					name:'cat4'
 				},
 			],
+            ruolo:[
+				{
+					_id:1,
+					name:'Studente'
+				},
+				{
+					_id:2,
+					name:'Professore'
+				},
+				{
+					_id:3,
+					name:'Staff'
+				}
+			],
+            corso:[
+				{
+					_id:1,
+					name:'3D Animation'
+				},
+				{
+					_id:2,
+					name:'Acting'
+				},
+				{
+					_id:3,
+					name:'Filmaking'
+				},
+                	{
+					_id:4,
+					name:'Fotografia'
+				},
+				{
+					_id:5,
+					name:'Fumetto'
+				},
+				{
+					_id:6,
+					name:'Grafica'
+				},
+				{
+					_id:7,
+					name:'Storytelling'
+				},
+				{
+					_id:8,
+					name:'Web&App'
+				}
+			],
 			ClassNameTitle:'form-group mui-textfield',
 			ClassNameText:'form-group mui-textfield',
 			ClassNamePrivacy:'form-group mui-checkbox',
 			ClassNameCategory:'form-group mui-select',
 			selectedCat:0,
+            selectedRuolo:0,
+            selectedCorso:0,
 			type:'offro',
 			privacyCheck:false
 		})
@@ -86,7 +137,8 @@ export default class App extends React.Component{
 		if(this.state.logged){
 			var contentElem= <Spinner/>
 			if(this.state.annunci){
-				contentElem = <List annunci={this.state.annunci} goToPage={this.goToPage.bind(this)}/>
+				contentElem = <List annunci={this.state.annunci} 
+                goToPage={this.goToPage.bind(this)}/>
 			}
 			if(this.state.activePage=='NewItem'){
 				contentElem= <Spinner/>
@@ -100,6 +152,12 @@ export default class App extends React.Component{
 					contentElem = <NewItem categoryList={this.state.postCategory}/>
 				}
 			}
+			if(this.state.activePage=='signup'){
+				contentElem = <Signup 
+                ruoloList={this.state.ruolo}
+                corsoList={this.state.corso}/>
+			}
+			
 			if(this.state.activePage=='Profile'){
 				contentElem= <Spinner/>
 				contentElem = <Profile first_name= 'Tiziano' last_name= 'Borgato' avatar_urls= 'http://lorempixel.com/200/200' email= 'tiziano.borgato@gmail.com' description= 'Sono uno studente del secondo anno di Web & Apps. Per maggiori info contattatemi al 334 1301904' />
