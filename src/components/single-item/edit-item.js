@@ -14,12 +14,12 @@ export default class EditItem extends React.Component{
           image:this.props.image,
           type:this.props.type,
           cat:this.props.categoryList,
-          selectedCat: this.props.selectedCat,
+          selectedCat: this.props.selectedCat[0],
           privacyCheck:false,
-          ClassNameTitle:'',
-          ClassNameText:'',
-          ClassNamePrivacy:'',
-          ClassNameCategory:''
+          ClassNameTitle:'form-group mui-textfield',
+          ClassNameText:'form-group mui-textfield',
+          ClassNamePrivacy:'form-group mui-checkbox',
+          ClassNameCategory:'form-group mui-select'
         }
     }
 
@@ -109,19 +109,15 @@ export default class EditItem extends React.Component{
     		console.log('ok');
     		const updatedItem = {
     			title:this.state.title,
-    			tags:[this.state.selectedCat],
+    			tags:this.state.selectedCat,
     			content:this.state.text,
-                type:this.state.type,
-    			categories:[this.state.type],
-    			acf: {
-    				url_img: ''
-    			},
-    			author:1 //utente loggato
+    			categories:this.state.type,
+    			author:6 //utente loggato
     		}
     		this.setState({
     			updatedItem:updatedItem
     		});
-			//Backend.postAnnuncio(updatedItem);
+			//Backend.updateAnnuncio(this.state.id,updatedItem);
     	}
     }
 
@@ -140,7 +136,7 @@ export default class EditItem extends React.Component{
           ClassNameTitle:'form-group mui-textfield',
           ClassNameText:'form-group mui-textfield',
           ClassNamePrivacy:'form-group mui-checkbox',
-          ClassNameCategory:'form-group mui-select',
+          ClassNameCategory:'form-group mui-select'
         });
       }
 
@@ -180,7 +176,7 @@ postEditedItem(){
 		if(this.state.cat.length!=0){
 		const catList =this.state.cat.map((e,i) =>{
 			return(
-				<option value={e.id} key={e.id} onChange={this.getCat.bind(this)}>{e.name}</option>
+				<option value={e.id} key={e.id}>{e.name}</option>
 			)
 		});
 
@@ -196,7 +192,6 @@ postEditedItem(){
     						<div className={this.state.ClassNameCategory}>
         						<label htmlFor="">Categoria</label>
                                 <select name="" id="ann_category" className="form-control" value={this.state.selectedCat} onChange={this.getCat.bind(this)}>
-                                <option value="0">Categoria</option>
                                 {catList}
                                 </select>
     					    </div>

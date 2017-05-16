@@ -85,44 +85,13 @@ export default class App extends React.Component{
 			}
 
 			if(this.state.activePage.includes('Single|')){
-                console.log('single');
-				contentElem= <Spinner/>
+				//contentElem= <Spinner/>
 				const postP = this.state.activePage.split('|');
+                const a = this.state.annunci.filter((e) => {
+                    return e.id == postP[1];
+                });
+                contentElem=<Single annuncio={a[0]} id={postP[1]} />
 
-				Backend.getCategory()
-				.then((data)=>{
-                    //console.log('getCategory');
-					this.setState({
-						postCategory:data
-					})
-				})
-
-                if(this.state.annunci.length!=0){
-                    const a = this.state.annunci.filter((e)=>{
-                        return e.id==postP[1];
-                    });
-                    //console.log('a[0].author: '+a[0].author);
-                    const authorId=a[0].author;
-                    Backend.getUserInfo(authorId)
-    				.then((data)=>{
-                        //console.log('setting author with id: '+a[0].author);
-    					this.setState({
-    						author:data
-    					})
-                        //console.log('author set to: '+this.state.author.name);
-    				});
-
-                    Backend.getCurrentCategoryName(a[0].tags)
-    				.then((data)=>{
-    					this.setState({
-    						currentCat:data
-    					})
-    				})
-
-    				if(this.state.postCategory.length!=0 && this.state.author && this.state.currentCat.length!=0){
-                        contentElem= <Single id={postP[1]} annuncio={a[0]} categoryList={this.state.postCategory} userId={6} currCat={this.state.currentCat.name} author={this.state.author} />
-                    }
-                }
 
 			}
 			return(
