@@ -2,7 +2,7 @@
 
 class WAT_Backend{
     constructor(){
-        this.url = 'http://www.moholepeople.it/whatatask/wp-json/wp/v2',
+        this.url = 'http://moholepeople.it/whatatask/wp-json/wp/v2',
         this.headers={
               'Accept': 'application/json',
               'Content-Type': 'application/json'
@@ -21,6 +21,7 @@ class WAT_Backend{
         const encoded = btoa(user + ':' + pswd);
         const auth ={Authorization:`Basic ${encoded}`};
         this.headers = Object.assign({},this.headers,auth);
+		this.auth= `Basic ${encoded}`;
     }
 
 	getCategory(){
@@ -28,12 +29,10 @@ class WAT_Backend{
         .then(this._parseRaw)
     }
 	postAnnuncio(annuncio){
+		
         return fetch(`${this.url}/annunci`,
         {
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
+            headers:  this.headers,
             method: "POST",
             body: JSON.stringify(annuncio)
         })
@@ -43,5 +42,22 @@ class WAT_Backend{
   		return fetch(`${this.url}/annunci`)
           .then(this._parseRaw)
   	}
+	upLoadMedia(imgPath,callback){
+		var data = new FormData();
+		data.append("file", imgPath);
+		var xhr = new XMLHttpRequest();
+		xhr.withCredentials = true;
+		xhr.addEventListener("readystatechange", function () {
+			if (this.readyState === 4) {
+				if (typeof callback == "function") {
+					callback.apply(xhr);
+				}	
+			}
+		});
+		xhr.open("POST", `${this.url}/media`);
+		xhr.setRequestHeader("Authorization", this.auth);
+		xhr.setRequestHeader("Accept", "application/json");
+		xhr.send(data);
+	}
 }
 export const Backend = new WAT_Backend;

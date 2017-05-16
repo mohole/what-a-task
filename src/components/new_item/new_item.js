@@ -1,6 +1,7 @@
 'use strict';
 import React from 'react';
 import Spinner from './../common/spinner';
+import {Backend} from './../../backend';
 export default class NewItem extends React.Component{
     constructor(props){
         super(props);
@@ -48,15 +49,14 @@ export default class NewItem extends React.Component{
 		})
 	}
 	uploadFile(evt){
-		console.log(evt.target.files);
+		var reader  = new FileReader();
 		const file=evt.target.files[0];
-		console.log(file.size);
-		var formData = new FormData();
-      	formData.append('image',  file, file.name);
-		this.setState({
-            image : formData
-        });
-		console.log(formData);
+		console.log(file);
+		Backend.upLoadMedia(file,function() {
+			var resp  =this.responseText;
+			console.log(resp);
+		})
+
 	}
 	
 	submitAnnuncio(evt){
