@@ -103,7 +103,7 @@ export default class NewItem extends React.Component{
 			})
 		}
 		if(error==0){
-			if(this.state.media_id!=0){
+			if(this.state.media_id!=0||this.state.media_id!=undefined){
 				console.log('ok tutto giusto');
 				const newItem = {
 					title:this.state.title,
@@ -115,12 +115,15 @@ export default class NewItem extends React.Component{
 				}
 				Backend.postAnnuncio(newItem)
 					.then((data)=>{
+					console.log(data);
 						if(data.status=='publish'){
 							console.log('Annuncio pubblicato');
 						}
 					}).then(()=>{
 						this.props.goToPage('List');
 					});
+			}else{
+				console.log('uploading image..')
 			}
 		}
 	}
