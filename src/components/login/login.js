@@ -26,6 +26,7 @@ export default class Login extends React.Component{
 			Backend.checkAuth().then((data)=>{
 				console.log("Login ok");
 				console.log(data);
+                
 				if(data.code!='rest_forbidden'){
 					this.setState({
 						ClassNameControl:'mui-textfield success'
@@ -47,7 +48,6 @@ export default class Login extends React.Component{
 			})
         }
     }   
-    
     
     
 	render(){

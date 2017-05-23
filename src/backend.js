@@ -17,16 +17,20 @@ class WAT_Backend{
           headers: this.headers
         }).then(this._parseRaw)
     }
+    
     setCredentials(user,pswd){
         const encoded = btoa(user + ':' + pswd);
-        const auth ={Authorization:`Basic ${encoded}`};
+        const auth ={Authorization:` ${encoded}`}; 
         this.headers = Object.assign({},this.headers,auth);
+        localStorage.setItem('token', encoded);
+         
     }
-
+    
 	getCategory(){
         return fetch(`${this.url}/tags`)
         .then(this._parseRaw)
     }
+
 	postAnnuncio(annuncio){
         return fetch(`${this.url}/annunci`,
         {
