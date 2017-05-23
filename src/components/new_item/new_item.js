@@ -20,7 +20,7 @@ export default class NewItem extends React.Component{
 			privacyCheck:false,
         }
 	}
-	
+
 	writing(evt){
         console.log('sto scrivendo');
         const input = evt.target.value;
@@ -58,7 +58,7 @@ export default class NewItem extends React.Component{
 				})
 
 	}
-	
+
 	submitAnnuncio(evt){
 		evt.preventDefault();
 		var error=0;
@@ -143,14 +143,14 @@ export default class NewItem extends React.Component{
 		});
 	}
 	render(){
-		
+
 		if(this.state.cat.length!=0){
 		const catList =this.state.cat.map((e,i) =>{
 			return(
 				<option value={e.id} key={e.id} onChange={this.getCat.bind(this)}>{e.name}</option>
 			)
 		});
-							
+
         return(
             <section>
 			<div className="mui-container content">
