@@ -21,6 +21,7 @@ class WAT_Backend{
         const encoded = btoa(user + ':' + pswd);
         const auth ={Authorization:`Basic ${encoded}`};
         this.headers = Object.assign({},this.headers,auth);
+		this.auth= `Basic ${encoded}`;
     }
 
 	getCategory(){
@@ -29,18 +30,15 @@ class WAT_Backend{
     }
 
 	postAnnuncio(annuncio){
+		const data=JSON.stringify(annuncio);
         return fetch(`${this.url}/annunci`,
         {
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
+            headers:  this.headers,
             method: "POST",
-            body: JSON.stringify(annuncio)
+            body: data
         })
         .then(this._parseRaw);
     }
-
 	updateAnnuncio(id,annuncio){
         return fetch(`${this.url}/annunci/${id}`,
         {
@@ -54,6 +52,44 @@ class WAT_Backend{
   		return fetch(`${this.url}/annunci`)
           .then(this._parseRaw)
   	}
+	upLoadMedia(imgPath,callback){
+		var data = new FormData();
+		data.append("file", imgPath);
+		return fetch(`${this.url}/media`,
+        {
+            headers:{
+				Authorization: this.auth,
+				'Accept': 'application/json',
+			},
+            method: "POST",
+            body: data
+        })
+        .then(this._parseRaw);
+	}
+	searchAnnuncio(searchTerm,cat,tag){
+		var searchString ='?';
+		if(searchTerm!=null){
+			searchString+='search='+searchTerm;
+		}
+		if(cat!=null){
+			if(searchString!='?'){
+				searchString+='&'
+			}
+			searchString+='categories='+cat
+		}
+		if(tag!=null){
+			if(searchString!='?'){
+				searchString+='&'
+			}
+			searchString+='tags='+tag
+		}
+		if(searchString=='?'){
+			searchString='';
+		}
+		console.log(searchString);
+		return fetch(`${this.url}/annunci${searchString}`)
+          .then(this._parseRaw)
+	}
   	getAnnuncio(postId){
   		return fetch(`${this.url}/annunci/${postId}`)
           .then(this._parseRaw)

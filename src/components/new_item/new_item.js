@@ -1,15 +1,15 @@
 'use strict';
 import React from 'react';
 import Spinner from './../common/spinner';
+import {Backend} from './../../backend';
 export default class NewItem extends React.Component{
     constructor(props){
         super(props);
         console.log('new item ready');
 		this.state ={
-            newItem:{},
 			title:'',
 			text:'',
-			image:{},
+			media_id:0,
 			cat:this.props.categoryList,
 			ClassNameTitle:'mui-textfield',
 			ClassNameText:'mui-textfield',
@@ -48,15 +48,15 @@ export default class NewItem extends React.Component{
 		})
 	}
 	uploadFile(evt){
-		console.log(evt.target.files);
 		const file=evt.target.files[0];
-		console.log(file.size);
-		var formData = new FormData();
-      	formData.append('image',  file, file.name);
-		this.setState({
-            image : formData
-        });
-		console.log(formData);
+		console.log(file);
+		Backend.upLoadMedia(file).then((data)=>{
+			console.log('id:'+data.id);
+					this.setState({
+						media_id:data.id
+					})
+				})
+
 	}
 
 	submitAnnuncio(evt){
@@ -103,38 +103,43 @@ export default class NewItem extends React.Component{
 			})
 		}
 		if(error==0){
-			console.log('ok tutto giusto');
-			const newItem = {
-				title:this.state.title,
-				tags:[this.state.selectedCat],
-				content:this.state.text,
-				categories:[this.state.type],
-				acf: {
-					url_img: ''
-				},
-				author:1 //utente loggato
+			if(this.state.media_id!=0||this.state.media_id!=undefined){
+				console.log('ok tutto giusto');
+				const newItem = {
+					title:this.state.title,
+					tags:this.state.selectedCat,
+					content:this.state.text,
+					categories:this.state.type,
+					featured_media:this.state.media_id,
+					status: 'publish'
+				}
+				Backend.postAnnuncio(newItem)
+					.then((data)=>{
+					console.log(data);
+						if(data.status=='publish'){
+							console.log('Annuncio pubblicato');
+						}
+					}).then(()=>{
+						this.props.goToPage('List');
+					});
+			}else{
+				console.log('uploading image..')
 			}
-			this.setState({
-				newItem:newItem
-			});
-			//this.props.postAnnuncio(newItem);
 		}
 	}
 	resetForm(){
-		console.log('reset');
-		console.log(this.state);
 		this.setState({
-			newItem:{},
 			title:'',
 			text:'',
-			image:{},
+			media_id:null,
+			cat:this.props.categoryList,
 			ClassNameTitle:'mui-textfield',
 			ClassNameText:'mui-textfield',
 			ClassNamePrivacy:'mui-checkbox',
 			ClassNameCategory:'mui-select',
 			selectedCat:0,
 			type:5,
-			privacyCheck:false
+			privacyCheck:false,
 		});
 	}
 	render(){

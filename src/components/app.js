@@ -48,8 +48,8 @@ export default class App extends React.Component{
 
 		this.setState({
 			logged:!this.state.logged,
-			activePage:'login',
-            annunci:[],
+			activePage:'List',
+      annunci:[],
 			postCategory:[]
 		})
 		console.log('load app state');
@@ -63,9 +63,14 @@ export default class App extends React.Component{
 
 	render(){
 		if(this.state.logged){
-			var contentElem= <Spinner/>
-			if(this.state.annunci.length!=0){
-				contentElem = <List annunci={this.state.annunci} goToPage={this.goToPage.bind(this)}/>
+			var contentElem = <Spinner/>
+			if(this.state.activePage=='List'){
+				contentElem= <Spinner/>
+				
+				if(this.state.annunci){
+					contentElem = <List annunci={this.state.annunci} goToPage={this.goToPage.bind(this)}/>;
+					console.log(this.state.annunci);
+				}
 			}
 			if(this.state.activePage=='NewItem'){
 				contentElem= <Spinner/>
@@ -76,7 +81,7 @@ export default class App extends React.Component{
 					})
 				})
 				if(this.state.postCategory.length!=0){
-					contentElem = <NewItem categoryList={this.state.postCategory}/>
+					contentElem = <NewItem categoryList={this.state.postCategory} goToPage={this.goToPage.bind(this)}/>
 				}
 			}
 			if(this.state.activePage=='Profile'){
