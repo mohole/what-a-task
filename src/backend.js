@@ -40,13 +40,11 @@ class WAT_Backend{
         })
         .then(this._parseRaw);
     }
+
 	updateAnnuncio(id,annuncio){
         return fetch(`${this.url}/annunci/${id}`,
         {
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
+            headers: this.headers,
             method: "POST",
             body: JSON.stringify(annuncio)
         })

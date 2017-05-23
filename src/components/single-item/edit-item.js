@@ -117,7 +117,7 @@ export default class EditItem extends React.Component{
     		this.setState({
     			updatedItem:updatedItem
     		});
-			//Backend.updateAnnuncio(this.state.id,updatedItem);
+			Backend.updateAnnuncio(this.state.id,updatedItem);
     	}
     }
 
