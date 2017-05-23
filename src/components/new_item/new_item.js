@@ -56,7 +56,6 @@ export default class NewItem extends React.Component{
 						media_id:data.id
 					})
 				})
-
 	}
 
 	submitAnnuncio(evt){

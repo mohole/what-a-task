@@ -36,20 +36,21 @@ export default class App extends React.Component{
 		}
 
 	}
+
 	makeLogin(){
         //Store.set({ loggedin: 'true'});
 
-            Backend.getAnnunci()
-            .then((data)=>{
-                this.setState({
-                    annunci:data
-                })
+        Backend.getAnnunci()
+        .then((data)=>{
+            this.setState({
+                annunci:data
             })
+        })
 
 		this.setState({
 			logged:!this.state.logged,
 			activePage:'List',
-      annunci:[],
+            annunci:[],
 			postCategory:[]
 		})
 		console.log('load app state');
@@ -66,7 +67,7 @@ export default class App extends React.Component{
 			var contentElem = <Spinner/>
 			if(this.state.activePage=='List'){
 				contentElem= <Spinner/>
-				
+
 				if(this.state.annunci){
 					contentElem = <List annunci={this.state.annunci} goToPage={this.goToPage.bind(this)}/>;
 					console.log(this.state.annunci);

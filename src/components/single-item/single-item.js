@@ -14,14 +14,27 @@ export default class Single extends React.Component {
             annuncio: this.props.annuncio,
             postCategory: [],
             userId: 6,
+            imageUrl:'',
             currentCat:{}
         }
     }
 
-    editItem() {
+    editItem(){
         this.setState({
             editActive: !this.state.editActive
         })
+    }
+
+    undo(){
+        Backend.getAnnuncio(this.props.id)
+        .then((data)=>{
+            this.setState({
+                annuncio:data
+            })
+        })
+        this.setState({
+            editActive: !this.state.editActive
+        });
     }
 
     isAuthor(userId, authorId) {
@@ -40,7 +53,6 @@ export default class Single extends React.Component {
     }
 
 componentWillMount(){
-
         Backend.getCategory().then((data) => {
             this.setState({postCategory: data})
         })
@@ -53,6 +65,10 @@ componentWillMount(){
         Backend.getCurrentCategoryName(this.state.annuncio.tags[0]).then((data) => {
             this.setState({currentCat: data.name})
         })
+
+        Backend.getImageUrl(this.state.annuncio.featured_media).then((data)=>{
+            this.setState({imageUrl:data.guid.rendered})
+        })
 }
 
     render() {
@@ -61,7 +77,16 @@ console.log('single');
 
                 if (this.state.editActive && this.state.isEditable) {
                     return (
-                        <EditItem id={this.state.annuncio.id} type={this.state.annuncio.categories} text={this.state.annuncio.content.rendered} title={this.state.annuncio.title.rendered} image={this.state.annuncio.acf.url_img} type={this.state.annuncio.categories} selectedCat={this.state.annuncio.tags} categoryList={this.state.postCategory}/>
+                        <EditItem id={this.state.annuncio.id}
+                        type={this.state.annuncio.categories}
+                        text={this.state.annuncio.content.rendered}
+                        title={this.state.annuncio.title.rendered}
+                        image={this.state.annuncio.featured_media}
+                        imageUrl={this.state.imageUrl}
+                        type={this.state.annuncio.categories}
+                        selectedCat={this.state.annuncio.tags}
+                        categoryList={this.state.postCategory}
+                        undo={this.undo.bind(this)} />
                     )
                 } else {
                     return (
@@ -79,7 +104,7 @@ console.log('single');
                                 </div>
                                 <div className="mui-row">
                                     <div className="mui-col-xs-12">
-                                        <img src={this.state.annuncio.acf.url_img} className="img img-fluid"/>
+                                        <img src={this.state.imageUrl} className="img img-fluid"/>
                                     </div>
                                 </div>
                                 <hr/>
