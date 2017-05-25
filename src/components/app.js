@@ -55,6 +55,7 @@ export default class App extends React.Component{
 		})
 		console.log('load app state');
 	}
+
 	goToPage(page){
 		this.setState({
 			activePage: page
@@ -85,6 +86,11 @@ export default class App extends React.Component{
 					contentElem = <NewItem categoryList={this.state.postCategory} goToPage={this.goToPage.bind(this)}/>
 				}
 			}
+            if(this.state.activePage.includes('Profile|')){
+				contentElem= <Spinner/>
+                const user = this.state.activePage.split('|');
+				contentElem = <Profile profileId={user[1]} first_name= 'Tiziano' last_name= 'Borgato' avatar_urls= 'http://lorempixel.com/200/200' email= 'tiziano.borgato@gmail.com' description= 'Sono uno studente del secondo anno di Web & Apps. Per maggiori info contattatemi al 334 1301904' />
+            }
 			if(this.state.activePage=='Profile'){
 				contentElem= <Spinner/>
 				contentElem = <Profile first_name= 'Tiziano' last_name= 'Borgato' avatar_urls= 'http://lorempixel.com/200/200' email= 'tiziano.borgato@gmail.com' description= 'Sono uno studente del secondo anno di Web & Apps. Per maggiori info contattatemi al 334 1301904' />
@@ -96,7 +102,7 @@ export default class App extends React.Component{
                 const a = this.state.annunci.filter((e) => {
                     return e.id == postP[1];
                 });
-                contentElem=<Single annuncio={a[0]} id={postP[1]} />
+                contentElem=<Single annuncio={a[0]} id={postP[1]} goToPage={this.goToPage.bind(this)} />
 
 
 			}

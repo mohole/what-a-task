@@ -72,7 +72,7 @@ componentWillMount(){
 }
 
     render() {
-console.log('single');
+            console.log('single');
             if (this.state.author && this.state.currentCat) {
 
                 if (this.state.editActive && this.state.isEditable) {
@@ -118,7 +118,7 @@ console.log('single');
                                 <div className="mui-row">
                                     <div className="mui-col-xs-12">
                                         <p>Creato da
-                                            <a href="#"> {this.state.author.name} </a>
+                                            <a href="#" onClick={()=>{this.props.goToPage('Profile|'+this.state.author.id)}}> {this.state.author.name} </a>
                                             il {this.printDate(this.state.annuncio.date)}</p>
                                     </div>
                                 </div>
