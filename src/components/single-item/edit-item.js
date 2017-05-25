@@ -12,6 +12,7 @@ export default class EditItem extends React.Component{
           text:this.props.text,
           title:this.props.title,
           image:this.props.image,
+          imageUrl:this.props.imageUrl,
           type:this.props.type,
           cat:this.props.categoryList,
           selectedCat: this.props.selectedCat[0],
@@ -22,8 +23,6 @@ export default class EditItem extends React.Component{
           ClassNameCategory:'form-group mui-select'
         }
     }
-
-
 
     writing(evt){
         const input = evt.target.value;
@@ -50,6 +49,7 @@ export default class EditItem extends React.Component{
 	    	selectedCat:evt.target.value
 	    })
     }
+    /*
     uploadFile(evt){
     	console.log(evt.target.files);
     	const file=evt.target.files[0];
@@ -61,6 +61,19 @@ export default class EditItem extends React.Component{
         });
     	console.log(formData);
     }
+*/
+
+	uploadFile(evt){
+		const file=evt.target.files[0];
+		console.log(file);
+		Backend.upLoadMedia(file)
+        .then((data)=>{
+		    console.log('id:'+data.id);
+    		this.setState({
+    			media_id:data.id
+		    })
+		})
+	}
 
     submitAnnuncio(evt){
     	evt.preventDefault();
@@ -106,22 +119,31 @@ export default class EditItem extends React.Component{
     		})
     	}
     	if(error==0){
-    		console.log('ok');
-    		const updatedItem = {
-    			title:this.state.title,
-    			tags:this.state.selectedCat,
-    			content:this.state.text,
-    			categories:this.state.type,
-    			author:6 //utente loggato
-    		}
-    		this.setState({
-    			updatedItem:updatedItem
-    		});
-			Backend.updateAnnuncio(this.state.id,updatedItem);
+
+                if(this.state.media_id!=0||this.state.media_id!=undefined){
+                    console.log('ok tutto giusto');
+                    const updatedItem = {
+                        title:this.state.title,
+                        tags:this.state.selectedCat,
+                        content:this.state.text,
+                        categories:this.state.type,
+                        featured_media:this.state.media_id,
+                        status: 'publish'
+                    }
+                    Backend.updateAnnuncio(this.state.id,updatedItem)
+                        .then((data)=>{
+                        console.log(data);
+                            if(data.status=='publish'){
+                                console.log('Annuncio pubblicato');
+                            }
+                        }).then(()=>{
+                            this.props.undo();
+                        });
+                }else{
+                    console.log('uploading image..')
+                }
     	}
     }
-
-
 
      resetEditForm(){
         console.log('reset');
@@ -199,6 +221,9 @@ postEditedItem(){
 								<label htmlFor="">Tipologia</label><br/>
 								<input type="radio" name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type==5} value="5"/> <span>Offro</span> <input type="radio" name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type==3} value="3"/> <span>Cerco</span>
 							</div>
+                            <div>
+                                <img src={this.state.imageUrl} alt=""/>
+                            </div>
 							<div className="mui-textfield">
 								<label htmlFor="">Immagine</label><br/>
 								<input type="file" placeholder="Immagine" onChange={this.uploadFile.bind(this)}/>
@@ -217,7 +242,8 @@ postEditedItem(){
 							</div>
 							<div className="form-group">
 								<button type="submit" className="mui-btn mui-btn--primary">Salva</button>
-								<button type="button" onClick={this.resetEditForm.bind(this)}  className="mui-btn mui-btn--danger">Annulla</button>
+								<button type="button" onClick={this.resetEditForm.bind(this)}  className="mui-btn mui-btn--danger">Pulisci</button>
+								<button type="button" onClick={this.props.undo} className="mui-btn mui-btn--danger">Annulla</button>
 							</div>
 						</form>
 					</div>

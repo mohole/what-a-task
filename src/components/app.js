@@ -36,8 +36,10 @@ export default class App extends React.Component{
 		}
 
 	}
+
 	makeLogin(){
         //Store.set({ loggedin: 'true'});
+
 		Backend.getMe()
 		.then((data)=>{
 			console.log(data);
@@ -62,10 +64,11 @@ export default class App extends React.Component{
 			logged:!this.state.logged,
 			activePage:'List',
       		annunci:[],
-			postCategory:[]
+			    postCategory:[]
 		})
 		console.log('load app state');
 	}
+
 	goToPage(page){
 		this.setState({
 			activePage: page
@@ -78,7 +81,7 @@ export default class App extends React.Component{
 			var contentElem = <Spinner/>
 			if(this.state.activePage=='List'){
 				contentElem= <Spinner/>
-				
+
 				if(this.state.annunci){
 					contentElem = <List annunci={this.state.annunci} goToPage={this.goToPage.bind(this)}/>;
 					console.log(this.state.annunci);
@@ -96,6 +99,11 @@ export default class App extends React.Component{
 					contentElem = <NewItem categoryList={this.state.postCategory} goToPage={this.goToPage.bind(this)}/>
 				}
 			}
+      if(this.state.activePage.includes('Profile|')){
+  contentElem= <Spinner/>
+          const user = this.state.activePage.split('|');
+  contentElem = <Profile profileId={user[1]} first_name= 'Tiziano' last_name= 'Borgato' avatar_urls= 'http://lorempixel.com/200/200' email= 'tiziano.borgato@gmail.com' description= 'Sono uno studente del secondo anno di Web & Apps. Per maggiori info contattatemi al 334 1301904' />
+      }
 			if(this.state.activePage=='Profile'){
 				contentElem= <Spinner/>
 				contentElem = <Profile first_name={this.state.user_firstName} last_name={this.state.user_lastName} image_id={this.state.user_image} email={this.state.user_email} description={this.state.user_description} />
@@ -107,7 +115,7 @@ export default class App extends React.Component{
                 const a = this.state.annunci.filter((e) => {
                     return e.id == postP[1];
                 });
-                contentElem=<Single annuncio={a[0]} id={postP[1]} />
+                contentElem=<Single annuncio={a[0]} id={postP[1]} goToPage={this.goToPage.bind(this)} />
 
 
 			}

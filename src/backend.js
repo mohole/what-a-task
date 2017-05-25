@@ -12,6 +12,12 @@ class WAT_Backend{
         return response.json();
     }
 
+    getImageUrl(id){
+        return fetch(`${this.url}/media/${id}`,{
+            header: this.headers
+        }).then(this._parseRaw)
+    }
+
     checkAuth(){
         return fetch(`${this.url}/settings`,{
           headers: this.headers
