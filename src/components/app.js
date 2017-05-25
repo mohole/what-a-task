@@ -6,20 +6,28 @@ import List from './list/list';
 import {Annunci} from './data.js';
 import {Backend} from './../backend';
 import {Store} from './../store';
+import Single from './single-item/single-item';
+import EditItem from './single-item/edit-item';
 import NewItem from './new_item/new_item';
 import Spinner from './common/spinner';
 import Topbar from './appbar/topbar';
 import Bottombar from './appbar/bottombar';
-import Single from './single-item/single-item';
 import Profile from './profile/profile';
+import ModifyProfile from './profile/modify_profile';
 
 export default class App extends React.Component{
     constructor(){
         super();
         console.log('app started');
-		this.state={
+        this.state={
 			logged:false,
 		}
+        
+        if(localStorage.getItem('logged')=='token'){
+            this.setState({
+                logged:true
+        })
+    } 
     }
 	postAnnuncio(annuncio){
 		Backend.postAnnuncio(annuncio);
@@ -36,12 +44,12 @@ export default class App extends React.Component{
 			return
 				<section>NO</section>
 		}
-		
+
 	}
 	makeLogin(){
 		this.setState({
 			logged:!this.state.logged,
-			activePage:'login',
+			activePage:'Single',
 			postCategory:[],
 			annunci: Annunci,
 			newItem:{},
@@ -86,7 +94,7 @@ export default class App extends React.Component{
 		if(this.state.logged){
 			var contentElem= <Spinner/>
 			if(this.state.annunci){
-				contentElem = <List annunci={this.state.annunci} goToPage={this.goToPage.bind(this)}/>
+				contentElem = <List annunci={this.state.annunci}/>
 			}
 			if(this.state.activePage=='NewItem'){
 				contentElem= <Spinner/>
@@ -102,25 +110,42 @@ export default class App extends React.Component{
 			}
 			if(this.state.activePage=='Profile'){
 				contentElem= <Spinner/>
-				contentElem = <Profile first_name= 'Tiziano' last_name= 'Borgato' avatar_urls= 'http://lorempixel.com/200/200' email= 'tiziano.borgato@gmail.com' description= 'Sono uno studente del secondo anno di Web & Apps. Per maggiori info contattatemi al 334 1301904' />
+					contentElem = <Profile first_name= 'Tiziano' last_name= 'Borgato' avatar_urls= 'http://lorempixel.com/200/200' email= 'tiziano.borgato@gmail.com' description= 'Sono uno studente del secondo anno di Web & Apps. Per maggiori info contattatemi al 334 1301904' />
 			}
-			if(this.state.activePage.includes('Single|')){
-				const postP = this.state.activePage.split('|');
-				contentElem= <Single id={postP[1]} authorId="1" userId="1" title="titolo" category="categoria" img="http://lorempixel.com/640/360" description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae odit, ad nobis inventore neque. Atque cum voluptate tempora debitis!" name="Nome Cognome" date="18/04/2017"/>
-			}
+            if(this.state.activePage=='Single'){
+                Backend.getCategory()
+                .then((data)=>{
+                    this.setState({
+                        postCategory:data
+                    })
+                })
+                contentElem=
+      		        <Single
+                    id="1"
+                    postCategory={this.state.postCategory}
+                    authorId="1"
+                    userId="1"
+                    title="titolo"
+                    category="categoria"
+                    img="http://lorempixel.com/640/360"
+                    description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae odit, ad nobis inventore neque. Atque cum voluptate tempora debitis!"
+                    name="Nome Cognome"
+                    date="18/04/2017"
+                  />
+            }
 			return(
 				<section>
 					<Topbar goToPage={this.goToPage.bind(this)}/>
 					{contentElem}
 					<Bottombar goToPage={this.goToPage.bind(this)}/>
 				</section>
-			)	
+			)
 		}else{
 			return(
 				<section>
 					<Login makeLogin={this.makeLogin.bind(this)}/>
 				</section>
-			)	
+			)
 		}
     }
 }

@@ -24,19 +24,12 @@ export default class Login extends React.Component{
         if(this.state.utente != '' && this.state.password != ''){
 			Backend.setCredentials(this.state.utente,this.state.password);
 			Backend.checkAuth().then((data)=>{
+				this.setState({
+					ClassNameControl:'mui-textfield success'
+				})
 				console.log("Login ok");
 				console.log(data);
-                
-				if(data.code!='rest_forbidden'){
-					this.setState({
-						ClassNameControl:'mui-textfield success'
-					})
-					this.props.makeLogin();
-				}else{
-					this.setState({
-						ClassNameControl:'mui-textfield error'
-					})
-				}
+				this.props.makeLogin();
 				
 			})
         }
@@ -48,6 +41,7 @@ export default class Login extends React.Component{
 			})
         }
     }   
+    
     
     
 	render(){
