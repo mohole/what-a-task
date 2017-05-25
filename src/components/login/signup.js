@@ -147,13 +147,13 @@ export default class Signup extends React.Component{
     
                                 <div className='mui-checkbox'>
                                     <label>Termini e condizioni</label><br/>
-                                    <input type="checkbox" checked={this.state.privacyCheck} onChange={this.checkPrivacy.bind(this)}/><span> Accetto i <a href="#">termini della privacy</a></span>
+                                    <input type="checkbox" checked={this.state.privacyCheck} onChange={this.checkPrivacy.bind(this)}/><span> Accetto i <a href="#">Termini per il trattamento della privacy</a></span>
                                 </div>
                                 
                                 <div className="mui-form-group">
-                                    <button type="submit" className="mui-btn ">Registrati</button>
                                     <button type="button" onClick={this.resetForm.bind(this)} 
                                     className="mui-btn mui-btn--danger">Annulla</button>
+                                    <button type="submit" className="mui-btn">Registrati</button>
                                 </div>
                         </form>
                     </div>

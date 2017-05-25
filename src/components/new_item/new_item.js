@@ -57,8 +57,7 @@ export default class NewItem extends React.Component{
             image : formData
         });
 		console.log(formData);
-	}
-	
+	}	
 	submitAnnuncio(evt){
 		evt.preventDefault();
 		var error=0;
@@ -139,7 +138,7 @@ export default class NewItem extends React.Component{
 	}
 	render(){
 		
-		if(this.state.cat.lenght!=0){
+		if(this.state.cat.length!=0){
 		const catList =this.state.cat.map((e,i) =>{
 			return(
 				<option value={e.id} key={e.id} onChange={this.getCat.bind(this)}>{e.name}</option>
@@ -155,13 +154,15 @@ export default class NewItem extends React.Component{
 					</div>
 					<div className="mui-col-xs-12">
 						<form action="#" onSubmit={this.submitAnnuncio.bind(this)} className="mui-form">
-						<div className={this.state.ClassNameCategory}>
+						
+            <div className={this.state.ClassNameCategory}>
 						<label htmlFor="">Categoria</label>
 							<select name="" id="ann_category" value={this.state.selectedCat} onChange={this.getCat.bind(this)}>
 							<option value="0">Categoria</option>
 							{catList}
 							</select>
 						</div>
+                            
 							<div className="mui-radio">
 								<label htmlFor="">Tipologia</label><br/>
 								<input type="radio" name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type===5} value="5"/> <span>Offro</span> <input type="radio" name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type===3} value="3"/> <span>Cerco</span>
@@ -178,6 +179,7 @@ export default class NewItem extends React.Component{
 								<label htmlFor="">Testo annuncio</label>
 								<textarea name="" id="" cols="30" rows="10" value={this.state.text} onChange={this.writing.bind(this)} name="text"></textarea>
 							</div>
+                                
 							<div className={this.state.ClassNamePrivacy}>
 								<label htmlFor="">Termini e condizioni</label><br/>
 								<input type="checkbox" checked={this.state.privacyCheck} onChange={this.checkPrivacy.bind(this)}/><span>Accetto i <a href="#">termini della privacy</a></span>
