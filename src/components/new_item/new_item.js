@@ -50,12 +50,14 @@ export default class NewItem extends React.Component{
 	uploadFile(evt){
 		const file=evt.target.files[0];
 		console.log(file);
-		Backend.upLoadMedia(file).then((data)=>{
+		Backend.upLoadMedia(file)
+		.then((data)=>{
 			console.log('id:'+data.id);
-					this.setState({
-						media_id:data.id
-					})
-				})
+			this.setState({
+				media_id:data.id
+			})
+		})
+
 	}
 
 	submitAnnuncio(evt){
