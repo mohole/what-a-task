@@ -102,5 +102,17 @@ class WAT_Backend{
   		return fetch(`${this.url}/users/${userId}`)
           .then(this._parseRaw)
     }
+	getMe(){
+		return fetch(`${this.url}/users/me/?context=edit`,
+		{
+            headers: this.headers,
+            method: "POST"
+        })
+        .then(this._parseRaw)
+	}
+	getMedia(mediaId){
+		return fetch(`${this.url}/media/${mediaId}`)
+          .then(this._parseRaw)
+	}
 }
 export const Backend = new WAT_Backend;
