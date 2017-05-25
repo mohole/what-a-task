@@ -36,9 +36,9 @@ export default class List extends React.Component{
         if(this.state.annunci){
     		const items = this.state.annunci.map((e,i) => {
     		return(
-                <section>
+                <section key={i}>
                     <Userbar userId={e.author} />
-        			<a href="#" onClick={this.showAnnuncio.bind(this)} data-item-id={e.id} key={i}>
+        			<a href="#" onClick={this.showAnnuncio.bind(this)} data-item-id={e.id}>
         				<div className="mui-container">
         				  <div className="mui-row">
                             <ListImg mediaId={e.featured_media} />

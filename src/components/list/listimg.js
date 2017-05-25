@@ -14,7 +14,7 @@ export default class ListImg extends React.Component{
 
     componentWillMount(){
         if(this.props.mediaId!=0){
-            Backend.getImageUrl(this.props.mediaId).then((data)=>{
+            Backend.getMedia(this.props.mediaId).then((data)=>{
                 this.setState({
                     src:data.guid.rendered
                 })

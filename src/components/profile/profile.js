@@ -10,7 +10,12 @@ export default class Profile extends React.Component{
         this.state={
         	isEditable: true,
         	editActive: false,
-			media_id:this.props.image_id
+			media_id:this.props.image_id,
+            first_name:'',
+            last_name:'',
+            avatar_urls:'',
+            email:'',
+            description:''
         }
 		Backend.getMedia(this.props.image_id)
 		.then((data)=>{
@@ -26,6 +31,20 @@ export default class Profile extends React.Component{
         editActive: !this.state.editActive
       })
     }
+
+    componentWillMount(){
+        Backend.getUserInfo(this.props.profileId).then((data)=>{
+            this.setState({
+                first_name:data.first_name,
+                last_name:data.last_name,
+                avatar_urls:data.avatar_urls,
+                email:data.email,
+                description:''
+            })
+        })
+    }
+
+
 	render(){
 
       let btnEdit='';
@@ -37,34 +56,34 @@ export default class Profile extends React.Component{
     if(this.state.editActive && this.state.isEditable){
         return(
       <ModifyProfile
-          first_name= {this.props.first_name}
-          last_name= {this.props.last_name}
+          first_name= {this.state.first_name}
+          last_name= {this.state.last_name}
           avatar_urls= {this.props.image_id}
-          email= {this.props.email}
-          description= {this.props.description}
+          email= {this.state.email}
+          description= {this.state.description}
           undo={this.editProfile.bind(this)}
           />
             )
         }else{
         return(
-            <section>
-            <div className="mui-container">
-              <div className="mui-row">
-                <div className="mui-col-xs-12">
-                <img src={this.state.media_url} />
-                </div>
-                <div className="mui-col-xs-12">
-                <h1>{this.props.first_name} {this.props.last_name}</h1>
-                </div>
-                <div className="mui-col-xs-12">
-                  <p>Mail: {this.props.email}</p>
-                  <p>Descrizione: {this.props.description}</p>
-                </div>
-                <div className="mui-col-xs-12">
-                  {btnEdit}
-                </div>
-              </div>
-            </div>
+                <section>
+                    <div className="mui-container">
+                      <div className="mui-row">
+                        <div className="mui-col-xs-12">
+                        <img src={this.state.media_url} />
+                        </div>
+                        <div className="mui-col-xs-12">
+                        <h1>{this.state.first_name} {this.state.last_name}</h1>
+                        </div>
+                        <div className="mui-col-xs-12">
+                          <p>Mail: {this.state.email}</p>
+                          <p>Descrizione: {this.state.description}</p>
+                        </div>
+                        <div className="mui-col-xs-12">
+                          {btnEdit}
+                        </div>
+                      </div>
+                    </div>
 			      </section>
             )
           }

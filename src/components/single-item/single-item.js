@@ -13,7 +13,6 @@ export default class Single extends React.Component {
             editActive: false,
             annuncio: this.props.annuncio,
             postCategory: [],
-            userId: 6,
             imageUrl:'',
             currentCat:{}
         }
@@ -66,7 +65,7 @@ componentWillMount(){
             this.setState({currentCat: data.name})
         })
 
-        Backend.getImageUrl(this.state.annuncio.featured_media).then((data)=>{
+        Backend.getMedia(this.state.annuncio.featured_media).then((data)=>{
             this.setState({imageUrl:data.guid.rendered})
         })
 }
@@ -99,7 +98,7 @@ componentWillMount(){
                                             <a href="#">{this.state.currentCat}
                                             </a>
                                         </small>
-                                        {this.isAuthor(this.state.userId, this.state.author.id)}
+                                        {this.isAuthor(this.props.userId, this.state.author.id)}
                                     </div>
                                 </div>
                                 <div className="mui-row">

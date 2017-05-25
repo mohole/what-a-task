@@ -20,7 +20,6 @@ export default class Userbar extends React.Component{
                 image:data.acf.user_image
             })
         })
-
     }
 
 
