@@ -84,7 +84,7 @@ body{
   background:#C06C84;
   margin: 20px 0 20px 0;
 }
-.nome-utente, .corso-utente, .categoria-annuncio{
+.nome-utente, .corso-utente, .titolo-annuncio{
   font-size: 16px;
 }
 .hr{

@@ -2503,7 +2503,7 @@ module.exports = reactProdInvariant;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -2511,128 +2511,137 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var WAT_Backend = function () {
-    function WAT_Backend() {
-        _classCallCheck(this, WAT_Backend);
+  function WAT_Backend() {
+    _classCallCheck(this, WAT_Backend);
 
-        this.url = 'http://moholepeople.it/whatatask/wp-json/wp/v2', this.headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        };
+    this.url = 'http://moholepeople.it/whatatask/wp-json/wp/v2', this.headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+  }
+
+  _createClass(WAT_Backend, [{
+    key: '_parseRaw',
+    value: function _parseRaw(response) {
+      return response.json();
     }
+  }, {
+    key: 'checkAuth',
+    value: function checkAuth() {
+      return fetch(this.url + '/settings', {
+        headers: this.headers
+      }).then(this._parseRaw);
+    }
+  }, {
+    key: 'setCredentials',
+    value: function setCredentials(user, pswd) {
+      var encoded = btoa(user + ':' + pswd);
+      var auth = { Authorization: 'Basic ' + encoded };
+      this.headers = Object.assign({}, this.headers, auth);
+      this.auth = 'Basic ' + encoded;
+    }
+  }, {
+    key: 'getCategory',
+    value: function getCategory() {
+      return fetch(this.url + '/tags').then(this._parseRaw);
+    }
+  }, {
+    key: 'postAnnuncio',
+    value: function postAnnuncio(annuncio) {
+      var data = JSON.stringify(annuncio);
+      return fetch(this.url + '/annunci', {
+        headers: this.headers,
+        method: "POST",
+        body: data
+      }).then(this._parseRaw);
+    }
+  }, {
+    key: 'updateAnnuncio',
+    value: function updateAnnuncio(id, annuncio) {
+      return fetch(this.url + '/annunci/' + id, {
+        headers: this.headers,
+        method: "POST",
+        body: JSON.stringify(annuncio)
+      }).then(this._parseRaw);
+    }
+  }, {
+    key: 'getAnnunci',
+    value: function getAnnunci() {
+      return fetch(this.url + '/annunci').then(this._parseRaw);
+    }
+  }, {
+    key: 'upLoadMedia',
+    value: function upLoadMedia(imgPath, callback) {
+      var data = new FormData();
+      data.append("file", imgPath);
+      return fetch(this.url + '/media', {
+        headers: {
+          Authorization: this.auth,
+          'Accept': 'application/json'
+        },
+        method: "POST",
+        body: data
+      }).then(this._parseRaw);
+    }
+  }, {
+    key: 'searchAnnuncio',
+    value: function searchAnnuncio(searchTerm, cat, tag) {
+      var searchString = '?';
+      if (searchTerm != null) {
+        searchString += 'search=' + searchTerm;
+      }
+      if (cat != null) {
+        if (searchString != '?') {
+          searchString += '&';
+        }
+        searchString += 'categories=' + cat;
+      }
+      if (tag != null) {
+        if (searchString != '?') {
+          searchString += '&';
+        }
+        searchString += 'tags=' + tag;
+      }
+      if (searchString == '?') {
+        searchString = '';
+      }
+      console.log(searchString);
+      return fetch(this.url + '/annunci' + searchString).then(this._parseRaw);
+    }
+  }, {
+    key: 'getAnnuncio',
+    value: function getAnnuncio(postId) {
+      return fetch(this.url + '/annunci/' + postId).then(this._parseRaw);
+    }
+  }, {
+    key: 'getCurrentCategoryName',
+    value: function getCurrentCategoryName(cat) {
+      return fetch(this.url + '/tags/' + cat).then(this._parseRaw);
+    }
+  }, {
+    key: 'getUserInfo',
+    value: function getUserInfo(userId) {
+      return fetch(this.url + '/users/' + userId + '/?context=edit', {
+        headers: this.headers,
+        method: "GET"
+      }).then(this._parseRaw);
+    }
+  }, {
+    key: 'getMe',
+    value: function getMe() {
+      return fetch(this.url + '/users/me/?context=edit', {
+        headers: this.headers,
+        method: "POST"
+      }).then(this._parseRaw);
+    }
+  }, {
+    key: 'getMedia',
+    value: function getMedia(mediaId) {
+      return fetch(this.url + '/media/' + mediaId).then(this._parseRaw);
+    }
+  }]);
 
-    _createClass(WAT_Backend, [{
-        key: '_parseRaw',
-        value: function _parseRaw(response) {
-            return response.json();
-        }
-    }, {
-        key: 'getImageUrl',
-        value: function getImageUrl(id) {
-            return fetch(this.url + '/media/' + id, {
-                header: this.headers
-            }).then(this._parseRaw);
-        }
-    }, {
-        key: 'checkAuth',
-        value: function checkAuth() {
-            return fetch(this.url + '/settings', {
-                headers: this.headers
-            }).then(this._parseRaw);
-        }
-    }, {
-        key: 'setCredentials',
-        value: function setCredentials(user, pswd) {
-            var encoded = btoa(user + ':' + pswd);
-            var auth = { Authorization: 'Basic ' + encoded };
-            this.headers = Object.assign({}, this.headers, auth);
-            this.auth = 'Basic ' + encoded;
-        }
-    }, {
-        key: 'getCategory',
-        value: function getCategory() {
-            return fetch(this.url + '/tags').then(this._parseRaw);
-        }
-    }, {
-        key: 'postAnnuncio',
-        value: function postAnnuncio(annuncio) {
-            var data = JSON.stringify(annuncio);
-            return fetch(this.url + '/annunci', {
-                headers: this.headers,
-                method: "POST",
-                body: data
-            }).then(this._parseRaw);
-        }
-    }, {
-        key: 'updateAnnuncio',
-        value: function updateAnnuncio(id, annuncio) {
-            return fetch(this.url + '/annunci/' + id, {
-                headers: this.headers,
-                method: "POST",
-                body: JSON.stringify(annuncio)
-            }).then(this._parseRaw);
-        }
-    }, {
-        key: 'getAnnunci',
-        value: function getAnnunci() {
-            return fetch(this.url + '/annunci').then(this._parseRaw);
-        }
-    }, {
-        key: 'upLoadMedia',
-        value: function upLoadMedia(imgPath, callback) {
-            var data = new FormData();
-            data.append("file", imgPath);
-            return fetch(this.url + '/media', {
-                headers: {
-                    Authorization: this.auth,
-                    'Accept': 'application/json'
-                },
-                method: "POST",
-                body: data
-            }).then(this._parseRaw);
-        }
-    }, {
-        key: 'searchAnnuncio',
-        value: function searchAnnuncio(searchTerm, cat, tag) {
-            var searchString = '?';
-            if (searchTerm != null) {
-                searchString += 'search=' + searchTerm;
-            }
-            if (cat != null) {
-                if (searchString != '?') {
-                    searchString += '&';
-                }
-                searchString += 'categories=' + cat;
-            }
-            if (tag != null) {
-                if (searchString != '?') {
-                    searchString += '&';
-                }
-                searchString += 'tags=' + tag;
-            }
-            if (searchString == '?') {
-                searchString = '';
-            }
-            console.log(searchString);
-            return fetch(this.url + '/annunci' + searchString).then(this._parseRaw);
-        }
-    }, {
-        key: 'getAnnuncio',
-        value: function getAnnuncio(postId) {
-            return fetch(this.url + '/annunci/' + postId).then(this._parseRaw);
-        }
-    }, {
-        key: 'getCurrentCategoryName',
-        value: function getCurrentCategoryName(cat) {
-            return fetch(this.url + '/tags/' + cat).then(this._parseRaw);
-        }
-    }, {
-        key: 'getUserInfo',
-        value: function getUserInfo(userId) {
-            return fetch(this.url + '/users/' + userId).then(this._parseRaw);
-        }
-    }]);
-
-    return WAT_Backend;
+  return WAT_Backend;
 }();
 
 var Backend = exports.Backend = new WAT_Backend();
@@ -9841,6 +9850,18 @@ var App = function (_React$Component) {
 
 			//Store.set({ loggedin: 'true'});
 
+			_backend.Backend.getMe().then(function (data) {
+				console.log(data);
+				_this2.setState({
+					user_id: data.id,
+					user_email: data.email,
+					user_firstName: data.first_name,
+					user_lastName: data.last_name,
+					user_description: data.description,
+					user_role: parseInt(data.acf.user_role),
+					user_image: parseInt(data.acf.user_image)
+				});
+			});
 			_backend.Backend.getAnnunci().then(function (data) {
 				_this2.setState({
 					annunci: data
@@ -9889,9 +9910,14 @@ var App = function (_React$Component) {
 						contentElem = _react2.default.createElement(_new_item2.default, { categoryList: this.state.postCategory, goToPage: this.goToPage.bind(this) });
 					}
 				}
+				if (this.state.activePage.includes('Profile|')) {
+					contentElem = _react2.default.createElement(_spinner2.default, null);
+					var user = this.state.activePage.split('|');
+					contentElem = _react2.default.createElement(_profile2.default, { profileId: user[1], currentId: this.state.user_id, first_name: 'Tiziano', last_name: 'Borgato', avatar_urls: 'http://lorempixel.com/200/200', email: 'tiziano.borgato@gmail.com', description: 'Sono uno studente del secondo anno di Web & Apps. Per maggiori info contattatemi al 334 1301904' });
+				}
 				if (this.state.activePage == 'Profile') {
 					contentElem = _react2.default.createElement(_spinner2.default, null);
-					contentElem = _react2.default.createElement(_profile2.default, { first_name: 'Tiziano', last_name: 'Borgato', avatar_urls: 'http://lorempixel.com/200/200', email: 'tiziano.borgato@gmail.com', description: 'Sono uno studente del secondo anno di Web & Apps. Per maggiori info contattatemi al 334 1301904' });
+					contentElem = _react2.default.createElement(_profile2.default, { first_name: this.state.user_firstName, last_name: this.state.user_lastName, image_id: this.state.user_image, email: this.state.user_email, description: this.state.user_description });
 				}
 
 				if (this.state.activePage.includes('Single|')) {
@@ -9900,7 +9926,7 @@ var App = function (_React$Component) {
 					var a = this.state.annunci.filter(function (e) {
 						return e.id == postP[1];
 					});
-					contentElem = _react2.default.createElement(_singleItem2.default, { annuncio: a[0], id: postP[1] });
+					contentElem = _react2.default.createElement(_singleItem2.default, { userId: this.state.user_id, annuncio: a[0], id: postP[1], goToPage: this.goToPage.bind(this) });
 				}
 				return _react2.default.createElement(
 					'section',
@@ -23074,7 +23100,7 @@ var Login = function (_React$Component) {
         _backend.Backend.checkAuth().then(function (data) {
           console.log("Login ok");
           console.log(data);
-          localStorage.setItem('loggedin', 'true');
+
           if (data.code != 'rest_forbidden') {
             _this2.setState({
               ClassNameControl: 'mui-textfield success'
@@ -23147,12 +23173,12 @@ var Login = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                       'button',
-                      { type: 'submit', className: 'my-button mui-col-xs-12 mui-btn mui-btn--raised', onClick: this.checkLogin.bind(this) },
+                      { type: 'button', className: 'my-button mui-col-xs-12 mui-btn mui-btn--raised', onClick: this.checkLogin.bind(this) },
                       'LOGIN'
                     ),
                     _react2.default.createElement(
                       'button',
-                      { type: 'submit', className: 'my-button mui-col-xs-12 mui-btn mui-btn--raised' },
+                      { type: 'button', className: 'my-button mui-col-xs-12 mui-btn mui-btn--raised' },
                       'REGISTRATI'
                     )
                   )

@@ -6,9 +6,9 @@ export default class Login extends React.Component{
         super(props);
 
         this.state = {
-                utente: '',
-                password: '',
-                ClassNameControl:'mui-textfield'
+			utente: '',
+			password: '',
+			ClassNameControl:'mui-textfield'
         };
     }
 
@@ -26,7 +26,7 @@ export default class Login extends React.Component{
 			Backend.checkAuth().then((data)=>{
 				console.log("Login ok");
 				console.log(data);
-                localStorage.setItem('loggedin','true');
+      
 				if(data.code!='rest_forbidden'){
 					this.setState({
 						ClassNameControl:'mui-textfield success'
@@ -48,8 +48,6 @@ export default class Login extends React.Component{
 			})
         }
     }
-
-
 
 	render(){
 
@@ -73,8 +71,8 @@ export default class Login extends React.Component{
                     <input name="password" className="my-input" type="password" onChange={this.writing.bind(this)} />
                     <label className="my-label">Password</label>
                   </div>
-                  <button type="submit" className="my-button mui-col-xs-12 mui-btn mui-btn--raised" onClick={this.checkLogin.bind(this)}>LOGIN</button>
-                  <button type="submit" className="my-button mui-col-xs-12 mui-btn mui-btn--raised">REGISTRATI</button>
+                  <button type="button" className="my-button mui-col-xs-12 mui-btn mui-btn--raised" onClick={this.checkLogin.bind(this)}>LOGIN</button>
+                  <button type="button" className="my-button mui-col-xs-12 mui-btn mui-btn--raised">REGISTRATI</button>
                 </form>
               </div>
             </div>
