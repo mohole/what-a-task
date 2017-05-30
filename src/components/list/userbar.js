@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {Backend} from './../../backend';
-import ListImg from './listimg';
+import Imgblock from './../common/imgblock';
 
 export default class Userbar extends React.Component{
 
@@ -27,8 +27,8 @@ export default class Userbar extends React.Component{
         if(this.state.name!=''){
             return(
                 <div>
-                    <ListImg mediaId={this.state.image} />
-                    <span>{this.state.name}</span>
+                    <Imgblock mediaId={this.state.image} />
+                    <a href="#"  onClick={()=>{this.props.goToPage('Profile|'+this.props.userId)}}><span>{this.state.name}</span></a>
                 </div>
             )
         } else {

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {Backend} from './../../backend';
-import ListImg from './listimg';
+import Imgblock from './../common/imgblock';
 import Userbar from './userbar';
 
 export default class List extends React.Component{
@@ -37,11 +37,11 @@ export default class List extends React.Component{
     		const items = this.state.annunci.map((e,i) => {
     		return(
                 <section key={i}>
-                    <Userbar userId={e.author} />
+                    <Userbar userId={e.author} goToPage={this.props.goToPage.bind(this)} />
         			<a href="#" onClick={this.showAnnuncio.bind(this)} data-item-id={e.id}>
         				<div className="mui-container">
         				  <div className="mui-row">
-                            <ListImg mediaId={e.featured_media} />
+                            <Imgblock mediaId={e.featured_media} />
         					<div className="mui-col-xs-12">
         					  <h4><strong>{e.title.rendered}</strong></h4>
         					  <p>{e.content.rendered}</p>

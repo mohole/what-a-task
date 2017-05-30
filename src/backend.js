@@ -48,6 +48,15 @@ class WAT_Backend{
         })
         .then(this._parseRaw);
     }
+	updateProfile(id,updatedInfo){
+        return fetch(`${this.url}/users/${id}`,
+        {
+            headers: this.headers,
+            method: "POST",
+            body: JSON.stringify(updatedInfo)
+        })
+        .then(this._parseRaw);
+    }
   	getAnnunci(){
   		return fetch(`${this.url}/annunci`)
           .then(this._parseRaw)

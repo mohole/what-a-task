@@ -102,7 +102,7 @@ export default class App extends React.Component{
       if(this.state.activePage.includes('Profile|')){
           contentElem= <Spinner/>
           const user = this.state.activePage.split('|');
-          contentElem = <Profile profileId={user[1]} currentId={this.state.user_id} first_name= 'Tiziano' last_name= 'Borgato' avatar_urls= 'http://lorempixel.com/200/200' email= 'tiziano.borgato@gmail.com' description= 'Sono uno studente del secondo anno di Web & Apps. Per maggiori info contattatemi al 334 1301904' />
+          contentElem = <Profile profileId={parseInt(user[1])} currentId={this.state.user_id}  first_name={this.state.user_firstName} last_name={this.state.user_lastName} image_id={this.state.user_image} email={this.state.user_email} description={this.state.user_description} />
       }
 			if(this.state.activePage=='Profile'){
 				contentElem= <Spinner/>

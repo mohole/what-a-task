@@ -3,7 +3,7 @@
 import React from 'react';
 import {Backend} from './../../backend';
 
-export default class ListImg extends React.Component{
+export default class Imgblock extends React.Component{
 
     constructor(props){
         super(props);

@@ -10,7 +10,7 @@ export default class Profile extends React.Component{
         this.state={
         	isEditable: true,
         	editActive: false,
-			media_id:this.props.image_id,
+			media_id:'',
             first_name:'',
             last_name:'',
             avatar_urls:'',
@@ -31,16 +31,37 @@ export default class Profile extends React.Component{
         editActive: !this.state.editActive
       })
     }
-
     componentWillMount(){
-        Backend.getUserInfo(this.props.profileId).then((data)=>{
-            this.setState({
-                first_name:data.first_name,
-                last_name:data.last_name,
-                avatar_urls:data.avatar_urls,
-                email:data.email,
-                description:''
+        if(this.props.profileId!==this.props.currentId){
+            Backend.getUserInfo(this.props.profileId).then((data)=>{
+                this.setState({
+                    first_name:data.first_name,
+                    last_name:data.last_name,
+                    avatar_id:data.acf.user_image,
+                    email:data.email,
+                    description:data.description
+                })
             })
+        } else {
+            this.setState({
+                media_id:this.props.image_id,
+                first_name:this.props.first_name,
+                last_name:this.props.last_name,
+                avatar_urls:this.props.avatar_urls,
+                email:this.props.email,
+                description:this.props.description
+            })
+        }
+    }
+
+    componentWillReceiveProps(){
+        this.setState({
+            media_id:this.props.image_id,
+            first_name:this.props.first_name,
+            last_name:this.props.last_name,
+            avatar_urls:this.props.avatar_urls,
+            email:this.props.email,
+            description:this.props.description
         })
     }
 
@@ -48,7 +69,7 @@ export default class Profile extends React.Component{
 	render(){
 
       let btnEdit='';
-    if(this.state.isEditable){
+    if(this.state.isEditable && this.props.profileId===this.props.currentId){
        btnEdit = <button onClick={this.editProfile.bind(this)} className="mui-btn mui-btn--fab mui-btn--primary">+</button> ;
     }
 
@@ -56,9 +77,10 @@ export default class Profile extends React.Component{
     if(this.state.editActive && this.state.isEditable){
         return(
       <ModifyProfile
+          profileId={this.props.profileId}
           first_name= {this.state.first_name}
           last_name= {this.state.last_name}
-          avatar_urls= {this.props.image_id}
+          avatar_urls= {this.props.avatar_urls}
           email= {this.state.email}
           description= {this.state.description}
           undo={this.editProfile.bind(this)}
@@ -70,7 +92,7 @@ export default class Profile extends React.Component{
                     <div className="mui-container">
                       <div className="mui-row">
                         <div className="mui-col-xs-12">
-                        <img src={this.state.media_url} />
+                        <img src={this.props.avatar_urls} />
                         </div>
                         <div className="mui-col-xs-12">
                         <h1>{this.state.first_name} {this.state.last_name}</h1>

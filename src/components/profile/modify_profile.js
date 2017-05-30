@@ -1,5 +1,6 @@
 'use strict';
 import React from 'react';
+import {Backend} from './../../backend';
 
 export default class ModifyProfile extends React.Component{
   constructor(props){
@@ -19,7 +20,8 @@ export default class ModifyProfile extends React.Component{
       }
 
     }
-      modificaInfo(evt){
+
+    modificaInfo(evt){
               const input = evt.target.value;
       		    const elem=evt.target.getAttribute('name');
               this.setState({
@@ -27,7 +29,7 @@ export default class ModifyProfile extends React.Component{
               });
           }
 
-      submitForm(){
+    submitForm(){
         var error=0;
         if(this.state.first_name=='' || this.state.first_name.length<3){
           this.setState({
@@ -70,15 +72,25 @@ export default class ModifyProfile extends React.Component{
         })
       }
       if(error==0){
-          const modify={
+          const updatedProfile={
             first_name: this.state.first_name,
             last_name: this.state.last_name,
             email: this.state.email,
             description: this.state.description
           }
           this.setState({
-            modify:modify
+            updatedProfile:updatedProfile
           });
+
+          Backend.updateProfile(this.props.profileId,updatedProfile)
+              .then((data)=>{
+              console.log(data);
+                  if(data.status=='publish'){
+                      console.log('Profilo modificato');
+                  }
+              }).then(()=>{
+                  this.props.undo();
+              });
       }
 
     }
@@ -89,6 +101,7 @@ export default class ModifyProfile extends React.Component{
                   <div className="mui-row">
                   <div className="mui-col-xs-12">
                     <form className="mui-form">
+                        <img src={this.props.avatar_urls} alt=""/>
                       <div className="mui-textfield">
                         <input type="file" name="avatar_urls" value="" onChange={this.modificaInfo.bind(this)} />
                       </div>
