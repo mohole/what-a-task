@@ -19,15 +19,14 @@ export default class App extends React.Component{
     constructor(){
         super();
         console.log('app started');
-		if(window.localStorage.getItem('token')){
-			console.log(window.localStorage.getItem('token'));
-			this.makeLogin();
-		}else{
-			console.log('no storage');
-			this.state={
+		this.state={
 				logged:false
 			}
-			
+		if(window.localStorage.getItem('token')){
+			console.log(window.localStorage.getItem('token'));
+			this.getLogin();
+		}else{
+			console.log('no storage');			
 		}
     }
 	postAnnuncio(annuncio){
@@ -47,7 +46,7 @@ export default class App extends React.Component{
 		}
 
 	}
-	makeLogin(){
+	getLogin(){
 		this.state={
 			logged:true,
 			activePage:'List',
@@ -83,6 +82,43 @@ export default class App extends React.Component{
 			type:'offro',
 			privacyCheck:false
 		}
+	}
+	makeLogin(){
+		this.setState({
+			logged:true,
+			activePage:'List',
+			postCategory:[],
+			annunci: Annunci,
+			newItem:{},
+			title:'titolo',
+			text:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae odit, ad nobis inventore neque. Atque cum voluptate tempora debitis!',
+			image:'http://lorempixel.com/640/360',
+			cat:[
+				{
+					_id:1,
+					name:'cat1'
+				},
+				{
+					_id:2,
+					name:'cat2'
+				},
+				{
+					_id:3,
+					name:'cat3'
+				},
+				{
+					_id:4,
+					name:'cat4'
+				},
+			],
+			ClassNameTitle:'form-group mui-textfield',
+			ClassNameText:'form-group mui-textfield',
+			ClassNamePrivacy:'form-group mui-checkbox',
+			ClassNameCategory:'form-group mui-select',
+			selectedCat:0,
+			type:'offro',
+			privacyCheck:false
+		});
 		console.log('load app state');
 	}
 	goToPage(page){
