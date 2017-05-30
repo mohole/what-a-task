@@ -6,12 +6,14 @@ import List from './list/list';
 //import {Annunci} from './data.js';
 import {Backend} from './../backend';
 import {Store} from './../store';
+import Single from './single-item/single-item';
+import EditItem from './single-item/edit-item';
 import NewItem from './new_item/new_item';
 import Spinner from './common/spinner';
 import Topbar from './appbar/topbar';
 import Bottombar from './appbar/bottombar';
-import Single from './single-item/single-item';
 import Profile from './profile/profile';
+import ModifyProfile from './profile/modify_profile';
 
 export default class App extends React.Component{
     constructor(){
@@ -19,6 +21,12 @@ export default class App extends React.Component{
         console.log('app started');
 		this.state={
 			logged:false
+		}
+		if(window.localStorage.getItem('token')){
+			console.log(window.localStorage.getItem('token'));
+			this.getLogin();
+		}else{
+			console.log('no storage');			
 		}
     }
 
@@ -36,9 +44,45 @@ export default class App extends React.Component{
 		}
 
 	}
+	getLogin(){
+		this.state={
+			logged:true,
+			activePage:'List',
+			postCategory:[],
+			annunci: Annunci,
+			newItem:{},
+			title:'titolo',
+			text:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae odit, ad nobis inventore neque. Atque cum voluptate tempora debitis!',
+			image:'http://lorempixel.com/640/360',
+			cat:[
+				{
+					_id:1,
+					name:'cat1'
+				},
+				{
+					_id:2,
+					name:'cat2'
+				},
+				{
+					_id:3,
+					name:'cat3'
+				},
+				{
+					_id:4,
+					name:'cat4'
+				},
+			],
+			ClassNameTitle:'form-group mui-textfield',
+			ClassNameText:'form-group mui-textfield',
+			ClassNamePrivacy:'form-group mui-checkbox',
+			ClassNameCategory:'form-group mui-select',
+			selectedCat:0,
+			type:'offro',
+			privacyCheck:false
+		}
+	}
 
 	makeLogin(){
-        //Store.set({ loggedin: 'true'});
 
 		Backend.getMe()
 		.then((data)=>{
@@ -61,10 +105,10 @@ export default class App extends React.Component{
 		})
 
 		this.setState({
-			logged:!this.state.logged,
+			logged:true,
 			activePage:'List',
       		annunci:[],
-			    postCategory:[]
+			postCategory:[]
 		})
 		console.log('load app state');
 	}
@@ -116,9 +160,28 @@ export default class App extends React.Component{
                     return e.id == postP[1];
                 });
                 contentElem=<Single userId={this.state.user_id} annuncio={a[0]} id={postP[1]} goToPage={this.goToPage.bind(this)} />
-
-
 			}
+            if(this.state.activePage=='Single'){
+                Backend.getCategory()
+                .then((data)=>{
+                    this.setState({
+                        postCategory:data
+                    })
+                })
+                contentElem=
+      		        <Single
+                    id="1"
+                    postCategory={this.state.postCategory}
+                    authorId="1"
+                    userId="1"
+                    title="titolo"
+                    category="categoria"
+                    img="http://lorempixel.com/640/360"
+                    description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae odit, ad nobis inventore neque. Atque cum voluptate tempora debitis!"
+                    name="Nome Cognome"
+                    date="18/04/2017"
+                  />
+            }
 			return(
 				<section>
 					<Topbar goToPage={this.goToPage.bind(this)}/>
