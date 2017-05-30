@@ -17,74 +17,89 @@
 <body>
   <div class="container">
     <section>
-      <div class="top-bar-wrapper">
-        <div class="top-inner">
-          <div class="mui-col-xs-4">
-            <button class="top-bar-button mui-btn mui-btn--small mui-btn mui-btn--fab"><i class="icon ion-ios-plus-empty"></i></button>
-          </div>
-          <div class="main-title mui-col-xs-4">
-            <span>WHAT A TASK</span>
-          </div>
-          <div class="mui-col-xs-4">
-            <button id="search" class="mui-btn mui-btn--flat"><i class="icon ion-ios-search"></i></button>
+        <div class="top-bar-wrapper">
+          <div class="top-inner">
+            <div class="mui-col-xs-4">
+              <button class="mui-btn mui-btn--flat"><i class="icon-big ion-ios-arrow-left"></i></button>
+            </div>
+            <div class="main-title mui-col-xs-4">
+              <span>WHAT A TASK</span>
+            </div>
+            <div class="mui-col-xs-4 align-right">
+              <button class="mui-btn mui-btn--flat"><i class="icon ion-ios-search"></i></button>
+            </div>
           </div>
         </div>
-      </div>
-      </section>
+        </section>
 
-  <section>
-    <div class="poster-utente">
-      <div class="mui-container">
-        <div class="mui-row">
-          <div class="mui-col-xs-offset-9 mui-col-xs-2">
-						<button id="search" class="button-modify mui-btn mui-btn--flat"><i class="icon-big ion-android-upload"></i></button>
-					</div>
-        </div>
-      </div>
-    </div>
-		</section>
+        <section>
+          <div class="poster-utente">
+            <div class="mui-container">
+              <div class="mui-row">
+      					<i class="icon-big ion-android-upload"></i>
+              </div>
+            </div>
+          </div>
+      		</section>
 
-		<section>
-				<div class="mui-container">
-					<div class="mui-row">
-						<div class="mui-col-xs-12">
-              <form class="mui-form">
-                  <div class="mui-textfield mui-textfield--float-label">
-                    <input class="my-input" type="email" value="Inserisci mail">
-                    <label class="my-label">Email</label>
+      		<section>
+      				<div class="mui-container">
+      					<div class="mui-row">
+      						<div class="mui-col-xs-12">
+                    <form class="mui-form">
+                      <div class="info-profilo">
+                        <div class="my-textfield mui-textfield mui-textfield--float-label">
+                          <input type="email" value="Tiziano Borgato">
+                          <label>Nome e Cognome</label>
+                        </div>
+                      </div>
+                      <div class="info-profilo">
+                        <div class="my-textfield mui-textfield mui-textfield--float-label">
+                        <input type="email" value="tiziano.borgato@gmail.com">
+                        <label>Email</label>
+                      </div>
+                    </div>
+                        <div class="info-profilo">
+                          <div class="my-textfield mui-textfield mui-textfield--float-label">
+                          <input type="email" value="Studente">
+                          <label>Titolo</label>
+                        </div>
+                      </div>
+                      <div class="info-profilo">
+                        <div class="my-textfield mui-textfield mui-textfield--float-label">
+                          <input type="email" value="Web & App">
+                          <label>Corso</label>
+                        </div>
+                      </div>
+                    </form>
+                    <button type="submit" class="my-button mui-col-xs-12 mui-btn mui-btn--danger">MODIFICA</button>
+      						</div>
+      					</div>
+      				</div>
+      		</section>
+
+          <!-- bottom-bar -->
+          <section>
+              <div class="bottom-bar-wrapper">
+                <div class="bottom-inner">
+                  <div class="mui-col-xs-3 horizontal-center">
+                    <button class="mui-btn mui-btn--flat"><i class="icon ion-android-home"></i></button>
                   </div>
-                  <div class="mui-textfield mui-textfield--float-label">
-                    <input class="my-input" type="email" value="Inserisci password">
-                    <label class="my-label">Password</label>
+                  <div class="mui-col-xs-3 horizontal-center">
+                    <button class="mui-btn mui-btn--flat"><i class="icon ion-person-add"></i></button>
                   </div>
-              </form>
-						</div>
-					</div>
-				</div>
-		</section>
+                  <div class="mui-col-xs-3 horizontal-center">
+                    <button class="mui-btn mui-btn--flat"><i class="icon ion-person"></i></button>
+                  </div>
+                  <div class="mui-col-xs-3 horizontal-center">
+                    <button class="mui-btn mui-btn--flat"><i class="icon ion-ios-gear"></i></button>
+                  </div>
+                </div>
+              </div>
+            </section>
+          <!-- end bottom bar -->
+  </div>
 
-<!-- bottom bar -->
-<section>
-    <div class="bottom-bar-wrapper">
-      <div class="bottom-inner">
-        <div class="mui-col-xs-3">
-          <button id="search" class="mui-btn mui-btn--flat"><i class="icon ion-android-home"></i></button>
-        </div>
-        <div class="mui-col-xs-3">
-          <button id="search" class="mui-btn mui-btn--flat"><i class="icon ion-person-add"></i></button>
-        </div>
-        <div class="mui-col-xs-3">
-          <button id="search" class="mui-btn mui-btn--flat"><i class="icon ion-person"></i></button>
-        </div>
-        <div class="mui-col-xs-3">
-          <button id="search" class="mui-btn mui-btn--flat"><i class="icon ion-ios-gear"></i></button>
-        </div>
-      </div>
-    </div>
-  </section>
-<!-- end bottom bar -->
-</div>
-
-
+<script src="//cdn.muicss.com/mui-0.9.16/js/mui.min.js"></script>
 </body>
 </html>
