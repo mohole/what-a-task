@@ -101,7 +101,7 @@ export default class ModifyProfile extends React.Component{
                   <div className="mui-row">
                   <div className="mui-col-xs-12">
                     <form className="mui-form">
-                        <img src={this.props.avatar_urls} alt=""/>
+                        <img src={this.state.image_id} alt=""/>
                       <div className="mui-textfield">
                         <input type="file" name="avatar_urls" value="" onChange={this.modificaInfo.bind(this)} />
                       </div>
