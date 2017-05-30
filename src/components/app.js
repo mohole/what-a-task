@@ -19,15 +19,16 @@ export default class App extends React.Component{
     constructor(){
         super();
         console.log('app started');
-        this.state={
-			logged:false,
+		if(window.localStorage.getItem('token')){
+			console.log(window.localStorage.getItem('token'));
+			this.makeLogin();
+		}else{
+			console.log('no storage');
+			this.state={
+				logged:false
+			}
+			
 		}
-        
-        if(localStorage.getItem('logged')=='token'){
-            this.setState({
-                logged:true
-        })
-    } 
     }
 	postAnnuncio(annuncio){
 		Backend.postAnnuncio(annuncio);
@@ -47,9 +48,9 @@ export default class App extends React.Component{
 
 	}
 	makeLogin(){
-		this.setState({
-			logged:!this.state.logged,
-			activePage:'Single',
+		this.state={
+			logged:true,
+			activePage:'List',
 			postCategory:[],
 			annunci: Annunci,
 			newItem:{},
@@ -81,7 +82,7 @@ export default class App extends React.Component{
 			selectedCat:0,
 			type:'offro',
 			privacyCheck:false
-		})
+		}
 		console.log('load app state');
 	}
 	goToPage(page){

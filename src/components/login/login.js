@@ -27,6 +27,7 @@ export default class Login extends React.Component{
 				this.setState({
 					ClassNameControl:'mui-textfield success'
 				})
+				localStorage.setItem('token', btoa(this.state.utente + ':' + this.state.password));
 				console.log("Login ok");
 				console.log(data);
 				this.props.makeLogin();

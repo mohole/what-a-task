@@ -3490,7 +3490,7 @@ var WAT_Backend = function () {
     function WAT_Backend() {
         _classCallCheck(this, WAT_Backend);
 
-        this.url = 'http://www.moholepeople.it/whatatask/wp-json/wp/v2', this.headers = {
+        this.url = 'http://localhost/whatatask/wp-json/wp/v2', this.headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         };
@@ -3512,7 +3512,6 @@ var WAT_Backend = function () {
         key: 'setCredentials',
         value: function setCredentials(user, pswd) {
             var encoded = btoa(user + ':' + pswd);
-            localStorage.setItem('token', encoded);
             var auth = { Authorization: 'Basic ' + encoded };
             this.headers = Object.assign({}, this.headers, auth);
         }
@@ -9930,14 +9929,14 @@ var App = function (_React$Component) {
 		var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
 		console.log('app started');
-		_this.state = {
-			logged: false
-		};
-
-		if (localStorage.getItem('logged') == 'token') {
-			_this.setState({
-				logged: true
-			});
+		if (window.localStorage.getItem('token')) {
+			console.log(window.localStorage.getItem('token'));
+			_this.makeLogin();
+		} else {
+			console.log('no storage');
+			_this.state = {
+				logged: false
+			};
 		}
 		return _this;
 	}
@@ -9968,9 +9967,9 @@ var App = function (_React$Component) {
 	}, {
 		key: 'makeLogin',
 		value: function makeLogin() {
-			this.setState({
-				logged: !this.state.logged,
-				activePage: 'Single',
+			this.state = {
+				logged: true,
+				activePage: 'List',
 				postCategory: [],
 				annunci: _data.Annunci,
 				newItem: {},
@@ -9997,7 +9996,7 @@ var App = function (_React$Component) {
 				selectedCat: 0,
 				type: 'offro',
 				privacyCheck: false
-			});
+			};
 			console.log('load app state');
 		}
 	}, {
@@ -23221,6 +23220,7 @@ var Login = function (_React$Component) {
                     _this2.setState({
                         ClassNameControl: 'mui-textfield success'
                     });
+                    localStorage.setItem('token', btoa(_this2.state.utente + ':' + _this2.state.password));
                     console.log("Login ok");
                     console.log(data);
                     _this2.props.makeLogin();

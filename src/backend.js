@@ -2,7 +2,7 @@
 
 class WAT_Backend{
     constructor(){
-        this.url = 'http://www.moholepeople.it/whatatask/wp-json/wp/v2',
+        this.url = 'http://localhost/whatatask/wp-json/wp/v2',
         this.headers={
               'Accept': 'application/json',
               'Content-Type': 'application/json'
@@ -19,7 +19,6 @@ class WAT_Backend{
     }
     setCredentials(user,pswd){
         const encoded = btoa(user + ':' + pswd);
-        localStorage.setItem('token', encoded);
         const auth ={Authorization:`Basic ${encoded}`};
         this.headers = Object.assign({},this.headers,auth);
     }
