@@ -48,37 +48,8 @@ export default class App extends React.Component{
 		this.state={
 			logged:true,
 			activePage:'List',
-			postCategory:[],
-			annunci: Annunci,
-			newItem:{},
-			title:'titolo',
-			text:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae odit, ad nobis inventore neque. Atque cum voluptate tempora debitis!',
-			image:'http://lorempixel.com/640/360',
-			cat:[
-				{
-					_id:1,
-					name:'cat1'
-				},
-				{
-					_id:2,
-					name:'cat2'
-				},
-				{
-					_id:3,
-					name:'cat3'
-				},
-				{
-					_id:4,
-					name:'cat4'
-				},
-			],
-			ClassNameTitle:'form-group mui-textfield',
-			ClassNameText:'form-group mui-textfield',
-			ClassNamePrivacy:'form-group mui-checkbox',
-			ClassNameCategory:'form-group mui-select',
-			selectedCat:0,
-			type:'offro',
-			privacyCheck:false
+      		annunci:[],
+			postCategory:[]
 		}
 	}
 
