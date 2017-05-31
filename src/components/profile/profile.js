@@ -10,15 +10,13 @@ export default class Profile extends React.Component {
         super(props);
 
         this.state = {
-            isEditable: true,
+            isEditable: false,
             editActive: false,
             image_id: '',
             first_name: '',
             last_name: '',
-            avatar_urls: '',
             email: '',
             description: '',
-            media_url: ''
         }
     }
 
@@ -28,43 +26,47 @@ export default class Profile extends React.Component {
         })
     }
     componentWillMount() {
-        if (this.props.profileId !== this.props.currentId) {
+		console.log(this.props.profileId+' - '+this.props.currentId);
+        if (this.props.profileId!=undefined && this.props.currentId!=undefined && this.props.profileId != this.props.currentId) {
             Backend.getUserInfo(this.props.profileId).then((data) => {
                 this.setState({first_name: data.first_name, last_name: data.last_name, image_id: data.acf.user_image, email: data.email, description: data.description})
+				
             })
         } else {
             this.setState({
-                image_id: this.props.image_id,
-                first_name: this.props.first_name,
-                last_name: this.props.last_name,
-                avatar_urls: this.props.avatar_urls,
-                email: this.props.email,
-                description: this.props.description
+                image_id: localStorage.getItem('user_image'),
+                first_name: localStorage.getItem('user_firstName'),
+                last_name: localStorage.getItem('user_lastName'),
+                email: localStorage.getItem('user_email'),
+				role:localStorage.getItem('user_role'),
+                description: localStorage.getItem('user_description'),
+				isEditable:true
             })
+			console.log('io');
         }
     }
 
     componentWillReceiveProps() {
         this.setState({
-            image_id: this.props.image_id,
-            first_name: this.props.first_name,
-            last_name: this.props.last_name,
-            avatar_urls: this.props.avatar_urls,
-            email: this.props.email,
-            description: this.props.description
+                image_id: localStorage.getItem('user_image'),
+                first_name: localStorage.getItem('user_firstName'),
+                last_name: localStorage.getItem('user_lastName'),
+                email: localStorage.getItem('user_email'),
+				role:localStorage.getItem('user_role'),
+                description: localStorage.getItem('user_description'),
+				isEditable:true
             })
-            console.log('this.props.image_id'+this.props.image_id);
-            console.log('this.state.image_id'+this.state.image_id);
+		console.log('will Mount - IO')
     }
 
     render() {
         let btnEdit = '';
-        if (this.state.isEditable && this.props.profileId === this.props.currentId) {
+        if (this.state.isEditable) {
             btnEdit = <button onClick={this.editProfile.bind(this)} className="mui-btn mui-btn--fab mui-btn--primary">+</button>;
         }
 
         if (this.state.editActive && this.state.isEditable) {
-            return (<ModifyProfile profileId={this.props.profileId} first_name={this.state.first_name} last_name={this.state.last_name} avatar_urls={this.props.avatar_urls} email={this.state.email} description={this.state.description} undo={this.editProfile.bind(this)}/>)
+            return (<ModifyProfile profileId={localStorage.getItem('user_id')} first_name={this.state.first_name} last_name={this.state.last_name} avatar_urls={this.props.media_id} email={this.state.email} description={this.state.description} undo={this.editProfile.bind(this)}/>)
         } else {
             if (this.state.image_id != '') {
                 return (

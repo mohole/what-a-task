@@ -58,15 +58,13 @@ export default class App extends React.Component{
 		Backend.getMe()
 		.then((data)=>{
 			console.log(data);
-			this.setState({
-				user_id:data.id,
-				user_email:data.email,
-				user_firstName:data.first_name,
-				user_lastName:data.last_name,
-				user_description:data.description,
-				user_role:parseInt(data.acf.user_role),
-				user_image:parseInt(data.acf.user_image)
-			})
+			localStorage.setItem('user_id', data.id );
+			localStorage.setItem('user_email', data.email );
+			localStorage.setItem('user_firstName', data.first_name);
+			localStorage.setItem('user_lastName', data.last_name);
+			localStorage.setItem('user_description',data.description );
+			localStorage.setItem('user_role',data.acf.user_role );
+			localStorage.setItem('user_image',data.acf.user_image );
 		})
 		Backend.getAnnunci()
 		.then((data)=>{
@@ -117,11 +115,11 @@ export default class App extends React.Component{
       if(this.state.activePage.includes('Profile|')){
           contentElem= <Spinner/>
           const user = this.state.activePage.split('|');
-          contentElem = <Profile profileId={parseInt(user[1])} currentId={this.state.user_id}  first_name={this.state.user_firstName} last_name={this.state.user_lastName} image_id={this.state.user_image} email={this.state.user_email} description={this.state.user_description} />
+          contentElem = <Profile profileId={parseInt(user[1])} currentId={localStorage.getItem('user_id')}/>
       }
 			if(this.state.activePage=='Profile'){
 				contentElem= <Spinner/>
-				contentElem = <Profile first_name={this.state.user_firstName} last_name={this.state.user_lastName} image_id={this.state.user_image} email={this.state.user_email} description={this.state.user_description} />
+				contentElem = <Profile />
 			}
 
 			if(this.state.activePage.includes('Single|')){
@@ -130,9 +128,9 @@ export default class App extends React.Component{
                 const a = this.state.annunci.filter((e) => {
                     return e.id == postP[1];
                 });
-                contentElem=<Single userId={this.state.user_id} annuncio={a[0]} id={postP[1]} goToPage={this.goToPage.bind(this)} />
+                contentElem=<Single userId={localStorage.getItem('user_id')} annuncio={a[0]} id={postP[1]} goToPage={this.goToPage.bind(this)} />
 			}
-            if(this.state.activePage=='Single'){
+            /*if(this.state.activePage=='Single'){
                 Backend.getCategory()
                 .then((data)=>{
                     this.setState({
@@ -152,7 +150,7 @@ export default class App extends React.Component{
                     name="Nome Cognome"
                     date="18/04/2017"
                   />
-            }
+            }*/
 			return(
 				<section>
 					<Topbar goToPage={this.goToPage.bind(this)}/>
