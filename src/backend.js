@@ -7,6 +7,10 @@ class WAT_Backend{
               'Accept': 'application/json',
               'Content-Type': 'application/json'
         }
+		const tok = window.localStorage.getItem('token');
+		this.auth= `Basic ${tok}`;
+		const auth ={Authorization:`Basic ${tok}`};
+        this.headers = Object.assign({},this.headers,auth);
     }
     _parseRaw(response){
         return response.json();
@@ -19,6 +23,7 @@ class WAT_Backend{
     }
     setCredentials(user,pswd){
         const encoded = btoa(user + ':' + pswd);
+		console.log('tok');
         const auth ={Authorization:`Basic ${encoded}`};
         this.headers = Object.assign({},this.headers,auth);
 		this.auth= `Basic ${encoded}`;
@@ -45,6 +50,15 @@ class WAT_Backend{
             headers: this.headers,
             method: "POST",
             body: JSON.stringify(annuncio)
+        })
+        .then(this._parseRaw);
+    }
+	updateProfile(id,updatedInfo){
+        return fetch(`${this.url}/users/${id}`,
+        {
+            headers: this.headers,
+            method: "POST",
+            body: JSON.stringify(updatedInfo)
         })
         .then(this._parseRaw);
     }

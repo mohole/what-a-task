@@ -13,7 +13,6 @@ export default class Single extends React.Component {
             editActive: false,
             annuncio: this.props.annuncio,
             postCategory: [],
-            userId: 6,
             imageUrl:'',
             currentCat:{}
         }
@@ -66,13 +65,13 @@ componentWillMount(){
             this.setState({currentCat: data.name})
         })
 
-        Backend.getImageUrl(this.state.annuncio.featured_media).then((data)=>{
+        Backend.getMedia(this.state.annuncio.featured_media).then((data)=>{
             this.setState({imageUrl:data.guid.rendered})
         })
 }
 
     render() {
-console.log('single');
+            console.log('single');
             if (this.state.author && this.state.currentCat) {
 
                 if (this.state.editActive && this.state.isEditable) {
@@ -99,7 +98,7 @@ console.log('single');
                                             <a href="#">{this.state.currentCat}
                                             </a>
                                         </small>
-                                        {this.isAuthor(this.state.userId, this.state.author.id)}
+                                        {this.isAuthor(this.props.userId, this.state.author.id)}
                                     </div>
                                 </div>
                                 <div className="mui-row">
@@ -118,7 +117,7 @@ console.log('single');
                                 <div className="mui-row">
                                     <div className="mui-col-xs-12">
                                         <p>Creato da
-                                            <a href="#"> {this.state.author.name} </a>
+                                            <a href="#" onClick={()=>{this.props.goToPage('Profile|'+this.state.author.id)}}> {this.state.author.name} </a>
                                             il {this.printDate(this.state.annuncio.date)}</p>
                                     </div>
                                 </div>
