@@ -38,7 +38,7 @@ export default class Single extends React.Component {
 
     isAuthor(userId, authorId) {
         if (userId === authorId) {
-            return <button onClick={() => {
+            return <button className="my-button mui-col-xs-12 mui-btn mui-btn--danger" onClick={() => {
                 this.editItem()
             }}>MODIFICA</button>;
         }
@@ -89,40 +89,73 @@ componentWillMount(){
                     )
                 } else {
                     return (
+                        // <section>
+                        //     <div className="mui-container content">
+                        //         <div className="mui-row">
+                        //             <div className="mui-col-xs-12">
+                        //                 <h2>{this.state.annuncio.title.rendered.charAt(0).toUpperCase() + this.state.annuncio.title.rendered.slice(1)}</h2>
+                        //                 <small>Categoria:
+                        //                     <a href="#">{this.state.currentCat}
+                        //                     </a>
+                        //                 </small>
+                        //                 {this.isAuthor(this.props.userId, this.state.author.id)}
+                        //             </div>
+                        //         </div>
+                        //         <div className="mui-row">
+                        //             <div className="mui-col-xs-12">
+                        //                 <img src={this.state.imageUrl} className="img img-fluid"/>
+                        //             </div>
+                        //         </div>
+                        //         <hr/>
+                        //         <div className="mui-row">
+                        //             <div className="mui-col-xs-12">
+                        //                 <p>{this.state.annuncio.content.rendered}</p>
+                        //                 <button className="mui-btn mui-btn--primary">Contatta</button>
+                        //             </div>
+                        //         </div>
+                        //         <hr/>
+                        //         <div className="mui-row">
+                        //             <div className="mui-col-xs-12">
+                        //                 <p>Creato da
+                        //                     <a href="#" onClick={()=>{this.props.goToPage('Profile|'+this.state.author.id)}}> {this.state.author.name} </a>
+                        //                     il {this.printDate(this.state.annuncio.date)}</p>
+                        //             </div>
+                        //         </div>
+                        //     </div>
+                        // </section>
+
+                      <div>
                         <section>
-                            <div className="mui-container content">
-                                <div className="mui-row">
-                                    <div className="mui-col-xs-12">
-                                        <h2>{this.state.annuncio.title.rendered.charAt(0).toUpperCase() + this.state.annuncio.title.rendered.slice(1)}</h2>
-                                        <small>Categoria:
-                                            <a href="#">{this.state.currentCat}
-                                            </a>
-                                        </small>
-                                        {this.isAuthor(this.props.userId, this.state.author.id)}
-                                    </div>
+                          <div className="poster-annuncio">
+                          <img src="{this.state.imageUrl}" alt="" />
+                            <div className="mui-container">
+                              <div className="mui-row">
+                                <div className="info-utente">
+                                  <span className="nome-utente">Ambrogio Languerini</span>
+                                  <span className="corso-utente">{this.state.currentCat}</span>
+                                  <span>pubblicato il {this.printDate(this.state.annuncio.date)}</span>
                                 </div>
-                                <div className="mui-row">
-                                    <div className="mui-col-xs-12">
-                                        <img src={this.state.imageUrl} className="img img-fluid"/>
-                                    </div>
-                                </div>
-                                <hr/>
-                                <div className="mui-row">
-                                    <div className="mui-col-xs-12">
-                                        <p>{this.state.annuncio.content.rendered}</p>
-                                        <button className="mui-btn mui-btn--primary">Contatta</button>
-                                    </div>
-                                </div>
-                                <hr/>
-                                <div className="mui-row">
-                                    <div className="mui-col-xs-12">
-                                        <p>Creato da
-                                            <a href="#" onClick={()=>{this.props.goToPage('Profile|'+this.state.author.id)}}> {this.state.author.name} </a>
-                                            il {this.printDate(this.state.annuncio.date)}</p>
-                                    </div>
-                                </div>
+                              </div>
                             </div>
-                        </section>
+                          </div>
+                      </section>
+
+
+                      <section>
+                          <div className="mui-container">
+                          <div className="mui-row">
+                          <div className="mui-col-xs-12">
+                          <span className="titolo-annuncio">{this.state.annuncio.title.rendered.charAt(0).toUpperCase() +     this.state.annuncio.title.rendered.slice(1)}</span>
+                          </div>
+                          <div className="mui-col-xs-12">
+                          <p className="descrizione-annuncio">{this.state.annuncio.content.rendered}</p>
+                          {this.isAuthor(this.props.userId, this.state.author.id)}
+                        <button type="submit" className="my-button mui-col-xs-12 mui-btn mui-btn--danger">MODIFICA</button>
+                        </div>
+                        </div>
+                        </div>
+                      </section>
+                    </div>
                     )
                 }
             }else {
