@@ -22,19 +22,22 @@ export default class Bottombar extends React.Component{
 		}
         return(
             <section>
-			<div className="bottom-bar-wrapper">
-				<div className="top-inner">
-					<div className="mui-col-xs-4">
-						<button className="mui-btn mui-btn--primary" onClick={this.activeSearch.bind(this)}><i className="fa fa-search"></i></button>
-					</div>
-					<div className="mui-col-xs-4 text-center">
-						<button className="mui-btn mui-btn--primary" onClick={()=>{this.props.goToPage('Profile')}}><i className="fa fa-user"></i></button>
-					</div>
-					<div className="mui-col-xs-4 text-right">
-						<button className="mui-btn mui-btn--primary"><i className="fa fa-cog"></i></button>
-					</div>
-				</div>
-			</div>
+			 <div className="bottom-bar-wrapper">
+                <div className="bottom-inner">
+                  <div className="mui-col-xs-3 horizontal-center">
+                    <button className="mui-btn mui-btn--flat" onClick={()=>{this.props.goToPage('List')}}><i className="icon ion-android-home"></i></button>
+                  </div>
+                  <div className="mui-col-xs-3 horizontal-center">
+                    <button id="search-profile" className="mui-btn mui-btn--flat" onClick={this.activeSearch.bind(this)}><i className="icon ion-person-add"></i></button>
+                  </div>
+                  <div className="mui-col-xs-3 horizontal-center">
+                    <button className="mui-btn mui-btn--flat" onClick={()=>{this.props.goToPage('Profile')}}><i className="icon ion-person"></i></button>
+                  </div>
+                  <div className="mui-col-xs-3 horizontal-center">
+                    <button className="mui-btn mui-btn--flat"><i className="icon ion-ios-gear"></i></button>
+                  </div>
+                </div>
+              </div>
 			{userSearch}
 			</section>
 			

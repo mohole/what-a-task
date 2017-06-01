@@ -28,16 +28,21 @@ export default class UserSearchBar extends React.Component{
 	render(){
         return(
             <section>
-				<div id="user-search-bar">
+				<div id="user-search-bar" className="background-search-utente">
+				<div className="mui-container">
+				  <div className="mui-row">
 					<div className="mui-col-xs-12">
+					  <form className="mui-form--inline">
 						<div className="mui-textfield">
-							<input name="searchTerm" type="text" placeholder="chi cerchi" value={this.state.searchTerm} onChange={this.writing.bind(this)}/>
+						 <input name="searchTerm" type="text" placeholder="chi cerchi" value={this.state.searchTerm} onChange={this.writing.bind(this)}/>
 						</div>
-						<div className="mui-textfield">
-							<button type="button" className="mui-btn mui-btn--primary" onClick={this.searchUser.bind(this)}>CERCA</button>
-						</div>
+						<button className="mui-btn mui-col-xs-12" onClick={this.searchUser.bind(this)}>CERCA</button>
+					  </form>
 					</div>
+
+				  </div>
 				</div>
+			  </div>
 			</section>
         )
     }

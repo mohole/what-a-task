@@ -34,12 +34,14 @@ export default class Topbar extends React.Component{
 			<div className="top-bar-wrapper">
 				<div className="top-inner">
 					<div className="mui-col-xs-4">
-						<button onClick={()=>{this.props.goToPage('NewItem')}} className="mui-btn mui-btn--primary"><i className="fa fa-plus"></i></button>
-						<button onClick={()=>{this.props.goToPage('List')}} className="mui-btn mui-btn--primary"><i className="fa fa-arrow-left"></i></button>
+						<button onClick={()=>{this.props.goToPage('NewItem')}} className="top-bar-button mui-btn mui-btn--small mui-btn mui-btn--fab"><i className="icon ion-ios-plus-empty"></i></button>
+						<button onClick={()=>{this.props.goToPage('List')}} className="mui-btn mui-btn--flat"><i className="icon-big ion-ios-arrow-left"></i></button>
 					</div>
-					<div className="mui-col-xs-4 text-center">WAT</div>
-					<div className="mui-col-xs-4">
-						<button id="search" className="mui-btn mui-btn--primary" onClick={this.activeSearch.bind(this)}><i className="fa fa-search"></i></button>
+					<div className="main-title mui-col-xs-4">
+					  <span>WHAT A TASK</span>
+					</div>
+					<div className="mui-col-xs-4 align-right">
+						<button id="search" className="mui-btn mui-btn--flat" onClick={this.activeSearch.bind(this)}><i className="icon ion-ios-search"></i></button>
 					</div>
 				</div>
 			</div>
@@ -48,3 +50,18 @@ export default class Topbar extends React.Component{
         )
     }
 }
+    <section>
+  			<div class="top-bar-wrapper">
+  				<div class="top-inner">
+  					<div class="mui-col-xs-4">
+  						<button class="top-bar-button mui-btn mui-btn--small mui-btn mui-btn--fab"><i class="icon ion-ios-plus-empty"></i></button>
+  					</div>
+  					<div class="main-title mui-col-xs-4">
+              <span>WHAT A TASK</span>
+            </div>
+  					<div class="mui-col-xs-4 align-right">
+  						<button id="search" class="mui-btn mui-btn--flat"><i class="icon ion-ios-search"></i></button>
+  					</div>
+  				</div>
+  			</div>
+  			</section>
