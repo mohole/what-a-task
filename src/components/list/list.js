@@ -14,6 +14,7 @@ export default class List extends React.Component{
             imageUrl:[]
         }
 	}
+    
 	showAnnuncio(evt){
 		evt.preventDefault();
 		const elemId = evt.currentTarget.getAttribute('data-item-id');
@@ -30,7 +31,6 @@ export default class List extends React.Component{
             })
         })
     }
-
 
     render(){
         if(this.state.annunci){
