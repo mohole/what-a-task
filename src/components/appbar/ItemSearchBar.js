@@ -51,24 +51,35 @@ export default class ItemSearchBar extends React.Component{
 			});
         return(
             <section>
-				<div id="item-search-bar">
-					<div className="mui-col-xs-12">
-						<div className="mui-select">
+				<div id="item-search-bar" className="background-search-annuncio">
+				  <div className="mui-container">
+					<div className="mui-row">
+					  <div className="mui-col-xs-12">
+						<form className="mui-form">
+						  <div className="mui-select">
+							<select onChange={this.checkType.bind(this)}>
+							  <option value="3">Cerco</option>
+							  <option value="5">Offro</option>
+							</select>
+							<label>Tipologia dell'annuncio</label>
+						  </div>
+						  <div className="mui-select">
 							<select onChange={this.getCat.bind(this)}>
 								<option value="0" >Categoria</option>
 								{catList}
 							</select>
-						</div>
-						<div className="mui-radio">
-							<input type="radio" name="tipologia" onChange={this.checkType.bind(this)} checked={this.state.type===5} value="5"/> <span>Offro</span> <input type="radio" name="tipologia" onChange={this.checkType.bind(this)} checked={this.state.type===3} value="3"/> <span>Cerco</span>
-						</div>
-						<div className="mui-textfield">
-							<input name="searchTerm" type="text" placeholder="cosa cerchi" value={this.state.searchTerm} onChange={this.writing.bind(this)}/>
-						</div>
-						<div className="mui-textfield">
-							<button type="button" className="mui-btn mui-btn--primary" onClick={this.searchItem.bind(this)}>CERCA</button>
-						</div>
+							<label>Categoria</label>
+						  </div>
+						  <div className="mui-textfield">
+							 <input name="searchTerm" type="text" placeholder="cosa cerchi" value={this.state.searchTerm} onChange={this.writing.bind(this)}/>
+							 <label>Titolo annuncio</label>
+						   </div>
+						  <button type="submit" className="my-button mui-col-xs-12 mui-btn mui-btn--danger" onClick={this.searchItem.bind(this)}>CERCA</button>
+						</form>
+					  </div>
+
 					</div>
+				  </div>
 				</div>
 			</section>
         )
@@ -77,3 +88,4 @@ export default class ItemSearchBar extends React.Component{
 	}
     }
 }
+
