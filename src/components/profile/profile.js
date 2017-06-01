@@ -16,7 +16,7 @@ export default class Profile extends React.Component {
             first_name: '',
             last_name: '',
             email: '',
-            description: '',
+            description: ''
         }
     }
 
