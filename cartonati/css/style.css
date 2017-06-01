@@ -28,7 +28,7 @@ body{
 .mui-btn--flat:hover, .mui-btn--flat:active{
   background-color: transparent !important;
 }
-#search-bar{
+#item-search-bar{
   position: fixed;
   width: 100%;
   z-index: 1;
@@ -42,7 +42,7 @@ body{
   width: 100%;
   z-index: 1;
 }
-#search-bar, #profile-bar{
+#item-search-bar, #profile-bar{
   display: none;
 }
 .logo{
