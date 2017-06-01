@@ -4,149 +4,125 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- CDN MUI FRAMEWORK -->
+  <link href="//cdn.muicss.com/mui-latest/css/mui.min.css" rel="stylesheet" type="text/css" />
+  <!-- GOOGLE FONTS -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:200,300,400,500,600,700,800,900" rel="stylesheet">
+  <!-- CDN IONICONS -->
+  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- CSS ESTERNO -->
+  <link rel="stylesheet" href="css/style.css">
   <title>Document</title>
-  <style>
-  body{
-    padding:0;
-    margin: 0;
-  }
-  .content{
-    padding-top: 50px;
-    padding-bottom: 50px;
-  }
-  .top-bar-wrapper{
-    background-color: #ebebeb;
-			position: fixed;
-			top:0;
-			left: 0;
-			width: 100%;
-			z-index: 10;
-			height: 50px;
-		}
-		.bottom-bar-wrapper{
-		  background-color: #ebebeb;
-			position: fixed;
-			bottom:0;
-			left: 0;
-			width: 100%;
-			z-index: 10;
-			height: 50px;
-		}
-    #search-bar{
-      width: 100%;
-      display: none;
-      background-color: #ebebeb;
-      z-index: 10;
-      position: fixed;
-      top: 50px;
-      transition: all 0.3 ease;
-    }
-  </style>
 </head>
 <body>
-  <!-- top bar -->
-  <div class="top-bar-wrapper">
-  	<div class="top-inner">
-  		<div class="col-xs-4">
-  			<a href="nuovo_annuncio.html" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i></a>
-  		</div>
-  		<div class="col-xs-4 text-center">WAT</div>
-  		<div class="col-xs-4 text-right">
-  			<a href="" id="search" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></a>
-  		</div>
-  	</div>
-  </div>
-  <!-- end top bar -->
+  <div class="container">
 
-  <div id="search-bar">
-    <div class="form col-xs-12">
-  <div class="form-group">
-    <select class="form-control">
-    <option>LAVORI</option>
-    <option>ELETTRONICA</option>
-    <option>CASE</option>
-  </select>
-    </div>
-    <div class="form-group">
-        <input class="form-control" type="text" placeholder="cosa cerchi">
-    </div>
-    <div class="form-group">
-        <button class="btn btn-primary btn-block">CERCA</button>
-    </div>
-    </div>
-</div>
-
-<div class="content container-fluid">
-    <hr>
-        <div class="row">
-        <article>
-        <a href="singolo_annuncio.html">
-        <div class="col-xs-12">
-          <img src="img/img1.png" alt="" class="img-responsive ">
+    <section>
+  			<div class="top-bar-wrapper">
+  				<div class="top-inner">
+  					<div class="mui-col-xs-4">
+  						<button class="top-bar-button mui-btn mui-btn--small mui-btn mui-btn--fab"><i class="icon ion-ios-plus-empty"></i></button>
+  					</div>
+  					<div class="main-title mui-col-xs-4">
+              <span>WHAT A TASK</span>
             </div>
-            <div class="col-xs-12">
-          <span>MacBook Pro Retina fine 2015</span>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit expedita omnis tempore similique dolorem sit deleniti quam asperiores beatae, quia!
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit expedita omnis tempore similique dolorem sit deleniti quam asperiores beatae, quia!
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit expedita omnis tempore similique dolorem sit deleniti quam asperiores beatae, quia!
-          </p>
-          </div>
-          </a>
-          </article>
-          </div>
-        <hr>
+  					<div class="mui-col-xs-4 align-right">
+  						<button class="mui-btn mui-btn--flat"><i class="icon ion-ios-search"></i></button>
+  					</div>
+  				</div>
+  			</div>
+  			</section>
 
 
-      <div class="row">
-      <article>
-      <a href="singolo_annuncio.html">
-      <div class="col-xs-12">
-        <img src="img/img1.png" alt="" class="img-responsive ">
+        <article class="container-annuncio">
+          <div class="mui-container">
+            <div class="mui-row">
+                  <div class="mui-col-xs-2">
+                    <div class="img-utente"></div>
+                  </div>
+                  <div class="mui-col-xs-10">
+                    <span class="nome-utente">Ambrogio Languerini</span>
+                    <span class="corso-utente">Storytelling</span>
+                  </div>
+                  <div class="mui-col-xs-12">
+                    <div class="img-annuncio"></div>
+                  </div>
+                  <div class="mui-col-xs-12">
+                  <span class="titolo-annuncio">Mobile App</span>
+                  </div>
+                  <div class="mui-col-xs-12">
+                      <p class="descrizione-annuncio">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et quo tempore enim veniam neque quod ipsam sint delectus dolores architecto, omnis magni temporibus excepturi rem quaerat odit vitae eum quis nostrum! Dolor numquam nam officiis, quae corporis, nisi quam quis dicta, distinctio ipsam consectetur at cumque. Excepturi totam blanditiis corrupti, eos et minima, doloribus voluptatum voluptate optio aut modi ut beatae inventore non ullam libero. Perferendis soluta aperiam quaerat. Ut a accusamus, ad voluptates accusantium ipsa sint amet odit voluptas cumque dolorum temporibus possimus iste unde ex assumenda? Sunt voluptates ipsam dolorum reprehenderit omnis quos, asperiores rem possimus quas nemo.</p>
+                  </div>
+            </div>
           </div>
-          <div class="col-xs-12">
-        <span>MacBook Pro Retina fine 2015</span>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit expedita omnis tempore similique dolorem sit deleniti quam asperiores beatae, quia!
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit expedita omnis tempore similique dolorem sit deleniti quam asperiores beatae, quia!
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit expedita omnis tempore similique dolorem sit deleniti quam asperiores beatae, quia!
-        </p>
-        </div>
-        </a>
         </article>
+
+        <div class="mui-container">
+          <div class="hr"></div>
         </div>
-        <hr>
+
+        <article class="container-annuncio">
+          <div class="mui-container">
+            <div class="mui-row">
+                  <div class="mui-col-xs-2">
+                    <div class="img-utente"></div>
+                  </div>
+                  <div class="mui-col-xs-8">
+                    <span class="nome-utente">Ambrogio Languerini</span>
+                    <span class="corso-utente">Storytelling</span>
+                  </div>
+                  <div class="mui-col-xs-12">
+                    <div class="img-annuncio"></div>
+                  </div>
+                  <div class="mui-col-xs-12">
+                  <span class="titolo-annuncio">Mobile App</span>
+                  </div>
+                  <div class="mui-col-xs-12">
+                      <p class="descrizione-annuncio">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et quo tempore enim veniam neque quod ipsam sint delectus dolores architecto, omnis magni temporibus excepturi rem quaerat odit vitae eum quis nostrum! Dolor numquam nam officiis, quae corporis, nisi quam quis dicta, distinctio ipsam consectetur at cumque. Excepturi totam blanditiis corrupti, eos et minima, doloribus voluptatum voluptate optio aut modi ut beatae inventore non ullam libero. Perferendis soluta aperiam quaerat. Ut a accusamus, ad voluptates accusantium ipsa sint amet odit voluptas cumque dolorum temporibus possimus iste unde ex assumenda? Sunt voluptates ipsam dolorum reprehenderit omnis quos, asperiores rem possimus quas nemo.</p>
+                  </div>
+            </div>
+          </div>
+        </article>
+
+        <div class="mui-container">
+            <div class="hr"></div>
+        </div>
+
+        <!-- bottom bar -->
+        <section>
+            <div class="bottom-bar-wrapper">
+              <div class="bottom-inner">
+                <div class="mui-col-xs-3 horizontal-center">
+                  <button class="mui-btn mui-btn--flat"><i class="icon ion-android-home"></i></button>
+                </div>
+                <div class="mui-col-xs-3 horizontal-center">
+                  <button class="mui-btn mui-btn--flat"><i class="icon ion-person-add"></i></button>
+                </div>
+                <div class="mui-col-xs-3 horizontal-center">
+                  <button class="mui-btn mui-btn--flat"><i class="icon ion-person"></i></button>
+                </div>
+                <div class="mui-col-xs-3 horizontal-center">
+                  <button class="mui-btn mui-btn--flat"><i class="icon ion-ios-gear"></i></button>
+                </div>
+              </div>
+            </div>
+          </section>
+        <!-- end bottom bar -->
+
   </div>
-
-
-<!-- bottom bar -->
-<div class="bottom-bar-wrapper">
-	<div class="top-inner">
-		<div class="col-xs-4">
-			<a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i></a>
-		</div>
-		<div class="col-xs-4 text-center">
-			<a href="profilo.html" class="btn btn-primary"><i class="glyphicon glyphicon-user"></i></a>
-		</div>
-		<div class="col-xs-4 text-right">
-			<a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-cog"></i></a>
-		</div>
-	</div>
-</div>
-<!-- end bottom bar -->
-
-
 <script>
-var search=document.querySelector('#search');
-var searchBar=document.querySelector('#search-bar');
-
-search.addEventListener('click', function(e){
-  e.preventDefault();
-  if ( searchBar.style.display == 'none' ){
-           searchBar.style.display = 'block';}
-       else{
-           searchBar.style.display = 'none';}
-});
+// var search=document.querySelector('#search');
+// var searchBar=document.querySelector('#search-bar');
+//
+// search.addEventListener('click', function(e){
+//   e.preventDefault();
+//   if ( searchBar.style.display == 'none' ){
+//            searchBar.style.display = 'block';}
+//        else{
+//            searchBar.style.display = 'none';}
+// });
 
 </script>
+<script src="//cdn.muicss.com/mui-0.9.16/js/mui.min.js"></script>
 </body>
 </html>

@@ -26,7 +26,7 @@ export default class App extends React.Component{
 			console.log(window.localStorage.getItem('token'));
 			this.getLogin();
 		}else{
-			console.log('no storage');			
+			console.log('no storage');
 		}
     }
 
@@ -129,28 +129,6 @@ export default class App extends React.Component{
                     return e.id == postP[1];
                 });
                 contentElem=<Single userId={localStorage.getItem('user_id')} annuncio={a[0]} id={postP[1]} goToPage={this.goToPage.bind(this)} />
-			}
-            /*if(this.state.activePage=='Single'){
-                Backend.getCategory()
-                .then((data)=>{
-                    this.setState({
-                        postCategory:data
-                    })
-                })
-                contentElem=
-      		        <Single
-                    id="1"
-                    postCategory={this.state.postCategory}
-                    authorId="1"
-                    userId="1"
-                    title="titolo"
-                    category="categoria"
-                    img="http://lorempixel.com/640/360"
-                    description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae odit, ad nobis inventore neque. Atque cum voluptate tempora debitis!"
-                    name="Nome Cognome"
-                    date="18/04/2017"
-                  />
-            }*/
 			return(
 				<section>
 					<Topbar goToPage={this.goToPage.bind(this)}/>

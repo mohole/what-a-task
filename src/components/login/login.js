@@ -30,7 +30,7 @@ export default class Login extends React.Component{
 				localStorage.setItem('token', btoa(this.state.utente + ':' + this.state.password));
 				console.log("Login ok");
 				console.log(data);
-                localStorage.setItem('loggedin','true');
+      
 				if(data.code!='rest_forbidden'){
 					this.setState({
 						ClassNameControl:'mui-textfield success'
@@ -52,40 +52,36 @@ export default class Login extends React.Component{
         }
     }
 
-
-
 	render(){
 
         return(
+            
+        
             <section>
-
-               <div className="mui-container">
-                   <div className="mui-row">
-
-                   <form className="mui-form">
-
-                   <legend>Entra in What A Task</legend>
-
-                   <div className={this.state.ClassNameControl}>
-
-                   <div className="mui-textfield mui-textfield--float-label">
-                   <input name="utente" type="text" onChange={this.writing.bind(this)} value={this.state.utente} />
-                   <label>Nome Utente</label>
-                   </div>
-
-                   <div className="mui-textfield mui-textfield--float-label">
-                   <input name="password" type="password" onChange={this.writing.bind(this)} />
-                   <label>Password</label>
-                   </div>
-
-                   </div>
-
-                   <button type="button" className="mui-btn mui-btn--raised" onClick={this.checkLogin.bind(this)}>Entra</button>
-
-                   </form>
-
-                </div>
+            
+      <div className="background">
+        <div className="vertical-center">
+          <div className="mui-container">
+            <div className="mui-row">
+              <div className="mui-col-xs-12">
+                <form className="mui-form">
+                  <legend className="logo">WHAT A TASK</legend>
+                  <div className="mui-textfield mui-textfield--float-label">
+                    <input name="utente" className="my-input" type="text" onChange={this.writing.bind(this)} value={this.state.utente} />
+                    <label className="my-label">Utente</label>
+                  </div>
+                  <div className={this.state.ClassNameControl}>
+                    <input name="password" className="my-input" type="password" onChange={this.writing.bind(this)} />
+                    <label className="my-label">Password</label>
+                  </div>
+                  <button type="button" className="my-button mui-col-xs-12 mui-btn mui-btn--raised" onClick={this.checkLogin.bind(this)}>LOGIN</button>
+                  <button type="button" className="my-button mui-col-xs-12 mui-btn mui-btn--raised">REGISTRATI</button>
+                </form>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
 
 			</section>
         )
