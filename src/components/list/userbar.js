@@ -27,8 +27,8 @@ export default class Userbar extends React.Component{
         if(this.state.name!=''){
             return(
                 <div>
-                    <Imgblock mediaId={this.state.image} />
-                    <a href="#"  onClick={()=>{this.props.goToPage('Profile|'+this.props.userId)}}><span>{this.state.name}</span></a>
+                <a href="#"  onClick={()=>{this.props.goToPage('Profile|'+this.props.userId)}}>
+                    <Imgblock mediaId={this.state.image} /><span>{this.state.name}</span></a>
                 </div>
             )
         } else {

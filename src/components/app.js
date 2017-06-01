@@ -129,6 +129,7 @@ export default class App extends React.Component{
                     return e.id == postP[1];
                 });
                 contentElem=<Single userId={localStorage.getItem('user_id')} annuncio={a[0]} id={postP[1]} goToPage={this.goToPage.bind(this)} />
+            }
 			return(
 				<section>
 					<Topbar goToPage={this.goToPage.bind(this)}/>
