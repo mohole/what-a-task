@@ -30,7 +30,7 @@ export default class Profile extends React.Component {
         if (this.props.profileId!=undefined && this.props.currentId!=undefined && this.props.profileId != this.props.currentId) {
             Backend.getUserInfo(this.props.profileId).then((data) => {
                 this.setState({first_name: data.first_name, last_name: data.last_name, image_id: data.acf.user_image, email: data.email, description: data.description})
-				
+
             })
         } else {
             this.setState({
@@ -56,7 +56,7 @@ export default class Profile extends React.Component {
                 description: localStorage.getItem('user_description'),
 				isEditable:true
             })
-		console.log('will Mount - IO')
+		console.log('WillReceiveProps - IO')
     }
 
     render() {

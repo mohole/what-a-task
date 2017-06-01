@@ -22,7 +22,6 @@ export default class Userbar extends React.Component{
         })
     }
 
-
     render(){
         if(this.state.name!=''){
             return(
