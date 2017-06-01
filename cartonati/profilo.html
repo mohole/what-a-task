@@ -26,14 +26,56 @@
               <span>WHAT A TASK</span>
             </div>
             <div class="mui-col-xs-4 align-right">
-              <button class="mui-btn mui-btn--flat"><i class="icon ion-ios-search"></i></button>
+              <button id="search" class="mui-btn mui-btn--flat"><i class="icon ion-ios-search"></i></button>
             </div>
           </div>
         </div>
         </section>
 
+        <div id="search-bar" class="background-search-annuncio">
+          <div class="mui-container">
+            <div class="mui-row">
+              <div class="mui-col-xs-12">
+                <form class="mui-form">
+                  <div class="mui-select">
+                    <select>
+                      <option>Cerco</option>
+                      <option>Offro</option>
+                    </select>
+                    <label>Tipologia dell'annuncio</label>
+                  </div>
+                  <div class="mui-select">
+                    <select>
+                        <option>Web & App</option>
+                        <option>Grafica</option>
+                        <option>3d</option>
+                        <option>Story Telling</option>
+                        <option>Film Making</option>
+                        <option>Fotografia</option>
+                        <option>Comics</option>
+                        <option>Acting</option>
+                    </select>
+                    <label>Categoria</label>
+                  </div>
+                  <div class="mui-textfield">
+                     <input type="text">
+                     <label>Titolo annuncio</label>
+                   </div>
+                   <div class="mui-textfield">
+                     <textarea></textarea>
+                     <label>Descrizione</label>
+                   </div>
+                  <button type="submit" class="my-button mui-col-xs-12 mui-btn mui-btn--danger">CERCA</button>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
         <section>
           <div class="poster-utente">
+            <img src="http://lorempixel.com/1200/200" alt="">
             <div class="mui-container">
               <div class="mui-row">
       						<button id="search" class="button-modify mui-btn mui-btn--flat"><i class="icon-big ion-edit"></i></button>
@@ -74,11 +116,32 @@
 
               <div class="hr"></div>
 
-                    </div>
+              <div class="info-profilo">
+                <span class="span-block my-span">Descrizione</span>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex doloremque qui voluptatibus eos enim excepturi culpa laboriosam repudiandae tempore quia?</p>
+              </div>
+
+              </div>
 
         					</div>
         				</div>
         	</section>
+
+          <div id="profile-bar" class="background-search-utente">
+            <div class="mui-container">
+              <div class="mui-row">
+                <div class="mui-col-xs-12">
+                  <form class="mui-form--inline">
+                    <div class="mui-textfield">
+                      <input type="text">
+                    </div>
+                    <button class="mui-btn mui-col-xs-12">CERCA</button>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
 
           <!-- bottom bar -->
           <section>
@@ -88,7 +151,7 @@
                     <button class="mui-btn mui-btn--flat"><i class="icon ion-android-home"></i></button>
                   </div>
                   <div class="mui-col-xs-3 horizontal-center">
-                    <button class="mui-btn mui-btn--flat"><i class="icon ion-person-add"></i></button>
+                    <button id="search-profile" class="mui-btn mui-btn--flat"><i class="icon ion-person-add"></i></button>
                   </div>
                   <div class="mui-col-xs-3 horizontal-center">
                     <button class="mui-btn mui-btn--flat"><i class="icon ion-person"></i></button>
@@ -100,8 +163,31 @@
               </div>
             </section>
           <!-- end bottom bar -->
-  </div>
 
+    </div>
+  <script>
+   var search=document.querySelector('#search');
+   var searchBar=document.querySelector('#search-bar');
+
+   search.addEventListener('click', function(e){
+     e.preventDefault();
+     if ( searchBar.style.display == 'none' ){
+              searchBar.style.display = 'block';}
+          else{
+              searchBar.style.display = 'none';}
+   });
+
+   var searchProfile=document.querySelector('#search-profile');
+   var profileBar=document.querySelector('#profile-bar');
+
+   searchProfile.addEventListener('click', function(e){
+     e.preventDefault();
+     if ( profileBar.style.display == 'none' ){
+              profileBar.style.display = 'block';}
+          else{
+              profileBar.style.display = 'none';}
+   });
+  </script>
 <script src="//cdn.muicss.com/mui-0.9.16/js/mui.min.js"></script>
 </body>
 </html>
