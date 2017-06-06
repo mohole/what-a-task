@@ -45,6 +45,12 @@ export default class App extends React.Component{
 
 	}
 	getLogin(){
+        Backend.getAnnunci()
+        .then((data)=>{
+            this.setState({
+                annunci:data
+            })
+        })
 		this.state={
 			logged:true,
 			activePage:'List',
@@ -54,7 +60,6 @@ export default class App extends React.Component{
 	}
 
 	makeLogin(){
-
 		Backend.getMe()
 		.then((data)=>{
 			console.log(data);
