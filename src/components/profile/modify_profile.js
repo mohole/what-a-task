@@ -72,11 +72,13 @@ export default class ModifyProfile extends React.Component{
         })
       }
       if(error==0){
+        var name= this.state.first_name+' '+this.state.last_name;
           const updatedProfile={
             first_name: this.state.first_name,
             last_name: this.state.last_name,
             email: this.state.email,
-            description: this.state.description
+            description: this.state.description,
+            name: name
           }
           this.setState({
             updatedProfile:updatedProfile
@@ -96,35 +98,103 @@ export default class ModifyProfile extends React.Component{
     }
       render(){
             return(
-                <section>
-                <div className="mui-container">
-                  <div className="mui-row">
-                  <div className="mui-col-xs-12">
-                    <form className="mui-form">
-                        <img src={this.state.image_id} alt=""/>
-                      <div className="mui-textfield">
-                        <input type="file" name="avatar_urls" value="" onChange={this.modificaInfo.bind(this)} />
-                      </div>
-                      <div className={this.state.ClassFirstName}>
-                        <input type="text" placeholder="Nome" name="first_name" value={this.state.first_name} onChange={this.modificaInfo.bind(this)} />
-                      </div>
-                      <div className={this.state.ClassLastName}>
-                        <input type="text" placeholder="Cognome" name="last_name" value={this.state.last_name} onChange={this.modificaInfo.bind(this)} />
-                      </div>
-                      <div className={this.state.ClassEmail}>
-                          <input type="text" placeholder="Email" name="email" value={this.state.email} onChange={this.modificaInfo.bind(this)} />
-                      </div>
-                      <div className={this.state.ClassDescription}>
-                       <input placeholder="Descriviti in poche parole" name="description" value={this.state.description} onChange={this.modificaInfo.bind(this)} />
-                     </div>
-                      <button type="button"  onClick={this.submitForm.bind(this)} className="mui-btn mui-btn--primary">Modifica</button>
-                      <button type="button" onClick={this.props.undo} className="mui-btn mui-btn--fab mui-btn--primary">back</button>
-                      </form>
-
-                    </div>
-                  </div>
+          //       <section>
+          //       <div className="mui-container">
+          //         <div className="mui-row">
+          //         <div className="mui-col-xs-12">
+          //           <form className="mui-form">
+          //               <img src={this.state.image_id} alt=""/>
+          //             <div className="mui-textfield">
+          //               <input type="file" name="avatar_urls" value="" onChange={this.modificaInfo.bind(this)} />
+          //             </div>
+          //             <div className={this.state.ClassFirstName}>
+          //               <input type="text" placeholder="Nome" name="first_name" value={this.state.first_name} onChange={this.modificaInfo.bind(this)} />
+          //             </div>
+          //             <div className={this.state.ClassLastName}>
+          //               <input type="text" placeholder="Cognome" name="last_name" value={this.state.last_name} onChange={this.modificaInfo.bind(this)} />
+          //             </div>
+          //             <div className={this.state.ClassEmail}>
+          //                 <input type="text" placeholder="Email" name="email" value={this.state.email} onChange={this.modificaInfo.bind(this)} />
+          //             </div>
+          //             <div className={this.state.ClassDescription}>
+          //              <input placeholder="Descriviti in poche parole" name="description" value={this.state.description} onChange={this.modificaInfo.bind(this)} />
+          //            </div>
+          //             <button type="button"  onClick={this.submitForm.bind(this)} className="mui-btn mui-btn--primary">Modifica</button>
+          //             <button type="button" onClick={this.props.undo} className="mui-btn mui-btn--fab mui-btn--primary">back</button>
+          //             </form>
+          //
+          //           </div>
+          //         </div>
+          //       </div>
+    			// </section>
+        <div>
+          <section>
+            <div className="poster-utente">
+            <img src="{this.state.image_id}" alt=""/>
+              <div className="mui-container">
+                <div className="mui-row">
+                <input type="file" name="avatar_urls" value="" onChange={this.modificaInfo.bind(this)} />
                 </div>
-    			</section>
+              </div>
+            </div>
+            </section>
+
+
+            <section>
+        				<div className="mui-container">
+        					<div className="mui-row">
+        						<div className="mui-col-xs-12">
+                      <form className="mui-form">
+                        <div className="info-profilo">
+                          <div className="{this.state.ClassFirstName} my-textfield mui-textfield mui-textfield--float-label">
+                            <input type="text" placeholder="Nome" name="first_name" value={this.state.first_name} onChange={this.modificaInfo.bind(this)} />
+                            <label>Nome</label>
+                          </div>
+                        </div>
+                        <div className="info-profilo">
+                          <div className="{this.state.ClassFirstName} my-textfield mui-textfield mui-textfield--float-label">
+                            <input type="text" placeholder="Cognome" name="last_name" value={this.state.last_name} onChange={this.modificaInfo.bind(this)} />
+                            <label>Cognome</label>
+                          </div>
+                        </div>
+                        <div className="info-profilo">
+                          <div className="{this.state.ClassEmail} my-textfield mui-textfield mui-textfield--float-label">
+                          <input type="text" placeholder="Email" name="email" value={this.state.email} onChange={this.modificaInfo.bind(this)} />
+                          <label>Email</label>
+                        </div>
+                      </div>
+                          <div className="info-profilo">
+                          <div className="mui-select">
+                            <select>
+                              <option></option>
+                              <option></option>
+                            </select>
+                            <label>Titolo</label>
+                          </div>
+                        </div>
+                        <div className="info-profilo">
+                        <div className="mui-select">
+                          <select>
+                            <option></option>
+                            <option></option>
+                            <option></option>
+                            <option></option>
+                          </select>
+                          <label>Corso</label>
+                        </div>
+                      </div>
+                        <div className="info-profilo">
+                          <div className="{this.state.ClassDescription} mui-textfield mui-textfield--float-label">
+                            <textarea required placeholder="Descriviti in poche parole" name="description" value={this.state.description} onChange={this.modificaInfo.bind(this)}></textarea>
+                          </div>
+                        </div>
+                        <button type="button" onClick={this.submitForm.bind(this)} className="my-button mui-col-xs-12 mui-btn mui-btn--danger">MODIFICA</button>
+                      </form>
+        						</div>
+        					</div>
+        				</div>
+        		</section>
+          </div>
             )
         }
 }
