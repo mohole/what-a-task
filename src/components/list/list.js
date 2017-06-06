@@ -14,7 +14,7 @@ export default class List extends React.Component{
             imageUrl:[]
         }
 	}
-    
+
     componentWillMount(){
         Backend.getAnnunci()
         .then((data)=>{
@@ -23,7 +23,6 @@ export default class List extends React.Component{
             })
         })
     }
-//onClick={this.showAnnuncio.bind(this)}
 
     render(){
         if(this.state.annunci){

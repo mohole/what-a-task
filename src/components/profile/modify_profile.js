@@ -109,6 +109,13 @@ this should be added to render() once the image fetch works:
             updatedProfile:updatedProfile
           });
 
+
+
+          localStorage.setItem('user_firstName',this.state.first_name);
+          localStorage.setItem('user_lastName',this.state.last_name);
+          localStorage.setItem('user_email',this.state.email);
+          localStorage.setItem('user_description',this.state.description);
+
           Backend.updateProfile(this.props.profileId,updatedProfile)
               .then((data)=>{
               console.log(data);

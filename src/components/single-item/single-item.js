@@ -53,13 +53,13 @@ export default class Single extends React.Component {
     }
 
 componentWillMount(){
-/*
+
         Backend.getAnnuncio(this.props.id)
         .then((data)=>{
             this.setState({
                 annuncio:data
             })
-        });*/
+        });
 
         Backend.getCategory().then((data) => {
             this.setState({postCategory: data})
