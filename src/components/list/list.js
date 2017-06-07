@@ -36,24 +36,33 @@ export default class List extends React.Component{
         if(this.state.annunci){
     		const items = this.state.annunci.map((e,i) => {
     		return(
-                <section key={i}>
-                    <Userbar userId={e.author} goToPage={this.props.goToPage.bind(this)} />
-        			<a href="#" onClick={this.showAnnuncio.bind(this)} data-item-id={e.id}>
                 
-        				<div className="mui-container">
-        				  <div className="mui-row">
-                              <div class="mui-col-xs-12">
-                                  <Imgblock className="img-annuncio" mediaId={e.featured_media} />
-                              </div>
+                <section key={i}>
+                    <article className="container-annuncio">
+                        <div className="mui-container">
+                            <div className="mui-row">
+                
+                                <Userbar userId={e.author} goToPage={this.props.goToPage.bind(this)} />
+        			            <a href="#" onClick={this.showAnnuncio.bind(this)} data-item-id={e.id}>
+                
+                                <div className="mui-col-xs-12 img-annuncio">
+                                    <Imgblock mediaId={e.featured_media} />
+                                </div>
                               
-                              <div className="mui-col-xs-12">
-                                  <h4><strong className="titolo-annuncio">{e.title.rendered}</strong></h4>
-                                  <p className="descrizione-annuncio">{e.content.rendered}</p>
-        				      </div>
+                                <div className="mui-col-xs-12">
+                                    <span className="titolo-annuncio">{e.title.rendered}</span>
+                                    <p className="descrizione-annuncio">{e.content.rendered}</p>
+        				        </div>
                               
-        				  </div>
-        				</div>
-        			</a>
+        			            </a>
+                            </div>      
+                        </div>          
+                    </article>
+                                    
+                    <div className="mui-container">
+                        <div className="hr"></div>
+                    </div>     
+                        
                 </section>
     		)
     		});
