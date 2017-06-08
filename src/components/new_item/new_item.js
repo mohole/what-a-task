@@ -17,7 +17,7 @@ export default class NewItem extends React.Component{
 			ClassNameCategory:'mui-select',
 			selectedCat:0,
 			type:5, /*5=offro,3=cerco*/
-			privacyCheck:false,
+			// privacyCheck:false,
         }
 	}
 
@@ -29,12 +29,12 @@ export default class NewItem extends React.Component{
             [elem] : input
         });
     }
-	checkPrivacy(evt){
-		console.log(!this.state.privacyCheck);
-        this.setState({
-            privacyCheck : !this.state.privacyCheck
-        });
-    }
+	// checkPrivacy(evt){
+	// 	console.log(!this.state.privacyCheck);
+  //       this.setState({
+  //           privacyCheck : !this.state.privacyCheck
+  //       });
+  //   }
 	checkType(evt){
 		const input = parseInt(evt.target.value);
 		this.setState({
@@ -93,16 +93,16 @@ export default class NewItem extends React.Component{
 				ClassNameCategory:'mui-select success'
 			})
 		}
-		if(this.state.privacyCheck==false){
-			this.setState({
-				ClassNamePrivacy:'mui-checkbox error'
-			})
-			error++;
-		}else{
-			this.setState({
-				ClassNamePrivacy:'mui-checkbox success'
-			})
-		}
+		// if(this.state.privacyCheck==false){
+		// 	this.setState({
+		// 		ClassNamePrivacy:'mui-checkbox error'
+		// 	})
+		// 	error++;
+		// }else{
+		// 	this.setState({
+		// 		ClassNamePrivacy:'mui-checkbox success'
+		// 	})
+		// }
 		if(error==0){
 			if(this.state.media_id!=0||this.state.media_id!=undefined){
 				console.log('ok tutto giusto');
@@ -140,7 +140,7 @@ export default class NewItem extends React.Component{
 			ClassNameCategory:'mui-select',
 			selectedCat:0,
 			type:5,
-			privacyCheck:false,
+			// privacyCheck:false,
 		});
 	}
 	render(){
@@ -213,6 +213,7 @@ export default class NewItem extends React.Component{
                   </div>
                   <div className="mui-select">
                     <select name="" id="ann_category" value={this.state.selectedCat} onChange={this.getCat.bind(this)}>
+                    <option value="0"></option>
                         {catList}
                     </select>
                     <label>Categoria</label>
@@ -226,13 +227,14 @@ export default class NewItem extends React.Component{
                      <label>Descrizione</label>
                    </div>
                 </div>
-                </form>
-                <span className="span-img">Aggiungi una foto</span>
-                <input type="file" name="file" id="add-img" className="inputfile" />
-                <label forHtml="add-img" className="input-add-img"><i className="ion-images"></i></label>
-                <button type="submit" className="my-button mui-col-xs-12 mui-btn mui-btn--danger">AGGIUNGI ANNUNCIO</button>
-              </div>
 
+                <span className="span-img">Aggiungi una foto</span>
+                <input onChange={this.uploadFile.bind(this)} type="file" name="file" id="add-img" className="inputfile" />
+                <label htmlFor="add-img" className="input-add-img"><i className="ion-images"></i></label>
+                <button type="submit" className="my-button mui-col-xs-12 mui-btn mui-btn--primary">AGGIUNGI ANNUNCIO</button>
+                <button onClick={this.resetForm.bind(this)} type="button" className="my-button mui-col-xs-12 mui-btn mui-btn--danger">ANNULLA</button>
+                </form>
+              </div>
             </div>
           </div>
       </section>
