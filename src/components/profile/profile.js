@@ -31,6 +31,17 @@ export default class Profile extends React.Component {
             editActive: !this.state.editActive
         })
     }
+
+    getRuolo(){
+        if(this.state.role=='2'){
+            return 'Studente';
+        } else if(this.state.role=='1'){
+            return 'Docente';
+        } else if(this.state.role=='3'){
+            return 'Staff';
+        }
+    }
+
     componentWillMount() {
 		console.log(this.props.profileId+' - '+this.props.currentId);
         if (this.props.profileId!=undefined && this.props.currentId!=undefined && this.props.profileId != this.props.currentId) {
@@ -99,6 +110,7 @@ export default class Profile extends React.Component {
                                 <div className="mui-col-xs-12">
                                     <p>Mail: {this.state.email}</p>
                                     <p>Descrizione: {this.state.description}</p>
+                                    <p>Ruolo: {this.getRuolo()}</p>
                                 </div>
                                 <div className="mui-col-xs-12">
                                     {btnEdit}

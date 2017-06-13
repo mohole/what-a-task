@@ -9,11 +9,12 @@ export default class ModifyProfile extends React.Component{
 
       this.state={
         modify:{},
-        ClassFirstName: 'mui-textfield',
+        ClassFirstName: 'my-textfield mui-textfield mui-textfield--float-label',
         ClassLastName: 'mui-textfield',
-        ClassEmail: 'mui-textfield',
-        ClassDescription: 'mui-textfield',
+        ClassEmail: ' my-textfield mui-textfield mui-textfield--float-label',
+        ClassDescription: ' mui-textfield mui-textfield--float-label',
         image_id: this.props.image_id,
+        media_id: this.props.image_id,
         first_name: this.props.first_name,
         last_name: this.props.last_name,
         email: this.props.email,
@@ -55,12 +56,12 @@ export default class ModifyProfile extends React.Component{
         var error=0;
         if(this.state.first_name=='' || this.state.first_name.length<3){
           this.setState({
-            ClassFirstName: 'mui-textfield error'
+            ClassFirstName: 'error my-textfield mui-textfield mui-textfield--float-label'
           })
           error ++;
           }else{
         this.setState({
-          ClassFirstName: 'mui-textfield success'
+          ClassFirstName: 'success my-textfield mui-textfield mui-textfield--float-label'
         });
       }
       if(this.state.last_name=='' || this.state.last_name.length<3){
@@ -75,22 +76,22 @@ export default class ModifyProfile extends React.Component{
       }
       if(this.state.email=='' || this.state.email.length<3){
         this.setState({
-          ClassEmail: 'mui-textfield error'
+          ClassEmail: 'error my-textfield mui-textfield mui-textfield--float-label'
         })
         error ++;
       }else{
         this.setState({
-        ClassEmail: 'mui-textfield success'
+        ClassEmail: 'success my-textfield mui-textfield mui-textfield--float-label'
         });
       }
       if(this.state.description=='' || this.state.description.length<3){
         this.setState({
-          ClassDescription: 'mui-textfield error'
+          ClassDescription: 'error mui-textfield mui-textfield--float-label'
         })
         error ++;
       }else{
         this.setState({
-          ClassDescription: 'mui-textfield success'
+          ClassDescription: 'success mui-textfield mui-textfield--float-label'
         })
       }
       if(error==0){
@@ -102,7 +103,7 @@ export default class ModifyProfile extends React.Component{
                 user_lastname: this.state.last_name,
                 user_scuola: this.state.scuola.toString()
           }
-        
+
           const updatedProfile={
             first_name: this.state.first_name,
             last_name: this.state.last_name,
@@ -162,52 +163,33 @@ export default class ModifyProfile extends React.Component{
         						<div className="mui-col-xs-12">
                       <form className="mui-form">
                         <div className="info-profilo">
-                          <div className="{this.state.ClassFirstName} my-textfield mui-textfield mui-textfield--float-label">
+                          <div className={this.state.ClassFirstName}>
                             <input type="text" placeholder="Nome" name="first_name" value={this.state.first_name} onChange={this.modificaInfo.bind(this)} />
                             <label>Nome</label>
                           </div>
                         </div>
                         <div className="info-profilo">
-                          <div className="{this.state.ClassFirstName} my-textfield mui-textfield mui-textfield--float-label">
+                          <div className={this.state.ClassFirstName}>
                             <input type="text" placeholder="Cognome" name="last_name" value={this.state.last_name} onChange={this.modificaInfo.bind(this)} />
                             <label>Cognome</label>
                           </div>
                         </div>
                         <div className="info-profilo">
-                          <div className="{this.state.ClassEmail} my-textfield mui-textfield mui-textfield--float-label">
+                          <div className={this.state.ClassEmail}>
                           <input type="text" placeholder="Email" name="email" value={this.state.email} onChange={this.modificaInfo.bind(this)} />
                           <label>Email</label>
                         </div>
                       </div>
-                          <div className="info-profilo">
-                          <div className="mui-select">
-                            <select>
-                              <option></option>
-                              <option></option>
-                            </select>
-                            <label>Titolo</label>
-                          </div>
-                        </div>
                         <div className="info-profilo">
                         <div className="mui-select">
-                          <select>
-                            <option></option>
-                            <option></option>
-                            <option></option>
-                            <option></option>
+                          <select name="" id="ann_category" value={this.state.scuola} onChange={this.setScuola.bind(this)}>
+                              {scuole}
                           </select>
                           <label>Corso</label>
                         </div>
                       </div>
-                      <div className="info-profilo">
-                      <label htmlFor="" className="mui-textfield mui-textfield--float-label">Scuola</label>
-                          <select name="" id="ann_category" value={this.state.scuola} onChange={this.setScuola.bind(this)}>
-                          <option value="0">Scuola</option>
-                          {scuole}
-                          </select>
-                      </div>
                         <div className="info-profilo">
-                          <div className="{this.state.ClassDescription} mui-textfield mui-textfield--float-label">
+                          <div className={this.state.ClassDescription}>
                             <textarea required placeholder="Descriviti in poche parole" name="description" value={this.state.description} onChange={this.modificaInfo.bind(this)}></textarea>
                           </div>
                         </div>
