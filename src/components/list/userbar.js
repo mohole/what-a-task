@@ -20,6 +20,10 @@ export default class Userbar extends React.Component{
                 image:data.acf.user_image
             })
         })
+
+        Backend.getCurrentCategoryName(this.props.category).then((data) => {
+            this.setState({currentCat: data.name})
+        });
     }
 
     render(){
@@ -27,7 +31,10 @@ export default class Userbar extends React.Component{
             return(
                 <div>
                 <a href="#"  onClick={()=>{this.props.goToPage('Profile|'+this.props.userId)}}>
-                    <Imgblock mediaId={this.state.image} /><span>{this.state.name}</span></a>
+                    <Imgblock mediaId={this.state.image} />
+                    <span>{this.state.name}</span>
+                </a>
+                <p>{this.state.currentCat}</p>
                 </div>
             )
         } else {

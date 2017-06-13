@@ -20,7 +20,7 @@ export default class List extends React.Component{
         .then((data)=>{
             this.setState({
                 annunci:data
-            })
+            });
         })
     }
 
@@ -29,7 +29,7 @@ export default class List extends React.Component{
     		const items = this.state.annunci.map((e,i) => {
     		return(
                 <section key={i}>
-                    <Userbar userId={e.author} goToPage={this.props.goToPage.bind(this)} />
+                    <Userbar userId={e.author} category={e.tags[0]} goToPage={this.props.goToPage.bind(this)} />
         			<a href="#" onClick={()=>{this.props.goToPage('Single|'+e.id)}} data-item-id={e.id}>
         				<div className="mui-container">
         				  <div className="mui-row">
