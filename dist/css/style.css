@@ -35,6 +35,29 @@ body{
   position: fixed;
   width: 100%;
   z-index: 1;
+  top: 5%;
+  left: 0;
+}
+#profile-bar{
+  bottom: 5%;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+#item-search-bar, #profile-bar{
+  display: none;
+}
+.logo{
+  text-align: center;
+}
+.mui-btn--flat:hover, .mui-btn--flat:active{
+  background-color: transparent !important;
+}
+#item-search-bar{
+  position: fixed;
+  width: 100%;
+  z-index: 1;
   top: 50px;
   left: 0;
 }
@@ -100,6 +123,7 @@ body{
 .ion-ios-search{
   color: #ffffff;
 }
+
 .icon-big{
     color: #ffffff;
     font-size: 26px;
@@ -114,6 +138,10 @@ body{
     height: 50px;
     border-radius: 50%;
     background-color:#F8B195;
+}
+.titolo-annuncio{
+  font-size: 18px;
+  color:#F67280;
 }
 .titolo-annuncio{
   font-size: 18px;
@@ -195,13 +223,29 @@ body{
    max-width:100%;
 }
 .info-profilo{
+  padding-top: 25px;
+  padding-bottom: 25px;
+  position: relative;
+}
+.link-scuola, .link-logout{
+  color: inherit;
+  text-decoration: none;
+}
+.link-scuola:hover, .link-logout:hover{
+  color: inherit;
+  text-decoration: none;
+}
+.poster-utente img{
+   max-width:100%;
+}
+.info-profilo{
   padding-top: 20px;
   padding-bottom: 20px;
   position: relative;
 }
 
 .info-profilo span{
-  font-size: 18px;
+  font-size: 16px;
 }
 .my-span{
   font-size: 12px !important;

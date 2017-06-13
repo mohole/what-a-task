@@ -14,6 +14,7 @@ import Topbar from './appbar/topbar';
 import Bottombar from './appbar/bottombar';
 import Profile from './profile/profile';
 import ModifyProfile from './profile/modify_profile';
+import Settings from './settings/settings';
 
 export default class App extends React.Component{
     constructor(){
@@ -95,6 +96,15 @@ export default class App extends React.Component{
 		console.log(page);
 	}
 
+  logout(e){
+    e.preventDefault();
+    localStorage.clear();
+    this.setState({
+      logged: false,
+      activePage: 'Login'
+    })
+  }
+
 	render(){
 		if(this.state.logged){
 			var contentElem = <Spinner/>
@@ -133,7 +143,11 @@ export default class App extends React.Component{
 				})
 				contentElem = <Profile listaScuole={this.state.postCategory} goToPage={this.goToPage.bind(this)} />
 			}
-
+      if(this.state.activePage=='Settings'){
+				contentElem= <Spinner/>
+				contentElem = <Settings
+          logout={this.logout.bind(this)} />
+			}
 			if(this.state.activePage.includes('Single|')){
 				//contentElem= <Spinner/>
 				const postP = this.state.activePage.split('|');
@@ -146,7 +160,7 @@ export default class App extends React.Component{
 				<section>
 					<Topbar goToPage={this.goToPage.bind(this)}/>
 					{contentElem}
-					<Bottombar goToPage={this.goToPage.bind(this)}/>
+					<Bottombar goToPage={this.goToPage.bind(this)} />
 				</section>
 			)
 		}else{
