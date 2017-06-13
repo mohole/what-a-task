@@ -198,7 +198,7 @@ export default class NewItem extends React.Component{
 			// </div>
 			// </section>
 
-      <section className="background-add-annuncio">
+      <section className="background-search-annuncio">
           <div className="mui-container">
             <div className="mui-row">
               <div className="mui-col-xs-12">
