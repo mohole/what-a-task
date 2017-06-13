@@ -17,7 +17,7 @@ class WAT_Backend{
     }
 
     checkAuth(){
-        return fetch(`${this.url}/settings`,{
+        return fetch(`${this.url}/users/me`,{
           headers: this.headers
         }).then(this._parseRaw)
     }
@@ -113,7 +113,7 @@ class WAT_Backend{
           .then(this._parseRaw)
     }
     getUserInfo(userId){
-  		return fetch(`${this.url}/users/${userId}/?context=edit`,
+  		return fetch(`${this.url}/users/${userId}`,
     		{
                 headers: this.headers,
                 method: "GET"
@@ -121,7 +121,7 @@ class WAT_Backend{
           .then(this._parseRaw)
     }
 	getMe(){
-		return fetch(`${this.url}/users/me/?context=edit`,
+		return fetch(`${this.url}/users/me`,
 		{
             headers: this.headers,
             method: "POST"

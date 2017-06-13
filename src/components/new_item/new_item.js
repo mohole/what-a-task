@@ -36,6 +36,7 @@ export default class NewItem extends React.Component{
   //       });
   //   }
 	checkType(evt){
+		console.log(evt.target.value);
 		const input = parseInt(evt.target.value);
 		this.setState({
             type : input
@@ -53,6 +54,9 @@ export default class NewItem extends React.Component{
 		Backend.upLoadMedia(file)
 		.then((data)=>{
 			console.log('id:'+data.id);
+			if(data.id==undefined){
+				data.id=0;
+			}
 			this.setState({
 				media_id:data.id
 			})
@@ -205,9 +209,9 @@ export default class NewItem extends React.Component{
                 <form onSubmit={this.submitAnnuncio.bind(this)} className="mui-form">
                 <div className={this.state.ClassNameCategory}>
                   <div className="mui-select">
-                    <select>
-                      <option name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type===3} value="3" >Cerco</option>
-                      <option name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type===5} value="5" >Offro</option>
+                    <select onChange={this.checkType.bind(this)}>
+                      <option name="tipologia" aria-label="" value="3" >Cerco</option>
+                      <option name="tipologia" aria-label="" value="5" >Offro</option>
                     </select>
                     <label>Tipologia dell annuncio</label>
                   </div>
