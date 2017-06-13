@@ -17,7 +17,6 @@ export default class NewItem extends React.Component{
 			ClassNameCategory:'mui-select',
 			selectedCat:0,
 			type:5, /*5=offro,3=cerco*/
-			// privacyCheck:false,
         }
 	}
 
@@ -29,13 +28,8 @@ export default class NewItem extends React.Component{
             [elem] : input
         });
     }
-	// checkPrivacy(evt){
-	// 	console.log(!this.state.privacyCheck);
-  //       this.setState({
-  //           privacyCheck : !this.state.privacyCheck
-  //       });
-  //   }
 	checkType(evt){
+		console.log(evt.target.value);
 		const input = parseInt(evt.target.value);
 		this.setState({
             type : input
@@ -53,6 +47,9 @@ export default class NewItem extends React.Component{
 		Backend.upLoadMedia(file)
 		.then((data)=>{
 			console.log('id:'+data.id);
+			if(data.id==undefined){
+				data.id=0;
+			}
 			this.setState({
 				media_id:data.id
 			})
@@ -93,16 +90,6 @@ export default class NewItem extends React.Component{
 				ClassNameCategory:'mui-select success'
 			})
 		}
-		// if(this.state.privacyCheck==false){
-		// 	this.setState({
-		// 		ClassNamePrivacy:'mui-checkbox error'
-		// 	})
-		// 	error++;
-		// }else{
-		// 	this.setState({
-		// 		ClassNamePrivacy:'mui-checkbox success'
-		// 	})
-		// }
 		if(error==0){
 			if(this.state.media_id!=0||this.state.media_id!=undefined){
 				console.log('ok tutto giusto');
@@ -139,8 +126,7 @@ export default class NewItem extends React.Component{
 			ClassNamePrivacy:'mui-checkbox',
 			ClassNameCategory:'mui-select',
 			selectedCat:0,
-			type:5,
-			// privacyCheck:false,
+			type:5
 		});
 	}
 	render(){
@@ -153,67 +139,22 @@ export default class NewItem extends React.Component{
 		});
 
         return(
-      //       <section>
-			// <div className="mui-container content">
-			// 	<div className="mui-row">
-			// 		<div className="mui-col-xs-12">
-			// 			<h1>Inserisci annuncio</h1>
-			// 		</div>
-			// 		<div className="mui-col-xs-12">
-			// 			<form action="#" onSubmit={this.submitAnnuncio.bind(this)} className="mui-form">
-			// 			<div className={this.state.ClassNameCategory}>
-			// 			<label htmlFor="">Categoria</label>
-			// 				<select name="" id="ann_category" value={this.state.selectedCat} onChange={this.getCat.bind(this)}>
-			// 				<option value="0">Categoria</option>
-			// 				{catList}
-			// 				</select>
-			// 			</div>
-			// 				<div className="mui-radio">
-			// 					<label htmlFor="">Tipologia</label><br/>
-			// 					<input type="radio" name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type===5} value="5"/> <span>Offro</span> <input type="radio" name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type===3} value="3"/> <span>Cerco</span>
-			// 				</div>
-			// 				<div className="mui-textfield">
-			// 					<label htmlFor="">Immagine</label><br/>
-			// 					<input type="file" placeholder="Immagine" onChange={this.uploadFile.bind(this)}/>
-			// 				</div>
-			// 				<div className={this.state.ClassNameTitle}>
-			// 					<label htmlFor="">Titolo annuncio</label>
-			// 					<input type="text" placeholder="Titolo" value={this.state.title} onChange={this.writing.bind(this)} name="title"/>
-			// 				</div>
-			// 				<div className={this.state.ClassNameText}>
-			// 					<label htmlFor="">Testo annuncio</label>
-			// 					<textarea name="" id="" cols="30" rows="10" value={this.state.text} onChange={this.writing.bind(this)} name="text"></textarea>
-			// 				</div>
-			// 				<div className={this.state.ClassNamePrivacy}>
-			// 					<label htmlFor="">Termini e condizioni</label><br/>
-			// 					<input type="checkbox" checked={this.state.privacyCheck} onChange={this.checkPrivacy.bind(this)}/><span>Accetto i <a href="#">termini della privacy</a></span>
-			// 				</div>
-			// 				<div className="mui-textfield">
-			// 					<button type="submit" className="mui-btn mui-btn--primary">Inserisci</button>
-			// 					<button type="button" onClick={this.resetForm.bind(this)} className="mui-btn mui-btn--danger">Annulla</button>
-			// 				</div>
-			// 			</form>
-			// 		</div>
-			// 	</div>
-			// </div>
-			// </section>
-
-      <section className="background-search-annuncio">
+    <section className="background-add-annuncio">
           <div className="mui-container">
             <div className="mui-row">
               <div className="mui-col-xs-12">
                 <form onSubmit={this.submitAnnuncio.bind(this)} className="mui-form">
                 <div className={this.state.ClassNameCategory}>
                   <div className="mui-select">
-                    <select>
-                      <option name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type===3} value="3" >Cerco</option>
-                      <option name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type===5} value="5" >Offro</option>
+                    <select onChange={this.checkType.bind(this)}>
+                      <option name="tipologia" aria-label="" value="3" >Cerco</option>
+                      <option name="tipologia" aria-label="" value="5" >Offro</option>
                     </select>
                     <label>Tipologia dell annuncio</label>
                   </div>
                   <div className="mui-select">
                     <select name="" id="ann_category" value={this.state.selectedCat} onChange={this.getCat.bind(this)}>
-                    <option value="0"></option>
+                    <option value="0">Seleziona categoria</option>
                         {catList}
                     </select>
                     <label>Categoria</label>

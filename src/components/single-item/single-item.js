@@ -16,6 +16,7 @@ export default class Single extends React.Component {
             imageUrl:'',
             currentCat:{}
         }
+
     }
 
     editItem(){
@@ -37,7 +38,7 @@ export default class Single extends React.Component {
     }
 
     isAuthor(userId, authorId) {
-        if (userId === authorId) {
+        if (userId == authorId) {
             return <button className="my-button mui-col-xs-12 mui-btn mui-btn--danger" onClick={() => {
                 this.editItem()
             }}>MODIFICA</button>;
@@ -52,9 +53,17 @@ export default class Single extends React.Component {
     }
 
 componentWillMount(){
+
+        Backend.getAnnuncio(this.props.id)
+        .then((data)=>{
+            this.setState({
+                annuncio:data
+            })
+        });
+
         Backend.getCategory().then((data) => {
             this.setState({postCategory: data})
-        })
+        });
 
         const authorId = this.state.annuncio.author;
         Backend.getUserInfo(authorId).then((data) => {
@@ -63,13 +72,12 @@ componentWillMount(){
 
         Backend.getCurrentCategoryName(this.state.annuncio.tags[0]).then((data) => {
             this.setState({currentCat: data.name})
-        })
+        });
 
         Backend.getMedia(this.state.annuncio.featured_media).then((data)=>{
             this.setState({imageUrl:data.guid.rendered})
-        })
+        });
 }
-
     render() {
             console.log('single');
             if (this.state.author && this.state.currentCat) {
@@ -127,11 +135,11 @@ componentWillMount(){
                       <div>
                         <section>
                           <div className="poster-annuncio">
-                          <img src="{this.state.imageUrl}" alt="" />
+                          <img src={this.state.imageUrl} alt="" />
                             <div className="mui-container">
                               <div className="mui-row">
                                 <div className="info-utente">
-                                  <span className="nome-utente">Ambrogio Languerini</span>
+                                  <span className="nome-utente">{this.state.author.name}</span>
                                   <span className="corso-utente">{this.state.currentCat}</span>
                                   <span>pubblicato il {this.printDate(this.state.annuncio.date)}</span>
                                 </div>
@@ -150,7 +158,6 @@ componentWillMount(){
                           <div className="mui-col-xs-12">
                           <p className="descrizione-annuncio">{this.state.annuncio.content.rendered}</p>
                           {this.isAuthor(this.props.userId, this.state.author.id)}
-                        <button type="submit" className="my-button mui-col-xs-12 mui-btn mui-btn--danger">MODIFICA</button>
                         </div>
                         </div>
                         </div>
