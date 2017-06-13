@@ -1,40 +1,48 @@
 body{
-  font-family: 'Raleway', sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
+
 .container{
-  padding-top: 50px;
-  padding-bottom: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
+
 .background{
-  width: 100%;
-  height: 100vh;
-  background: #FF5F6D;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #FFC371, #FF5F6D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    width: 100%;
+    height: 100vh;
+    background: #FF5F6D;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFC371, #FF5F6D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
 .vertical-center{
-  position: relative;
-   top: 50%;
-   -webkit-transform: translateY(-50%);
-   -ms-transform: translateY(-50%);
-   transform: translateY(-50%);
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
+
 .logo{
-  text-align: center;
-  font-size: 30px !important;
-  font-weight: 600 !important;
-  color:#ffffff !important;
+    text-align: center;
+    font-size: 30px !important;
+    font-weight: 600 !important;
+    color:#ffffff !important;
 }
+
 .my-label{
-  color: #ffffff !important;
+    color: #ffffff !important;
 }
+
 .my-input{
-  color: #f1efef !important;
+    color: #f1efef !important;
 }
+
 .my-button{
-  margin-left: 0 !important;
-  border-radius: 5px;
+    margin-left: 0 !important;
+    border-radius: 5px;
 }
+
 .top-bar-wrapper{
     background: #FF5F6D;
     background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D);
@@ -45,54 +53,70 @@ body{
     width: 100%;
     z-index: 1;
     height: 50px;
-  }
+}
+
 .main-title{
     color: #ffffff;
     margin-top: 15px;
     text-align: center;
 }
+
 .mui-btn--fab{
-  width: 38px !important;
-  height: 38px !important;
-  line-height: 38px  !important;
-  text-align: center;
+    width: 38px !important;
+    height: 38px !important;
+    line-height: 38px  !important;
+    text-align: center;
 }
+
 .icon{
-  font-size: 25px;
-  text-align: center;
+    font-size: 25px;
+    text-align: center;
 }
+
 .icon-big{
-  color: #ffffff;
-  font-size: 26px;
+    color: #ffffff;
+    font-size: 26px;
 }
+
 .container-annuncio{
-  padding: 30px 0 30px 0;
+    padding: 30px 0 30px 0;
 }
-.img-utente{
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color:#F8B195;
+
+.img-utente img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color:#F8B195;
 }
+
 .corso-utente{
-  display: block;
-  color: #F67280;
+    display: block;
+    color: #F67280;
 }
-.img-annuncio{
-  width: 100%;
-  height: 300px;
-  background:#C06C84;
-  margin: 20px 0 20px 0;
+
+.img-annuncio img{
+    width: 100%;
+    height: auto;    
+    /*height: 300px;*/
+    /*background:#C06C84;*/
+    margin: 20px 0 20px 0;
 }
+
 .nome-utente, .corso-utente, .titolo-annuncio{
-  font-size: 16px;
+    font-size: 16px;
 }
+
+.titolo-annuncio{
+    color: #F67280;
+}
+
 .hr{
-  height: 1px;
-  background: #cccccc;
-  width: 100%;
-  transform: scaleY(0.5);
+    height: 1px;
+    background: #cccccc;
+    width: 100%;
+    transform: scaleY(0.5);
 }
+
 .bottom-bar-wrapper{
     background: #f2f2f2;
     position: fixed;
@@ -101,37 +125,49 @@ body{
     width: 100%;
     z-index: 1;
     height: 50px;
-  }
-  .poster-annuncio{
+}
+
+.poster-annuncio{
     width: 100%;
     height: 40vh;
     background:#6C5B7B;
     margin-bottom: 20px;
-  }
-  .button-back, .button-modify{
+}
+
+.button-back, .button-modify{
     margin-top: 25px;
-  }
-  .info-utente{
+}
+
+.info-utente{
     text-align: right;
     color: #ffffff;
     margin-top: 30px;
   }
-  .descrizione-annuncio + button{
+
+.descrizione-annuncio + button{
     margin-bottom: 30px;
   }
+
+.descrizione-annuncio{
+    color: black;
+}
+
 .poster-utente{
-  width: 100%;
-  height: 40vh;
-  background:#6C5B7B;
-  margin-bottom: 20px;
+    width: 100%;
+    height: 40vh;
+    background:#6C5B7B;
+    margin-bottom: 20px;
 }
+
 .info-profilo span{
-  display: block;
-  margin-bottom: 20px;
+    display: block;
+    margin-bottom: 20px;
 }
+
 .info-profilo .hr{
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
+
 .info-personali{
-  font-size: 18px;
+    font-size: 18px;
 }

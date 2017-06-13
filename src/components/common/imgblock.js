@@ -11,7 +11,7 @@ export default class Imgblock extends React.Component{
             src:''
         }
 	}
-
+/*
     componentWillMount(){
         if(this.props.mediaId!=0){
             Backend.getMedia(this.props.mediaId).then((data)=>{
@@ -24,6 +24,38 @@ export default class Imgblock extends React.Component{
                 src:'http://lorempixel.com/200/200'
             })
         }
+        console.log('imgblock componentWillMount');
+    }*/
+
+    componentDidMount(){
+        if(this.props.mediaId!=0){
+            Backend.getMedia(this.props.mediaId).then((data)=>{
+                this.setState({
+                    src:data.guid.rendered
+                })
+            })
+        } else {
+            this.setState({
+                src:'http://lorempixel.com/200/200'
+            })
+        }
+        console.log('imgblock componentDidMount');
+    }
+
+    shouldComponentUpdate(){
+        if(this.props.mediaId!=0){
+            Backend.getMedia(this.props.mediaId).then((data)=>{
+                this.setState({
+                    src:data.guid.rendered
+                })
+            })
+        } else {
+            this.setState({
+                src:'http://lorempixel.com/200/200'
+            })
+        }
+        console.log('imgblock shouldComponentUpdate');
+        return true;
     }
 
 

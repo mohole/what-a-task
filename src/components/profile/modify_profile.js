@@ -1,6 +1,7 @@
 'use strict';
 import React from 'react';
 import {Backend} from './../../backend';
+import Imgblock from './../common/imgblock';
 
 export default class ModifyProfile extends React.Component{
   constructor(props){
@@ -12,7 +13,7 @@ export default class ModifyProfile extends React.Component{
         ClassLastName: 'mui-textfield',
         ClassEmail: 'mui-textfield',
         ClassDescription: 'mui-textfield',
-        avatar_urls: this.props.avatar_urls,
+        image_id: this.props.image_id,
         first_name: this.props.first_name,
         last_name: this.props.last_name,
         email: this.props.email,
@@ -28,6 +29,31 @@ export default class ModifyProfile extends React.Component{
                   [elem] : input
               });
           }
+
+/*
+upload works, but the fetch needs to be fixed
+
+
+  	uploadFile(evt){
+  		const file=evt.target.files[0];
+  		console.log(file);
+  		Backend.upLoadMedia(file)
+          .then((data)=>{
+  		    console.log('id:'+data.id);
+      		this.setState({
+      			media_id:data.id
+  		    })
+  		})
+  	}
+
+this should be added to render() once the image fetch works:
+
+<div className="mui-textfield">
+    <input type="file" name="image_id"  onChange={this.uploadFile.bind(this)} />
+</div>
+
+*/
+
 
     submitForm(){
         var error=0;
@@ -98,35 +124,6 @@ export default class ModifyProfile extends React.Component{
     }
       render(){
             return(
-          //       <section>
-          //       <div className="mui-container">
-          //         <div className="mui-row">
-          //         <div className="mui-col-xs-12">
-          //           <form className="mui-form">
-          //               <img src={this.state.image_id} alt=""/>
-          //             <div className="mui-textfield">
-          //               <input type="file" name="avatar_urls" value="" onChange={this.modificaInfo.bind(this)} />
-          //             </div>
-          //             <div className={this.state.ClassFirstName}>
-          //               <input type="text" placeholder="Nome" name="first_name" value={this.state.first_name} onChange={this.modificaInfo.bind(this)} />
-          //             </div>
-          //             <div className={this.state.ClassLastName}>
-          //               <input type="text" placeholder="Cognome" name="last_name" value={this.state.last_name} onChange={this.modificaInfo.bind(this)} />
-          //             </div>
-          //             <div className={this.state.ClassEmail}>
-          //                 <input type="text" placeholder="Email" name="email" value={this.state.email} onChange={this.modificaInfo.bind(this)} />
-          //             </div>
-          //             <div className={this.state.ClassDescription}>
-          //              <input placeholder="Descriviti in poche parole" name="description" value={this.state.description} onChange={this.modificaInfo.bind(this)} />
-          //            </div>
-          //             <button type="button"  onClick={this.submitForm.bind(this)} className="mui-btn mui-btn--primary">Modifica</button>
-          //             <button type="button" onClick={this.props.undo} className="mui-btn mui-btn--fab mui-btn--primary">back</button>
-          //             </form>
-          //
-          //           </div>
-          //         </div>
-          //       </div>
-    			// </section>
         <div>
           <section>
             <div className="poster-utente">
