@@ -14,21 +14,13 @@ export default class List extends React.Component{
             imageUrl:[]
         }
 	}
-    
-	showAnnuncio(evt){
-		evt.preventDefault();
-		const elemId = evt.currentTarget.getAttribute('data-item-id');
-		console.log(elemId);
-		this.props.goToPage('Single|'+elemId);
-	}
 
     componentWillMount(){
-
         Backend.getAnnunci()
         .then((data)=>{
             this.setState({
                 annunci:data
-            })
+            });
         })
     }
 
@@ -42,8 +34,8 @@ export default class List extends React.Component{
                         <div className="mui-container">
                             <div className="mui-row">
                 
-                                <Userbar userId={e.author} goToPage={this.props.goToPage.bind(this)} />
-        			            <a href="#" onClick={this.showAnnuncio.bind(this)} data-item-id={e.id}>
+                                <Userbar userId={e.author} category={e.tags[0]} goToPage={this.props.goToPage.bind(this)} />
+        			            <a href="#" onClick={()=>{this.props.goToPage('Single|'+e.id)}} data-item-id={e.id}>
                 
                                 <div className="mui-col-xs-12 img-annuncio">
                                     <Imgblock mediaId={e.featured_media} />

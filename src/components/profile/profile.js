@@ -16,8 +16,14 @@ export default class Profile extends React.Component {
             first_name: '',
             last_name: '',
             email: '',
-            description: ''
+            description: '',
+            scuola: ''
         }
+    }
+
+    undo(){
+        this.editProfile();
+        this.props.goToPage('Profile');
     }
 
     editProfile() {
@@ -29,8 +35,7 @@ export default class Profile extends React.Component {
 		console.log(this.props.profileId+' - '+this.props.currentId);
         if (this.props.profileId!=undefined && this.props.currentId!=undefined && this.props.profileId != this.props.currentId) {
             Backend.getUserInfo(this.props.profileId).then((data) => {
-                this.setState({first_name: data.first_name, last_name: data.last_name, image_id: data.acf.user_image, email: data.email, description: data.description})
-
+                this.setState({first_name: data.acf.user_firstname, last_name: data.acf.user_lastname, image_id: data.acf.user_image, email: data.acf.user_email, scuola:data.acf.user_scuola, description: data.description})
             })
         } else {
             this.setState({
@@ -54,6 +59,7 @@ export default class Profile extends React.Component {
                 email: localStorage.getItem('user_email'),
 				role:localStorage.getItem('user_role'),
                 description: localStorage.getItem('user_description'),
+                scuola:localStorage.getItem('user_scuola'),
 				isEditable:true
             })
 		console.log('WillReceiveProps - IO')
@@ -66,7 +72,18 @@ export default class Profile extends React.Component {
         }
 
         if (this.state.editActive && this.state.isEditable) {
-            return (<ModifyProfile profileId={localStorage.getItem('user_id')} first_name={this.state.first_name} last_name={this.state.last_name} image_id={this.state.image_id} email={this.state.email} description={this.state.description} undo={this.editProfile.bind(this)}/>)
+            return (<ModifyProfile
+                    profileId={localStorage.getItem('user_id')}
+                    first_name={this.state.first_name}
+                    last_name={this.state.last_name}
+                    image_id={this.state.image_id}
+                    email={this.state.email}
+                    description={this.state.description}
+                    scuola={this.state.scuola}
+                    listaScuole={this.props.listaScuole}
+                    undo={this.undo.bind(this)}
+                    goToPage={this.props.goToPage.bind(this)}
+                />)
         } else {
             if (this.state.image_id != '') {
                 return (

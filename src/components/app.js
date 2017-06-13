@@ -45,6 +45,12 @@ export default class App extends React.Component{
 
 	}
 	getLogin(){
+        Backend.getAnnunci()
+        .then((data)=>{
+            this.setState({
+                annunci:data
+            })
+        })
 		this.state={
 			logged:true,
 			activePage:'List',
@@ -54,17 +60,17 @@ export default class App extends React.Component{
 	}
 
 	makeLogin(){
-
 		Backend.getMe()
 		.then((data)=>{
 			console.log(data);
 			localStorage.setItem('user_id', data.id );
-			localStorage.setItem('user_email', data.email );
-			localStorage.setItem('user_firstName', data.first_name);
-			localStorage.setItem('user_lastName', data.last_name);
+			localStorage.setItem('user_email', data.acf.user_email );
+			localStorage.setItem('user_firstName', data.acf.user_firstname);
+			localStorage.setItem('user_lastName', data.acf.user_lastname);
 			localStorage.setItem('user_description',data.description );
 			localStorage.setItem('user_role',data.acf.user_role );
 			localStorage.setItem('user_image',data.acf.user_image );
+			localStorage.setItem('user_scuola',data.acf.user_scuola );
 		})
 		Backend.getAnnunci()
 		.then((data)=>{
@@ -112,14 +118,20 @@ export default class App extends React.Component{
 					contentElem = <NewItem categoryList={this.state.postCategory} goToPage={this.goToPage.bind(this)}/>
 				}
 			}
-      if(this.state.activePage.includes('Profile|')){
-          contentElem= <Spinner/>
-          const user = this.state.activePage.split('|');
-          contentElem = <Profile profileId={parseInt(user[1])} currentId={localStorage.getItem('user_id')}/>
-      }
+            if(this.state.activePage.includes('Profile|')){
+                contentElem= <Spinner/>
+                const user = this.state.activePage.split('|');
+                contentElem = <Profile goToPage={this.goToPage.bind(this)} profileId={parseInt(user[1])} currentId={localStorage.getItem('user_id')}/>
+            }
 			if(this.state.activePage=='Profile'){
 				contentElem= <Spinner/>
-				contentElem = <Profile />
+				Backend.getCategory()
+				.then((data)=>{
+					this.setState({
+						postCategory:data
+					})
+				})
+				contentElem = <Profile listaScuole={this.state.postCategory} goToPage={this.goToPage.bind(this)} />
 			}
 
 			if(this.state.activePage.includes('Single|')){

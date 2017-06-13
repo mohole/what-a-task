@@ -20,11 +20,10 @@
   },
   "homepage": "https://github.com/mohole/what-a-task#readme",
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.5",
+    "ionicons": "^2.0.1",
     "muicss": "^0.9.16",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "wpapi": "^1.0.3"
+    "react-dom": "^15.5.4"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",

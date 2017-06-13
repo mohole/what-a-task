@@ -20,8 +20,11 @@ export default class Userbar extends React.Component{
                 image:data.acf.user_image
             })
         })
-    }
 
+        Backend.getCurrentCategoryName(this.props.category).then((data) => {
+            this.setState({currentCat: data.name})
+        });
+    }
     render(){
         if(this.state.name!=''){
             return(
@@ -37,7 +40,7 @@ export default class Userbar extends React.Component{
 
                     <div className="mui-col-xs-10">
                         <span className="nome-utente">{this.state.name}</span>
-                        <span className="corso-utente">Storytelling</span>
+                        <span className="corso-utente">{this.state.currentCat}</span>
                     </div> 
                         
                 </section>    

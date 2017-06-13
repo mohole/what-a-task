@@ -17,21 +17,26 @@ export default class ModifyProfile extends React.Component{
         first_name: this.props.first_name,
         last_name: this.props.last_name,
         email: this.props.email,
-        description: this.props.description
+        description: this.props.description,
+        listaScuole: this.props.listaScuole,
+        scuola: this.props.scuola
       }
 
     }
 
     modificaInfo(evt){
-              const input = evt.target.value;
-      		    const elem=evt.target.getAttribute('name');
-              this.setState({
-                  [elem] : input
-              });
-          }
+      const input = evt.target.value;
+	  const elem=evt.target.getAttribute('name');
+      this.setState({
+          [elem] : input
+      });
+  }
 
-/*
-upload works, but the fetch needs to be fixed
+  setScuola(evt){
+      this.setState({
+          scuola:parseInt(evt.target.value)
+      })
+  }
 
 
   	uploadFile(evt){
@@ -45,15 +50,6 @@ upload works, but the fetch needs to be fixed
   		    })
   		})
   	}
-
-this should be added to render() once the image fetch works:
-
-<div className="mui-textfield">
-    <input type="file" name="image_id"  onChange={this.uploadFile.bind(this)} />
-</div>
-
-*/
-
 
     submitForm(){
         var error=0;
@@ -98,17 +94,34 @@ this should be added to render() once the image fetch works:
         })
       }
       if(error==0){
-        var name= this.state.first_name+' '+this.state.last_name;
+          var acf={
+                user_image:this.state.media_id,
+                user_role: this.state.role,
+                user_email: this.state.email,
+                user_firstname: this.state.first_name,
+                user_lastname: this.state.last_name,
+                user_scuola: this.state.scuola.toString()
+          }
+        
           const updatedProfile={
             first_name: this.state.first_name,
             last_name: this.state.last_name,
             email: this.state.email,
             description: this.state.description,
-            name: name
+            acf:acf
           }
+          console.log('UPDATED PROFILE: '+updatedProfile);
+
           this.setState({
             updatedProfile:updatedProfile
           });
+
+          localStorage.setItem('user_firstName',this.state.first_name);
+          localStorage.setItem('user_lastName',this.state.last_name);
+          localStorage.setItem('user_email',this.state.email);
+          localStorage.setItem('user_description',this.state.description);
+          localStorage.setItem('user_image',this.state.media_id);
+          localStorage.setItem('user_scuola',this.state.scuola);
 
           Backend.updateProfile(this.props.profileId,updatedProfile)
               .then((data)=>{
@@ -123,14 +136,20 @@ this should be added to render() once the image fetch works:
 
     }
       render(){
+      const scuole =this.state.listaScuole.map((e,i) =>{
+          return(
+              <option value={e.id} key={e.id} onChange={this.setScuola.bind(this)}>{e.name}</option>
+          )
+      });
+
             return(
         <div>
           <section>
             <div className="poster-utente">
-            <img src="{this.state.image_id}" alt=""/>
+              <Imgblock mediaId={this.state.image_id}/>
               <div className="mui-container">
                 <div className="mui-row">
-                <input type="file" name="avatar_urls" value="" onChange={this.modificaInfo.bind(this)} />
+                    <input type="file" name="image_id" onChange={this.uploadFile.bind(this)} />
                 </div>
               </div>
             </div>
@@ -180,12 +199,21 @@ this should be added to render() once the image fetch works:
                           <label>Corso</label>
                         </div>
                       </div>
+                      <div className="info-profilo">
+                      <label htmlFor="" className="mui-textfield mui-textfield--float-label">Scuola</label>
+                          <select name="" id="ann_category" value={this.state.scuola} onChange={this.setScuola.bind(this)}>
+                          <option value="0">Scuola</option>
+                          {scuole}
+                          </select>
+                      </div>
                         <div className="info-profilo">
                           <div className="{this.state.ClassDescription} mui-textfield mui-textfield--float-label">
                             <textarea required placeholder="Descriviti in poche parole" name="description" value={this.state.description} onChange={this.modificaInfo.bind(this)}></textarea>
                           </div>
                         </div>
                         <button type="button" onClick={this.submitForm.bind(this)} className="my-button mui-col-xs-12 mui-btn mui-btn--danger">MODIFICA</button>
+                        <button type="button" onClick={this.props.undo} className="mui-btn mui-btn--fab mui-btn--primary">back</button>
+
                       </form>
         						</div>
         					</div>
