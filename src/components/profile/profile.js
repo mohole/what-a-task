@@ -62,7 +62,6 @@ export default class Profile extends React.Component {
                 scuola:localStorage.getItem('user_scuola'),
 				isEditable:true
             })
-
 		console.log('WillReceiveProps - IO')
     }
 

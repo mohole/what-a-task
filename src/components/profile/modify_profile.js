@@ -102,7 +102,7 @@ export default class ModifyProfile extends React.Component{
                 user_lastname: this.state.last_name,
                 user_scuola: this.state.scuola.toString()
           }
-
+        
           const updatedProfile={
             first_name: this.state.first_name,
             last_name: this.state.last_name,
@@ -143,42 +143,83 @@ export default class ModifyProfile extends React.Component{
       });
 
             return(
-                <section>
-                <div className="mui-container">
-                  <div className="mui-row">
-                  <div className="mui-col-xs-12">
-                    <form className="mui-form">
-                        <Imgblock mediaId={this.state.image_id}/>
-                    <div className="mui-textfield">
-                        <input type="file" name="image_id" onChange={this.uploadFile.bind(this)} />
-                    </div>
-                      <div className={this.state.ClassFirstName}>
-                        <input type="text" placeholder="Nome" name="first_name" value={this.state.first_name} onChange={this.modificaInfo.bind(this)} />
-                      </div>
-                      <div className={this.state.ClassLastName}>
-                        <input type="text" placeholder="Cognome" name="last_name" value={this.state.last_name} onChange={this.modificaInfo.bind(this)} />
-                      </div>
-                      <div className={this.state.ClassEmail}>
+        <div>
+          <section>
+            <div className="poster-utente">
+              <Imgblock mediaId={this.state.image_id}/>
+              <div className="mui-container">
+                <div className="mui-row">
+                    <input type="file" name="image_id" onChange={this.uploadFile.bind(this)} />
+                </div>
+              </div>
+            </div>
+            </section>
+
+
+            <section>
+        				<div className="mui-container">
+        					<div className="mui-row">
+        						<div className="mui-col-xs-12">
+                      <form className="mui-form">
+                        <div className="info-profilo">
+                          <div className="{this.state.ClassFirstName} my-textfield mui-textfield mui-textfield--float-label">
+                            <input type="text" placeholder="Nome" name="first_name" value={this.state.first_name} onChange={this.modificaInfo.bind(this)} />
+                            <label>Nome</label>
+                          </div>
+                        </div>
+                        <div className="info-profilo">
+                          <div className="{this.state.ClassFirstName} my-textfield mui-textfield mui-textfield--float-label">
+                            <input type="text" placeholder="Cognome" name="last_name" value={this.state.last_name} onChange={this.modificaInfo.bind(this)} />
+                            <label>Cognome</label>
+                          </div>
+                        </div>
+                        <div className="info-profilo">
+                          <div className="{this.state.ClassEmail} my-textfield mui-textfield mui-textfield--float-label">
                           <input type="text" placeholder="Email" name="email" value={this.state.email} onChange={this.modificaInfo.bind(this)} />
+                          <label>Email</label>
+                        </div>
                       </div>
-                      <div className="">
-                      <label htmlFor="">Scuola</label>
+                          <div className="info-profilo">
+                          <div className="mui-select">
+                            <select>
+                              <option></option>
+                              <option></option>
+                            </select>
+                            <label>Titolo</label>
+                          </div>
+                        </div>
+                        <div className="info-profilo">
+                        <div className="mui-select">
+                          <select>
+                            <option></option>
+                            <option></option>
+                            <option></option>
+                            <option></option>
+                          </select>
+                          <label>Corso</label>
+                        </div>
+                      </div>
+                      <div className="info-profilo">
+                      <label htmlFor="" className="mui-textfield mui-textfield--float-label">Scuola</label>
                           <select name="" id="ann_category" value={this.state.scuola} onChange={this.setScuola.bind(this)}>
                           <option value="0">Scuola</option>
                           {scuole}
                           </select>
                       </div>
-                      <div className={this.state.ClassDescription}>
-                       <input placeholder="Descriviti in poche parole" name="description" value={this.state.description} onChange={this.modificaInfo.bind(this)} />
-                     </div>
-                      <button type="button"  onClick={this.submitForm.bind(this)} className="mui-btn mui-btn--primary">Modifica</button>
-                      <button type="button" onClick={this.props.undo} className="mui-btn mui-btn--fab mui-btn--primary">back</button>
-                      </form>
+                        <div className="info-profilo">
+                          <div className="{this.state.ClassDescription} mui-textfield mui-textfield--float-label">
+                            <textarea required placeholder="Descriviti in poche parole" name="description" value={this.state.description} onChange={this.modificaInfo.bind(this)}></textarea>
+                          </div>
+                        </div>
+                        <button type="button" onClick={this.submitForm.bind(this)} className="my-button mui-col-xs-12 mui-btn mui-btn--danger">MODIFICA</button>
+                        <button type="button" onClick={this.props.undo} className="mui-btn mui-btn--fab mui-btn--primary">back</button>
 
-                    </div>
-                  </div>
-                </div>
-    			</section>
+                      </form>
+        						</div>
+        					</div>
+        				</div>
+        		</section>
+          </div>
             )
         }
 }

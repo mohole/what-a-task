@@ -28,19 +28,33 @@ export default class List extends React.Component{
         if(this.state.annunci){
     		const items = this.state.annunci.map((e,i) => {
     		return(
+                
                 <section key={i}>
-                    <Userbar userId={e.author} category={e.tags[0]} goToPage={this.props.goToPage.bind(this)} />
-        			<a href="#" onClick={()=>{this.props.goToPage('Single|'+e.id)}} data-item-id={e.id}>
-        				<div className="mui-container">
-        				  <div className="mui-row">
-                            <Imgblock mediaId={e.featured_media} />
-        					<div className="mui-col-xs-12">
-        					  <h4><strong>{e.title.rendered}</strong></h4>
-        					  <p>{e.content.rendered}</p>
-        					</div>
-        				  </div>
-        				</div>
-        			</a>
+                    <article className="container-annuncio">
+                        <div className="mui-container">
+                            <div className="mui-row">
+                
+                                <Userbar userId={e.author} category={e.tags[0]} goToPage={this.props.goToPage.bind(this)} />
+        			            <a href="#" onClick={()=>{this.props.goToPage('Single|'+e.id)}} data-item-id={e.id}>
+                
+                                <div className="mui-col-xs-12 img-annuncio">
+                                    <Imgblock mediaId={e.featured_media} />
+                                </div>
+                              
+                                <div className="mui-col-xs-12">
+                                    <span className="titolo-annuncio">{e.title.rendered}</span>
+                                    <p className="descrizione-annuncio">{e.content.rendered}</p>
+        				        </div>
+                              
+        			            </a>
+                            </div>      
+                        </div>          
+                    </article>
+                                    
+                    <div className="mui-container">
+                        <div className="hr"></div>
+                    </div>     
+                        
                 </section>
     		)
     		});
