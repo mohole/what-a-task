@@ -217,7 +217,7 @@ export default class NewItem extends React.Component{
                   </div>
                   <div className="mui-select">
                     <select name="" id="ann_category" value={this.state.selectedCat} onChange={this.getCat.bind(this)}>
-                    <option value="0"></option>
+                    <option value="0">Seleziona categoria</option>
                         {catList}
                     </select>
                     <label>Categoria</label>
