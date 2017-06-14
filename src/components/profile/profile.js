@@ -96,7 +96,7 @@ export default class Profile extends React.Component {
                     goToPage={this.props.goToPage.bind(this)}
                 />)
         } else {
-            if (this.state.image_id != '') {
+            if (this.state.first_name != '') {
                 return (
                     <section>
                         <div className="mui-container">
