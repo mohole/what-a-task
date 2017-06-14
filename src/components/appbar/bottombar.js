@@ -18,7 +18,7 @@ export default class Bottombar extends React.Component{
 	}
 	render(){
 		if(this.state.userSearchActive){
-			var userSearch = <UserSearchBar/>
+			var userSearch = <UserSearchBar searchUser={this.props.searchUser}/>
 		}
         return(
         <section>

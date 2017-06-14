@@ -104,6 +104,11 @@ class WAT_Backend{
 		return fetch(`${this.url}/annunci${searchString}`)
           .then(this._parseRaw)
 	}
+    searchUser(searchTerm){
+        console.log(searchTerm);
+        return fetch(`${this.url}/users/?search=${searchTerm}`)
+            .then(this._parseRaw)
+    }
   	getAnnuncio(postId){
   		return fetch(`${this.url}/annunci/${postId}`)
           .then(this._parseRaw)
