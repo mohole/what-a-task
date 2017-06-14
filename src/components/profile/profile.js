@@ -76,48 +76,63 @@ export default class Profile extends React.Component {
 		console.log('WillReceiveProps - IO')
     }
 
-    render() {
+    render()                       
+{
         let btnEdit = '';
+        
         if (this.state.isEditable) {
-            btnEdit = <button onClick={this.editProfile.bind(this)} className="mui-btn mui-btn--fab mui-btn--primary">+</button>;
+            btnEdit = <button onClick={this.editProfile.bind(this)} className="button-modify mui-btn mui-btn--flat"><i className="icon-big ion-edit">{btnEdit}</i></button>;
         }
 
         if (this.state.editActive && this.state.isEditable) {
-            return (<ModifyProfile
-                    profileId={localStorage.getItem('user_id')}
-                    first_name={this.state.first_name}
-                    last_name={this.state.last_name}
-                    image_id={this.state.image_id}
-                    email={this.state.email}
-                    description={this.state.description}
-                    scuola={this.state.scuola}
-                    listaScuole={this.props.listaScuole}
-                    undo={this.undo.bind(this)}
-                    goToPage={this.props.goToPage.bind(this)}
-                />)
+            return (<ModifyProfile profileId={localStorage.getItem('user_id')} first_name={this.state.first_name} last_name={this.state.last_name} avatar_urls={this.props.media_id} email={this.state.email} description={this.state.description} undo={this.editProfile.bind(this)}/>)
         } else {
-            if (this.state.first_name != '') {
+            if (this.state.image_id != '') {
                 return (
-                    <section>
-                        <div className="mui-container">
-                            <div className="mui-row">
-                                <div className="mui-col-xs-12">
-                                    <Imgblock mediaId={this.state.image_id}/>
-                                </div>
-                                <div className="mui-col-xs-12">
-                                    <h1>{this.state.first_name} {this.state.last_name}</h1>
-                                </div>
-                                <div className="mui-col-xs-12">
-                                    <p>Mail: {this.state.email}</p>
-                                    <p>Descrizione: {this.state.description}</p>
-                                    <p>Ruolo: {this.getRuolo()}</p>
-                                </div>
-                                <div className="mui-col-xs-12">
-                                    {btnEdit}
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+<section>                    
+<section>
+          <div className="poster-utente">
+                    <Imgblock mediaId={this.state.image_id}/>
+            <div className="mui-container">  
+              <div className="mui-row">
+                  <button id="btn-edit" className="button-modify mui-btn mui-btn--flat">
+                      {btnEdit}
+                      <i className="icon-big ion-edit"></i>
+                  </button>
+              </div>
+            </div>
+          </div>
+</section>
+                    
+<section>
+        <div className="mui-container">
+          <div className="mui-row">
+            <div className="mui-col-xs-12">
+              <div className="info-profilo">
+                <span className="span-block my-span">Nome e Cognome</span>
+                <span className="span-block">{this.state.first_name} {this.state.last_name}</span>
+              </div>
+              <div className="hr" />
+              <div className="info-profilo">
+                <span className="span-block my-span">Email</span>
+                <span className="span-block">{this.state.email}</span>
+              </div>
+              <div className="hr" />
+              <div className="info-profilo">
+                <span className="span-block my-span">Ruolo</span>
+                <span className="span-block">{this.getRuolo()}</span>
+              </div>
+              <div className="hr" />
+              <div className="info-profilo">
+                <span className="span-block my-span">Descrizione</span>
+                <span className="span-block">{this.state.description}</span>
+              </div>
+                    
+            </div>
+          </div>
+        </div>
+</section>
+</section>                    
                 )
             } else {
                 return (<Spinner/>)

@@ -196,6 +196,12 @@ body{
     top: 10px;
     right: 0px;
   }
+  #btn-edit{
+    position: absolute;
+    top: 50px;
+    right: 5px;
+    background-color: rgba(0,0,0,0.5);
+  }
   .info-utente{
     position: absolute;
     top: 20px;
