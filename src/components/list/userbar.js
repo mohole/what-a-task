@@ -29,21 +29,23 @@ export default class Userbar extends React.Component{
         if(this.state.name!=''){
             return(
                 <section>
-                
+
                     <div className="mui-col-xs-2">
                         <a href="#"  onClick={()=>{this.props.goToPage('Profile|'+this.props.userId)}}>
                             <div className="img-utente">
                                 <Imgblock mediaId={this.state.image} />
                             </div>
-                        </a>        
+                        </a>
                     </div>
 
                     <div className="mui-col-xs-10">
-                        <span className="nome-utente">{this.state.name}</span>
+                        <a href="#"  onClick={()=>{this.props.goToPage('Profile|'+this.props.userId)}}>
+                            <span className="nome-utente">{this.state.name}</span>
+                        </a>
                         <span className="corso-utente">{this.state.currentCat}</span>
-                    </div> 
-                        
-                </section>    
+                    </div>
+
+                </section>
             )
         } else {
             return(

@@ -194,7 +194,7 @@ export default class ModifyProfile extends React.Component{
                           </div>
                         </div>
                         <button type="button" onClick={this.submitForm.bind(this)} className="my-button mui-col-xs-12 mui-btn mui-btn--danger">MODIFICA</button>
-                        <button type="button" onClick={this.props.undo} className="mui-btn mui-btn--fab mui-btn--primary">back</button>
+                        <button type="button" onClick={this.props.undo} className="my-button mui-col-xs-12 mui-btn mui-btn--danger">ANNULLA</button>
 
                       </form>
         						</div>
