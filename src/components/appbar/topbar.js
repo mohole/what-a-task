@@ -29,13 +29,18 @@ export default class Topbar extends React.Component{
 		if(this.state.searchIsActive){
 			var topSearchBar = <ItemSearchBar categoryList={this.state.postCategory}/>
 		}
+		let btnTop;
+		if(this.props.pageNow=='List'){
+			btnTop= <button onClick={()=>{this.props.goToPage('NewItem')}} className="top-bar-button mui-btn mui-btn--small mui-btn mui-btn--fab"><i className="icon ion-ios-plus-empty"></i></button>
+		}else{
+			btnTop = <button onClick={()=>{this.props.goToPage(this.props.backTo)}} className="mui-btn mui-btn--flat"><i className="icon-big ion-ios-arrow-left"></i></button>
+		}
         return(
             <section>
 			<div className="top-bar-wrapper">
 				<div className="top-inner">
 					<div className="mui-col-xs-4">
-						<button onClick={()=>{this.props.goToPage('NewItem')}} className="top-bar-button mui-btn mui-btn--small mui-btn mui-btn--fab"><i className="icon ion-ios-plus-empty"></i></button>
-						<button onClick={()=>{this.props.goToPage('List')}} className="mui-btn mui-btn--flat"><i className="icon-big ion-ios-arrow-left"></i></button>
+						{btnTop}	
 					</div>
 					<div className="main-title mui-col-xs-4">
 					  <span>WHAT A TASK</span>

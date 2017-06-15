@@ -3,7 +3,6 @@ import React from 'react';
 
 import Login from './login/login';
 import List from './list/list';
-//import {Annunci} from './data.js';
 import {Backend} from './../backend';
 import {Store} from './../store';
 import Single from './single-item/single-item';
@@ -56,7 +55,8 @@ export default class App extends React.Component{
 		this.state={
 			logged:true,
 			activePage:'List',
-      		annunci:[],
+			lastPage:'List',
+      		//annunci:[],
 			postCategory:[]
 		}
 	}
@@ -84,7 +84,8 @@ export default class App extends React.Component{
 		this.setState({
 			logged:true,
 			activePage:'List',
-      		annunci:[],
+			lastPage:'List',
+      		//annunci:[],
 			postCategory:[]
 		})
 		console.log('load app state');
@@ -92,6 +93,7 @@ export default class App extends React.Component{
 
 	goToPage(page){
 		this.setState({
+			lastPage:this.state.activePage,
 			activePage: page
 		})
 		console.log(page);
@@ -173,7 +175,7 @@ export default class App extends React.Component{
             }
 			return(
 				<section>
-					<Topbar goToPage={this.goToPage.bind(this)}/>
+					<Topbar goToPage={this.goToPage.bind(this)} backTo={this.state.lastPage} pageNow={this.state.activePage}/>
 					{contentElem}
 					<Bottombar goToPage={this.goToPage.bind(this)} searchUser={this.searchUser.bind(this)}/>
 				</section>
