@@ -3,7 +3,6 @@ import React from 'react';
 
 import Login from './login/login';
 import List from './list/list';
-//import {Annunci} from './data.js';
 import {Backend} from './../backend';
 import {Store} from './../store';
 import Single from './single-item/single-item';
@@ -15,6 +14,7 @@ import Bottombar from './appbar/bottombar';
 import Profile from './profile/profile';
 import ModifyProfile from './profile/modify_profile';
 import Settings from './settings/settings';
+import UserList from './user-list/user-list';
 
 export default class App extends React.Component{
     constructor(){
@@ -55,7 +55,8 @@ export default class App extends React.Component{
 		this.state={
 			logged:true,
 			activePage:'List',
-      		annunci:[],
+			lastPage:'List',
+      		//annunci:[],
 			postCategory:[]
 		}
 	}
@@ -83,7 +84,8 @@ export default class App extends React.Component{
 		this.setState({
 			logged:true,
 			activePage:'List',
-      		annunci:[],
+			lastPage:'List',
+      		//annunci:[],
 			postCategory:[]
 		})
 		console.log('load app state');
@@ -91,6 +93,7 @@ export default class App extends React.Component{
 
 	goToPage(page){
 		this.setState({
+			lastPage:this.state.activePage,
 			activePage: page
 		})
 		console.log(page);
@@ -104,7 +107,17 @@ export default class App extends React.Component{
       activePage: 'Login'
     })
   }
-
+	searchUser(searchTerm){
+		Backend.searchUser(searchTerm)
+		.then((data)=>{
+			console.log(data);
+			this.setState({
+				userListSearch: data,
+				goSearch: true,
+				activePage: 'UserList'
+			});
+        })
+	}
 	render(){
 		if(this.state.logged){
 			var contentElem = <Spinner/>
@@ -133,6 +146,10 @@ export default class App extends React.Component{
                 const user = this.state.activePage.split('|');
                 contentElem = <Profile goToPage={this.goToPage.bind(this)} profileId={parseInt(user[1])} currentId={localStorage.getItem('user_id')}/>
             }
+			if(this.state.activePage=='UserList'){
+                contentElem= <Spinner/>
+                contentElem = <UserList goToPage={this.goToPage.bind(this)} usersList={this.state.userListSearch}/>
+            }
 			if(this.state.activePage=='Profile'){
 				contentElem= <Spinner/>
 				Backend.getCategory()
@@ -158,9 +175,9 @@ export default class App extends React.Component{
             }
 			return(
 				<section>
-					<Topbar goToPage={this.goToPage.bind(this)}/>
+					<Topbar goToPage={this.goToPage.bind(this)} backTo={this.state.lastPage} pageNow={this.state.activePage}/>
 					{contentElem}
-					<Bottombar goToPage={this.goToPage.bind(this)} />
+					<Bottombar goToPage={this.goToPage.bind(this)} searchUser={this.searchUser.bind(this)}/>
 				</section>
 			)
 		}else{

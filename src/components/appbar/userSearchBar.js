@@ -1,13 +1,12 @@
 'use strict';
 import React from 'react';
-
+import {Backend} from './../../backend';
 export default class UserSearchBar extends React.Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         console.log('item search started');
 		this.state={
-			searchTerm:'',
-			searchArgs:{}
+			searchTerm:''
 		}
     }
 	writing(evt){
@@ -19,11 +18,7 @@ export default class UserSearchBar extends React.Component{
         });
     }
 	searchUser(){
-		this.setState({
-			searchArgs:{
-				search:this.state.searchTerm
-			}
-		})
+		this.props.searchUser(this.state.searchTerm);
 	}
 	render(){
         return(
@@ -36,7 +31,7 @@ export default class UserSearchBar extends React.Component{
 						<div className="mui-textfield">
 						 <input name="searchTerm" type="text" placeholder="chi cerchi" value={this.state.searchTerm} onChange={this.writing.bind(this)}/>
 						</div>
-						<button className="mui-btn mui-col-xs-12" onClick={this.searchUser.bind(this)}>CERCA</button>
+						<button className="mui-btn mui-col-xs-12" onClick={this.searchUser.bind(this)} type="button">CERCA</button>
 					  </form>
 					</div>
 

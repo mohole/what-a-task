@@ -37,7 +37,6 @@ export default class Userbar extends React.Component{
                             </div>
                         </a>
                     </div>
-
                     <div className="mui-col-xs-10">
                         <a href="#"  onClick={()=>{this.props.goToPage('Profile|'+this.props.userId)}}>
                             <span className="nome-utente">{this.state.name}</span>
