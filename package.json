@@ -1,0 +1,38 @@
+{
+  "name": "what-a-task",
+  "version": "1.0.0",
+  "description": "Mobile App Workshop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run server & webpack -w",
+    "server": "http-server ./dist -s",
+    "webpack": "webpack -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://MatteoBosi@github.com/mohole/what-a-task.git"
+  },
+  "author": "Tiziano Borgato <tiziano.borgato@gmail.com>,Matteo Bosi <matteo.bosi95@hotmail.it>,Martina Donati <martina.donati01@gmail.com>,Rebecca Guzzo <rebiguzzo@gmail.com>,Giovanni Pignataro <giovanni.pignataro1@gmail.com>,Sachin Tempini <sachin.tempini@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mohole/what-a-task/issues"
+  },
+  "homepage": "https://github.com/mohole/what-a-task#readme",
+  "dependencies": {
+    "ionicons": "^2.0.1",
+    "muicss": "^0.9.16",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "http-server": "^0.9.0",
+    "uglifyjs-webpack-plugin": "^0.4.3",
+    "webpack": "^2.3.3",
+    "webpack-notifier": "^1.5.0"
+  }
+}
