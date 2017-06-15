@@ -31,22 +31,22 @@ export default class Topbar extends React.Component{
 		}
 		let btnTop;
 		if(this.props.pageNow=='List'){
-			btnTop= <button onClick={()=>{this.props.goToPage('NewItem')}} className="top-bar-button mui-btn mui-btn--small mui-btn mui-btn--fab"><i className="icon ion-ios-plus-empty"></i></button>
+			btnTop= <button onClick={()=>{this.props.goToPage('NewItem')}} className="top-bar-button mui-btn mui-btn--small mui-btn mui-btn--fab"><i className="icon ion-plus-round"></i></button>
 		}else{
-			btnTop = <button onClick={()=>{this.props.goToPage(this.props.backTo)}} className="mui-btn mui-btn--flat"><i className="icon-big ion-ios-arrow-left"></i></button>
+			btnTop = <button onClick={()=>{this.props.goToPage(this.props.backTo)}} className="top-bar-button mui-btn mui-btn--small mui-btn mui-btn--fab"><i className="icon-big ion-ios-arrow-left"></i></button>
 		}
         return(
             <section>
 			<div className="top-bar-wrapper">
 				<div className="top-inner">
-					<div className="mui-col-xs-4">
-						{btnTop}	
+					<div className="mui-col-xs-3">
+						{btnTop}
 					</div>
-					<div className="main-title mui-col-xs-4">
+					<div className="main-title mui-col-xs-6">
 					  <span>WHAT A TASK</span>
 					</div>
-					<div className="mui-col-xs-4 align-right">
-						<button id="search" className="mui-btn mui-btn--flat" onClick={this.activeSearch.bind(this)}><i className="icon ion-ios-search"></i></button>
+					<div className="mui-col-xs-3 align-right">
+						<button id="search" className="top-bar-button mui-btn mui-btn--small mui-btn mui-btn--fab" onClick={this.activeSearch.bind(this)}><i className="icon ion-ios-search"></i></button>
 					</div>
 				</div>
 			</div>
@@ -55,18 +55,3 @@ export default class Topbar extends React.Component{
         )
     }
 }
-    <section>
-  			<div class="top-bar-wrapper">
-  				<div class="top-inner">
-  					<div class="mui-col-xs-4">
-  						<button class="top-bar-button mui-btn mui-btn--small mui-btn mui-btn--fab"><i class="icon ion-ios-plus-empty"></i></button>
-  					</div>
-  					<div class="main-title mui-col-xs-4">
-              <span>WHAT A TASK</span>
-            </div>
-  					<div class="mui-col-xs-4 align-right">
-  						<button id="search" class="mui-btn mui-btn--flat"><i class="icon ion-ios-search"></i></button>
-  					</div>
-  				</div>
-  			</div>
-  			</section>
