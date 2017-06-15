@@ -55,18 +55,3 @@ export default class Topbar extends React.Component{
         )
     }
 }
-    <section>
-  			<div class="top-bar-wrapper">
-  				<div class="top-inner">
-  					<div class="mui-col-xs-4">
-  						<button class="top-bar-button mui-btn mui-btn--small mui-btn mui-btn--fab"><i class="icon ion-ios-plus-empty"></i></button>
-  					</div>
-  					<div class="main-title mui-col-xs-4">
-              <span>WHAT A TASK</span>
-            </div>
-  					<div class="mui-col-xs-4 align-right">
-  						<button id="search" class="mui-btn mui-btn--flat"><i class="icon ion-ios-search"></i></button>
-  					</div>
-  				</div>
-  			</div>
-  			</section>

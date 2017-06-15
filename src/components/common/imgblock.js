@@ -31,7 +31,7 @@ export default class Imgblock extends React.Component{
         if(this.props.mediaId!=0){
             Backend.getMedia(this.props.mediaId).then((data)=>{
                 this.setState({
-                    src:data.guid.rendered
+                    src:data.media_details.sizes.watSize.source_url
                 })
             })
         } else {
@@ -46,7 +46,7 @@ export default class Imgblock extends React.Component{
         if(this.props.mediaId!=0){
             Backend.getMedia(this.props.mediaId).then((data)=>{
                 this.setState({
-                    src:data.guid.rendered
+                    src:data.media_details.sizes.watSize.source_url
                 })
             })
         } else {

@@ -75,7 +75,7 @@ componentWillMount(){
         });
 
         Backend.getMedia(this.state.annuncio.featured_media).then((data)=>{
-            this.setState({imageUrl:data.guid.rendered})
+            this.setState({imageUrl:data.media_details.sizes.watSize.source_url})
         });
 }
     render() {
