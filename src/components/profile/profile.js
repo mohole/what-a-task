@@ -81,7 +81,7 @@ export default class Profile extends React.Component {
         let btnEdit = '';
         
         if (this.state.isEditable) {
-            btnEdit = <button onClick={this.editProfile.bind(this)} className="button-modify mui-btn mui-btn--flat"><i className="icon-big ion-edit">{btnEdit}</i></button>;
+            btnEdit = <button onClick={this.editProfile.bind(this)} className="button-modify mui-btn mui-btn--flat"><i className="icon-big ion-edit"></i></button>;
         }
 
         if (this.state.editActive && this.state.isEditable) {
@@ -95,10 +95,7 @@ export default class Profile extends React.Component {
                     <Imgblock mediaId={this.state.image_id}/>
             <div className="mui-container">  
               <div className="mui-row">
-                  <button id="btn-edit" className="button-modify mui-btn mui-btn--flat">
-                      {btnEdit}
-                      <i className="icon-big ion-edit"></i>
-                  </button>
+                    {btnEdit}
               </div>
             </div>
           </div>
