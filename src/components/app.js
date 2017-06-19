@@ -150,7 +150,7 @@ export default class App extends React.Component{
                 contentElem= <Spinner/>
                 contentElem = <UserList goToPage={this.goToPage.bind(this)} usersList={this.state.userListSearch}/>
             }
-			if(this.state.activePage=='Profile'){
+			/*if(this.state.activePage=='Profile'){
 				contentElem= <Spinner/>
 				Backend.getCategory()
 				.then((data)=>{
@@ -158,8 +158,8 @@ export default class App extends React.Component{
 						postCategory:data
 					})
 				})
-				contentElem = <Profile listaScuole={this.state.postCategory} goToPage={this.goToPage.bind(this)} />
-			}
+				contentElem = <Profile listaScuole={this.state.postCategory} goToPage={this.goToPage.bind(this)} profileId={localStorage.getItem('user_id')}/>
+			}*/
       if(this.state.activePage=='Settings'){
 				contentElem= <Spinner/>
 				contentElem = <Settings

@@ -30,9 +30,15 @@ export default class Imgblock extends React.Component{
     componentDidMount(){
         if(this.props.mediaId!=0){
             Backend.getMedia(this.props.mediaId).then((data)=>{
-                this.setState({
-                    src:data.media_details.sizes.watSize.source_url
-                })
+                if(this.props.elem&&this.props.elem=="UserBar"){
+                    this.setState({
+                        src:data.media_details.sizes.thumbnail.source_url
+                    })
+                }else{
+                    this.setState({
+                        src:data.media_details.sizes.watSize.source_url
+                    })
+                }
             })
         } else {
             this.setState({
@@ -41,13 +47,42 @@ export default class Imgblock extends React.Component{
         }
         console.log('imgblock componentDidMount');
     }
-
-    shouldComponentUpdate(){
-        if(this.props.mediaId!=0){
-            Backend.getMedia(this.props.mediaId).then((data)=>{
-                this.setState({
-                    src:data.media_details.sizes.watSize.source_url
-                })
+componentWillReceiveProps(nextProps) {
+    //console.log(nextProps);
+    if (nextProps.mediaId!=this.props.mediaId){
+    if(nextProps.mediaId!=0){
+            Backend.getMedia(nextProps.mediaId).then((data)=>{
+                if(nextProps.elem&&nextProps.elem=="UserBar"){
+                    this.setState({
+                        src:data.media_details.sizes.thumbnail.source_url
+                    })
+                }else{
+                    this.setState({
+                        src:data.media_details.sizes.watSize.source_url
+                    })
+                }
+            })
+        } else {
+            this.setState({
+                src:'http://lorempixel.com/200/200'
+            })
+        }
+        console.log('imgblock reciveProps');
+    }
+}
+   /* shouldComponentUpdate(nextProps,nextState){
+        console.log(nextProps);
+        if(nextProps.mediaId!=0){
+            Backend.getMedia(nextProps.mediaId).then((data)=>{
+                if(nextProps.elem&&nextProps.elem=="UserBar"){
+                    this.setState({
+                        src:data.media_details.sizes.thumbnail.source_url
+                    })
+                }else{
+                    this.setState({
+                        src:data.media_details.sizes.watSize.source_url
+                    })
+                }
             })
         } else {
             this.setState({
@@ -56,7 +91,7 @@ export default class Imgblock extends React.Component{
         }
         console.log('imgblock shouldComponentUpdate');
         return true;
-    }
+    }*/
 
 
     render(){

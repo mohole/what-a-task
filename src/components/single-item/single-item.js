@@ -3,6 +3,7 @@ import React from 'react';
 import {Backend} from './../../backend';
 import EditItem from './edit-item';
 import Spinner from './../common/spinner';
+import Imgblock from './../common/imgblock';
 
 export default class Single extends React.Component {
     constructor(props) {
@@ -74,9 +75,9 @@ componentWillMount(){
             this.setState({currentCat: data.name})
         });
 
-        Backend.getMedia(this.state.annuncio.featured_media).then((data)=>{
+        /*Backend.getMedia(this.state.annuncio.featured_media).then((data)=>{
             this.setState({imageUrl:data.media_details.sizes.watSize.source_url})
-        });
+        });*/
 }
     render() {
             console.log('single');
@@ -135,7 +136,7 @@ componentWillMount(){
                       <div>
                         <section>
                           <div className="poster-annuncio">
-                          <img src={this.state.imageUrl} alt="" />
+                            <Imgblock mediaId={this.state.annuncio.featured_media}/>
                             <div className="mui-container">
                               <div className="mui-row">
                                 <div className="info-utente">
