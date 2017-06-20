@@ -176,7 +176,7 @@ export default class App extends React.Component{
 			return(
 				<section>
 					<Topbar goToPage={this.goToPage.bind(this)} backTo={this.state.lastPage} pageNow={this.state.activePage}/>
-					{contentElem}
+					<div className="container">{contentElem}</div>
 					<Bottombar goToPage={this.goToPage.bind(this)} searchUser={this.searchUser.bind(this)}/>
 				</section>
 			)
