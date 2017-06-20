@@ -19,11 +19,17 @@ export default class Profile extends React.Component {
             description: '',
             scuola: ''
         }
+        Backend.getCategory()
+				.then((data)=>{
+					this.setState({
+						listaScuole:data
+					})
+				})
     }
 
     undo(){
         this.editProfile();
-        this.props.goToPage('Profile');
+        this.props.goToPage('Profile|'+localStorage.getItem('user_id'));
     }
 
     editProfile() {
@@ -46,7 +52,7 @@ export default class Profile extends React.Component {
 		console.log(this.props.profileId+' - '+this.props.currentId);
         if (this.props.profileId!=undefined && this.props.currentId!=undefined && this.props.profileId != this.props.currentId) {
             Backend.getUserInfo(this.props.profileId).then((data) => {
-                this.setState({first_name: data.acf.user_firstname, last_name: data.acf.user_lastname, image_id: data.acf.user_image, email: data.acf.user_email, scuola:data.acf.user_scuola, description: data.description})
+                this.setState({first_name: data.acf.user_firstname, last_name: data.acf.user_lastname, image_id: data.acf.user_image, email: data.acf.user_email, scuola:data.acf.user_scuola, description: data.description,role:data.acf.user_role})
             })
         } else {
             this.setState({
@@ -54,26 +60,34 @@ export default class Profile extends React.Component {
                 first_name: localStorage.getItem('user_firstName'),
                 last_name: localStorage.getItem('user_lastName'),
                 email: localStorage.getItem('user_email'),
-				role:localStorage.getItem('user_role'),
+                role:localStorage.getItem('user_role'),
                 description: localStorage.getItem('user_description'),
-				isEditable:true
+                scuola:localStorage.getItem('user_scuola'),
+                isEditable:true
             })
 			console.log('io');
         }
     }
 
-    componentWillReceiveProps() {
-        this.setState({
-                image_id: localStorage.getItem('user_image'),
-                first_name: localStorage.getItem('user_firstName'),
-                last_name: localStorage.getItem('user_lastName'),
-                email: localStorage.getItem('user_email'),
-				role:localStorage.getItem('user_role'),
-                description: localStorage.getItem('user_description'),
-                scuola:localStorage.getItem('user_scuola'),
-				isEditable:true
-            })
-		console.log('WillReceiveProps - IO')
+    componentWillReceiveProps(nextProps) {
+            if(nextProps.currentId==nextProps.profileId){
+                this.setState({
+                        image_id: localStorage.getItem('user_image'),
+                        first_name: localStorage.getItem('user_firstName'),
+                        last_name: localStorage.getItem('user_lastName'),
+                        email: localStorage.getItem('user_email'),
+                        role:localStorage.getItem('user_role'),
+                        description: localStorage.getItem('user_description'),
+                        scuola:localStorage.getItem('user_scuola'),
+                        isEditable:true
+                    })
+                console.log('WillReceiveProps - IO')
+            }else{
+               Backend.getUserInfo(nextProps.profileId).then((data) => {
+                    this.setState({first_name: data.acf.user_firstname, last_name: data.acf.user_lastname, image_id: data.acf.user_image, email: data.acf.user_email, scuola:data.acf.user_scuola, description: data.description,role:data.acf.user_role})
+                }) 
+            }
+        
     }
 
     render() {
@@ -82,7 +96,7 @@ export default class Profile extends React.Component {
             btnEdit = <button onClick={this.editProfile.bind(this)} className="button-modify mui-btn mui-btn--flat"><i className="icon-big ion-edit"></i></button>;
         }
 
-        if (this.state.editActive && this.state.isEditable) {
+        if (this.state.editActive && this.state.isEditable && this.state.listaScuole) {
             return (<ModifyProfile
                     profileId={localStorage.getItem('user_id')}
                     first_name={this.state.first_name}
@@ -91,7 +105,7 @@ export default class Profile extends React.Component {
                     email={this.state.email}
                     description={this.state.description}
                     scuola={this.state.scuola}
-                    listaScuole={this.props.listaScuole}
+                    listaScuole={this.state.listaScuole}
                     undo={this.undo.bind(this)}
                     goToPage={this.props.goToPage.bind(this)}
                 />)

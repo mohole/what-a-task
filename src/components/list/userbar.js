@@ -33,7 +33,7 @@ export default class Userbar extends React.Component{
                     <div className="mui-col-xs-2">
                         <a href="#"  onClick={()=>{this.props.goToPage('Profile|'+this.props.userId)}}>
                             <div className="img-utente">
-                                <Imgblock mediaId={this.state.image} />
+                                <Imgblock mediaId={this.state.image} elem="UserBar"/>
                             </div>
                         </a>
                     </div>
