@@ -168,11 +168,11 @@ accepted
   text-align: center;
 	padding: 0!important;
 }
-.mui-btn--fab:hover{
-  color: #ffffff;
+.button-plus:hover, .button-plus:focus{
+  color: #ffffff !important;
 }
-.mui-btn--fab:focus{
-  color: #ffffff;
+.mui-textfield .error{
+  border-bottom: 1px solid red;
 }
 .icon{
     font-size: 25px;

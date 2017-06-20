@@ -31,7 +31,7 @@ export default class Topbar extends React.Component{
 		}
 		let btnTop;
 		if(this.props.pageNow=='List'){
-			btnTop= <button onClick={()=>{this.props.goToPage('NewItem')}} className="top-bar-button mui-btn mui-btn--small mui-btn mui-btn--fab"><i className="icon ion-plus-round"></i></button>
+			btnTop= <button onClick={()=>{this.props.goToPage('NewItem')}} className="top-bar-button mui-btn mui-btn--small mui-btn mui-btn--fab button-plus"><i className="icon-big ion-plus-round"></i></button>
 		}else{
 			btnTop = <button onClick={()=>{this.props.goToPage(this.props.backTo)}} className="top-bar-button mui-btn mui-btn--small mui-btn mui-btn--fab"><i className="icon-big ion-ios-arrow-left"></i></button>
 		}

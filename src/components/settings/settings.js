@@ -36,7 +36,7 @@ export default class Settings extends React.Component{
             </div>
 
             <div className="hr"></div>
-
+              
             <a href="#" className="link-logout" onClick={this.props.logout}>
             <div className="info-profilo">
             <span>Logout</span><i className="ion-power"></i>

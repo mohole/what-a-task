@@ -159,11 +159,11 @@ export default class NewItem extends React.Component{
                     </select>
                     <label>Categoria</label>
                   </div>
-                  <div className="mui-textfield">
+                  <div className={this.state.ClassNameTitle}>
                      <input type="text" placeholder="Titolo" value={this.state.title} onChange={this.writing.bind(this)} name="title" />
                      <label>Titolo annuncio</label>
                    </div>
-                   <div className="mui-textfield">
+                   <div className={this.state.ClassNameText}>
                      <textarea name="" id="" cols="30" rows="10" value={this.state.text} onChange={this.writing.bind(this)} name="text"></textarea>
                      <label>Descrizione</label>
                    </div>
