@@ -52,7 +52,7 @@ export default class Profile extends React.Component {
 		console.log(this.props.profileId+' - '+this.props.currentId);
         if (this.props.profileId!=undefined && this.props.currentId!=undefined && this.props.profileId != this.props.currentId) {
             Backend.getUserInfo(this.props.profileId).then((data) => {
-                this.setState({first_name: data.acf.user_firstname, last_name: data.acf.user_lastname, image_id: data.acf.user_image, email: data.acf.user_email, scuola:data.acf.user_scuola, description: data.description})
+                this.setState({first_name: data.acf.user_firstname, last_name: data.acf.user_lastname, image_id: data.acf.user_image, email: data.acf.user_email, scuola:data.acf.user_scuola, description: data.description,role:data.acf.user_role})
             })
         } else {
             this.setState({
@@ -84,7 +84,7 @@ export default class Profile extends React.Component {
                 console.log('WillReceiveProps - IO')
             }else{
                Backend.getUserInfo(nextProps.profileId).then((data) => {
-                    this.setState({first_name: data.acf.user_firstname, last_name: data.acf.user_lastname, image_id: data.acf.user_image, email: data.acf.user_email, scuola:data.acf.user_scuola, description: data.description})
+                    this.setState({first_name: data.acf.user_firstname, last_name: data.acf.user_lastname, image_id: data.acf.user_image, email: data.acf.user_email, scuola:data.acf.user_scuola, description: data.description,role:data.acf.user_role})
                 }) 
             }
         
