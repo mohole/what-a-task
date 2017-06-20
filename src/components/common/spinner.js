@@ -8,8 +8,8 @@ export default class Spinner extends React.Component{
     }
 	render(){
 		return(
-			<section className="spinner"><i className="fa fa-spinner fa-spin"></i></section>
+			<section className="spinner"><div className="vertical-center rotating inner-spinner"><i className="ion-load-c"></i></div></section>
 		)
-		
+
     }
 }
