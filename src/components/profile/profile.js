@@ -24,7 +24,15 @@ export default class Profile extends React.Component {
 					this.setState({
 						listaScuole:data
 					})
-				})
+				}).then(()=>{
+                     this.state.listaScuole.map((e,i) => {
+                        if(e.id==this.state.scuola)
+                        this.setState({
+                            textScuola:e.name
+                        })
+                    })
+                })
+       
     }
 
     undo(){
@@ -105,6 +113,7 @@ export default class Profile extends React.Component {
                     email={this.state.email}
                     description={this.state.description}
                     scuola={this.state.scuola}
+                    ruolo={this.state.role}
                     listaScuole={this.state.listaScuole}
                     undo={this.undo.bind(this)}
                     goToPage={this.props.goToPage.bind(this)}
@@ -142,6 +151,11 @@ export default class Profile extends React.Component {
               <div className="info-profilo">
                 <span className="span-block my-span">Ruolo</span>
                 <span className="span-block">{this.getRuolo()}</span>
+              </div>
+              <div className="hr" />
+              <div className="info-profilo">
+                <span className="span-block my-span">Corso</span>
+                <span className="span-block">{this.state.textScuola}</span>
               </div>
               <div className="hr" />
               <div className="info-profilo">
