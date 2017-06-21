@@ -61,7 +61,7 @@ export default class ItemSearchBar extends React.Component{
 							  <option value="3">Cerco</option>
 							  <option value="5">Offro</option>
 							</select>
-							<label>Tipologia dell'annuncio</label>
+							<label>Tipologia annuncio</label>
 						  </div>
 						  <div className="mui-select">
 							<select onChange={this.getCat.bind(this)}>
@@ -88,4 +88,3 @@ export default class ItemSearchBar extends React.Component{
 	}
     }
 }
-

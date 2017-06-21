@@ -11,13 +11,18 @@ export default class UserList extends React.Component{
 	render(){
 		if(this.state.usersList){
 			const items = this.state.usersList.map((e,i) => {
+        let hr= "";
+          if(this.state.usersList.length>1 && i!=this.state.usersList.length-1){
+            hr= <div className="hr"></div>
+          }
 				return(
-					<div key={i} >
-						<div className="mui-row">
+					<section key={i}>
+            <div className="container-user-list">
+              <div className="mui-row">
 							<div className="mui-col-xs-2">
 								<a href="#"  onClick={()=>{this.props.goToPage('Profile|'+e.id)}}>
 									<div className="img-utente">
-										<Imgblock mediaId={e.acf.user_image} />	
+										<Imgblock mediaId={e.acf.user_image} />
 									</div>
 								</a>
 							</div>
@@ -28,26 +33,25 @@ export default class UserList extends React.Component{
 								</a>
 								<span className="corso-utente"></span>
 							</div>
-						</div>
-					</div>
+						 </div>
+            </div>
+            {hr}
+          </section>
 				)
 			});
 			  return(
-				<section>
 					<div className="mui-container">
 						{items}
 					</div>
-				</section>
 			)
 		}else{
             return(
                 <div>
-                    <p>TEST</p>
+                  <section className="spinner"><div className="vertical-center rotating inner-spinner"><i className="ion-load-c"></i></div></section>
                 </div>
             )
         }
-		
-      
+
+
     }
 }
-

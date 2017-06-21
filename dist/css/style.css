@@ -67,10 +67,6 @@ accepted
     background: -webkit-linear-gradient(to right, #FFC371, #FF5F6D);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #FFC371, #FF5F6D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-.hr{
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
 .vertical-center{
     position: relative;
     top: 50%;
@@ -185,7 +181,7 @@ accepted
     color: #ffffff;
     font-size: 26px;
 }
-.container-annuncio{
+.container-annuncio, .container-user-list{
     padding: 30px 0 30px 0;
 }
 .img-utente img{
@@ -220,6 +216,8 @@ accepted
     color: #F67280;
 }
 .hr{
+    margin-top: 10px;
+    margin-bottom: 10px;
     height: 1px;
     background: #cccccc;
     width: 100%;
