@@ -8,7 +8,7 @@ L'app permette di registrarsi se in possesso di una mail mohole.it, è realizzat
 Autori: 
 - Matteo Bosi
 - Martina Donati
-- Tiziano Borgato
+- Tiziano Borgato<br>
 Hanno partecipato:
 - Giovanni Pignataro
 - Sachin Tempini
