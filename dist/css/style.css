@@ -235,18 +235,16 @@ accepted
   .poster-annuncio{
     position: relative;
     width: 100%;
-    height: 40vh;
-    background:#6C5B7B;
     margin-bottom: 20px;
   }
  .button-modify, .button-upload{
     position: absolute;
     top: 10px;
     right: 0px;
-    background-color: rgba(0,0,0,0.5) !important; 
+    background-color: rgba(0,0,0,0.5) !important;
   }
 .button-modify:hover{
-    background-color: rgba(0,0,0,0.5) !important; 
+    background-color: rgba(0,0,0,0.5) !important;
   }
   .info-utente{
     position: absolute;
