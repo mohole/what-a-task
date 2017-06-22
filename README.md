@@ -9,6 +9,7 @@ Autori:
 - Matteo Bosi
 - Martina Donati
 - Tiziano Borgato<br>
+<br>
 Hanno partecipato:
 - Giovanni Pignataro
 - Sachin Tempini
