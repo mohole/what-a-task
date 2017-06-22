@@ -94,7 +94,8 @@ componentWillMount(){
                         type={this.state.annuncio.categories}
                         selectedCat={this.state.annuncio.tags}
                         categoryList={this.state.postCategory}
-                        undo={this.undo.bind(this)} />
+                        undo={this.undo.bind(this)}
+                        goToPage={this.props.goToPage.bind(this)} />
                     )
                 } else {
                     return (

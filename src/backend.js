@@ -53,6 +53,21 @@ class WAT_Backend{
         })
         .then(this._parseRaw);
     }
+
+
+	deleteAnnuncio(id){
+        const del={
+            "status":"draft"
+        };
+        return fetch(`${this.url}/annunci/${id}`,
+        {
+            headers: this.headers,
+            method: "POST",
+            body: JSON.stringify(del)
+        })
+        .then(this._parseRaw);
+    }
+
 	updateProfile(id,updatedInfo){
         return fetch(`${this.url}/users/${id}`,
         {

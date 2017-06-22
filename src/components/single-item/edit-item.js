@@ -145,6 +145,16 @@ export default class EditItem extends React.Component{
     	}
     }
 
+    deleteThis(){
+        if (confirm('Sei sicuro di voler eliminare l\'annuncio?')) {
+            Backend.deleteAnnuncio(this.state.id)
+            .then(()=>{
+                console.log('DELETED');
+                this.props.goToPage('List');
+            })
+        }
+    }
+
      resetEditForm(){
         console.log('reset');
         this.setState({
@@ -244,6 +254,7 @@ postEditedItem(){
 								<button type="submit" className="mui-btn mui-btn--primary">Salva</button>
 								<button type="button" onClick={this.resetEditForm.bind(this)}  className="mui-btn mui-btn--danger">Pulisci</button>
 								<button type="button" onClick={this.props.undo} className="mui-btn mui-btn--danger">Annulla</button>
+								<button type="button" onClick={()=>{this.deleteThis()}} className="mui-btn mui-btn--danger">Elimina Annuncio</button>
 							</div>
 						</form>
 					</div>
