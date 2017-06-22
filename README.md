@@ -10,9 +10,9 @@ Sviluppatori:
 - Martina Donati
 - Tiziano Borgato<br>
 <br>
-Hanno partecipato:
-- Giovanni Pignataro
-- Sachin Tempini
-- Rebecca Guzzo
+Hanno partecipato:<br>
+- Giovanni Pignataro<br>
+- Sachin Tempini<br>
+- Rebecca Guzzo<br>
 con il supporto dei tutors Salvatore Laisa e Francesco Riggio, docenti della <a href="http://scuola.mohole.it">Scuola Mohole</a>, e la simpatia di Giuseppe Bonetti.
 
