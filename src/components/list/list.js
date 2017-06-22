@@ -27,6 +27,10 @@ export default class List extends React.Component{
     render(){
         if(this.state.annunci){
     		const items = this.state.annunci.map((e,i) => {
+          let hr= "";
+            if(this.state.annunci.length>1 && i!=this.state.annunci.length-1){
+              hr= <div className="hr"></div>
+            }
     		return(
 
                 <section key={i}>
@@ -52,7 +56,7 @@ export default class List extends React.Component{
                     </article>
 
                     <div className="mui-container">
-                        <div className="hr"></div>
+                        {hr}
                     </div>
 
                 </section>
