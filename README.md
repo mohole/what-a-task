@@ -5,7 +5,7 @@ Il progetto era di realizzare un'app di piccoli annunci Cerco/Offro interna alla
 
 L'app permette di registrarsi se in possesso di una mail mohole.it, è realizzata con tecnologie REST API (backend WordPress), React, JavaScript, Apache Cordova.
 
-Autori: 
+Sviluppatori: 
 - Matteo Bosi
 - Martina Donati
 - Tiziano Borgato<br>
