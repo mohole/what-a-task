@@ -22,7 +22,6 @@ export default class ModifyProfile extends React.Component{
         listaScuole: this.props.listaScuole,
         scuola: this.props.scuola
       }
-
     }
 
     modificaInfo(evt){
@@ -34,9 +33,11 @@ export default class ModifyProfile extends React.Component{
   }
 
   setScuola(evt){
+    console.log(this.state.scuola);
       this.setState({
-          scuola:parseInt(evt.target.value)
+          scuola:evt.target.value
       })
+      console.log(this.state.scuola);
   }
 
 
@@ -96,12 +97,13 @@ export default class ModifyProfile extends React.Component{
       }
       if(error==0){
           var acf={
+            "":false,
                 user_image:this.state.media_id,
-                user_role: this.state.role,
+                user_role: "2",
                 user_email: this.state.email,
                 user_firstname: this.state.first_name,
                 user_lastname: this.state.last_name,
-                user_scuola: this.state.scuola.toString()
+                user_scuola: this.state.scuola
           }
 
           const updatedProfile={
@@ -111,11 +113,12 @@ export default class ModifyProfile extends React.Component{
             description: this.state.description,
             acf:acf
           }
-          console.log('UPDATED PROFILE: '+updatedProfile);
+          console.log('UPDATED PROFILE: ');
 
           this.setState({
             updatedProfile:updatedProfile
           });
+          console.log(updatedProfile);
 
           localStorage.setItem('user_firstName',this.state.first_name);
           localStorage.setItem('user_lastName',this.state.last_name);
@@ -130,9 +133,9 @@ export default class ModifyProfile extends React.Component{
                   if(data.status=='publish'){
                       console.log('Profilo modificato');
                   }
-              }).then(()=>{
+              }) /*.then(()=>{
                   this.props.undo();
-              });
+              });*/
       }
 
     }
@@ -182,7 +185,7 @@ export default class ModifyProfile extends React.Component{
                       </div>
                         <div className="info-profilo">
                         <div className="mui-select">
-                          <select name="" id="ann_category" value={this.state.scuola} onChange={this.setScuola.bind(this)}>
+                          <select name="scuola" id="ann_category" value={this.state.scuola} onChange={this.setScuola.bind(this)}>
                               {scuole}
                           </select>
                           <label>Corso</label>
