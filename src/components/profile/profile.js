@@ -121,7 +121,7 @@ export default class Profile extends React.Component {
         } else {
             if (this.state.first_name != '') {
                 return (
-                    <section className="container">
+                    <section>
                     <section>
         
                         <div className="poster-utente">
@@ -132,9 +132,7 @@ export default class Profile extends React.Component {
                                 </div>
                             </div>
                         </div>
-                    </section>
-                    
-    <section>
+
         <div className="mui-container">
           <div className="mui-row">
             <div className="mui-col-xs-12">
