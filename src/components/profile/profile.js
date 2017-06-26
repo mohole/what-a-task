@@ -162,6 +162,7 @@ export default class Profile extends React.Component {
               </div>
           </div>
         </div>
+        <div className="hr"></div>
         <div className="mui-row">
             <div className="mui-col-xs-12">
                 <span className="span-block my-span">Annunci pubblicati</span>

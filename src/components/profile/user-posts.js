@@ -4,16 +4,12 @@ import ModifyProfile from './modify_profile';
 import {Backend} from './../../backend';
 import Imgblock from './../common/imgblock';
 import Spinner from './../common/spinner';
+import Userbar from './../list/userbar';
 
 export default class AnnunciUtente extends React.Component {
     constructor(props) {
         super(props);
     }
-    /*
-    <Userbar userId={e.author} category={e.tags[0]} goToPage={this.props.goToPage.bind(this)} />
-
-
-    */
     render(){
         if(this.props.annunci){
             const items = this.props.annunci.map((e,i) => {
@@ -27,6 +23,7 @@ export default class AnnunciUtente extends React.Component {
                         <div className="mui-container">
                             <div className="mui-row">
 
+                                <Userbar hidename="true" userId={e.author} category={e.tags[0]} goToPage={this.props.goToPage.bind(this)} />
                                 <a href="#" onClick={()=>{this.props.goToPage('Single|'+e.id)}} data-item-id={e.id}>
 
                                 <div className="mui-col-xs-12 img-annuncio">
@@ -43,7 +40,7 @@ export default class AnnunciUtente extends React.Component {
                         </div>
                     </article>
 
-                    <div className="mui-container">                        
+                    <div className="mui-container">
                         {hr}
                     </div>
 
