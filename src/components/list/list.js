@@ -24,6 +24,37 @@ export default class List extends React.Component{
         })
     }
 
+componentWillReceiveProps(nextProps){
+console.warn('COMPONENT WILL RECEIVE PROPS');
+    if(this.props.searchArgs){
+        console.warn('SEARCHARGS LIST.JS: '+this.props.searchArgs);
+
+        var cat=this.props.searchArgs.category;
+        var search=this.props.searchArgs.search;
+        search=search.toUpperCase();
+        var tags=this.props.searchArgs.tags;
+        console.log('cat: '+cat+', search: '+search+', tags: '+tags);
+        function isBigEnough(e,i) {
+            if(tags!=0 && cat!=0){
+                return e.categories==cat && e.tags==tags && e.title.rendered.toUpperCase().indexOf(search) != -1;
+            } else if(cat!=0){
+                return e.categories==cat && e.title.rendered.toUpperCase().indexOf(search) != -1;
+            } else if(tags!=0){
+                return e.tags==tags && e.title.rendered.toUpperCase().indexOf(search) != -1;
+            } else {
+                return e.title.rendered.toUpperCase().indexOf(search) != -1;
+            }
+        }
+
+        var filtered = this.props.annunci.filter(isBigEnough);
+
+        this.setState({
+            annunci:filtered
+        })
+    }
+}
+
+
     render(){
         if(this.state.annunci){
     		const items = this.state.annunci.map((e,i) => {

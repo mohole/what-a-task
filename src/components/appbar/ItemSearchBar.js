@@ -10,7 +10,7 @@ export default class ItemSearchBar extends React.Component{
 			searchTerm:'',
 			selectedCat:0,
 			searchArgs:{},
-			type:5
+            type:0
 		}
     }
 	getCat(evt){
@@ -28,13 +28,12 @@ export default class ItemSearchBar extends React.Component{
         });
     }
 	searchItem(){
-		this.setState({
-			searchArgs:{
+			const searchArgs={
 				tags:this.state.selectedCat,
 				search:this.state.searchTerm,
 				category:this.state.type
 			}
-		})
+        this.props.goToPage('List|'+JSON.stringify(searchArgs));
 	}
 	checkType(evt){
 		const input = parseInt(evt.target.value);
@@ -58,6 +57,7 @@ export default class ItemSearchBar extends React.Component{
 						<form className="mui-form">
 						  <div className="mui-select">
 							<select onChange={this.checkType.bind(this)}>
+							  <option value="0" >Tipo</option>
 							  <option value="3">Cerco</option>
 							  <option value="5">Offro</option>
 							</select>
@@ -74,7 +74,7 @@ export default class ItemSearchBar extends React.Component{
 							 <input name="searchTerm" type="text" placeholder="cosa cerchi" value={this.state.searchTerm} onChange={this.writing.bind(this)}/>
 							 <label>Titolo annuncio</label>
 						   </div>
-						  <button type="submit" className="my-button mui-col-xs-12 mui-btn mui-btn--danger" onClick={this.searchItem.bind(this)}>CERCA</button>
+						  <button type="button" className="my-button mui-col-xs-12 mui-btn mui-btn--danger" onClick={this.searchItem.bind(this)}>CERCA</button>
 						</form>
 					  </div>
 

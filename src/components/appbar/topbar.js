@@ -27,7 +27,7 @@ export default class Topbar extends React.Component{
 	}
 	render(){
 		if(this.state.searchIsActive){
-			var topSearchBar = <ItemSearchBar categoryList={this.state.postCategory}/>
+			var topSearchBar = <ItemSearchBar goToPage={this.props.goToPage.bind(this)} categoryList={this.state.postCategory}/>
 		}
 		let btnTop;
 		if(this.props.pageNow=='List'){

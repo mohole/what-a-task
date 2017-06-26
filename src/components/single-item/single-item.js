@@ -137,16 +137,18 @@ componentWillMount(){
                       <div>
                         <section>
                           <div className="poster-annuncio">
-                            <Imgblock mediaId={this.state.annuncio.featured_media}/>
-                            <div className="mui-container">
-                              <div className="mui-row">
-                                <div className="info-utente">
-                                  <span className="nome-utente">{this.state.author.name}</span>
-                                  <span className="corso-utente">{this.state.currentCat}</span>
-                                  <span>pubblicato il {this.printDate(this.state.annuncio.date)}</span>
-                                </div>
+                          <div className="mui-container">
+                            <div className="mui-row">
+                              <div className="info-utente">
+                                <a href="#" onClick={()=>{this.props.goToPage('Profile|'+this.state.author.id)}}>
+                                    <span className="nome-utente">{this.state.author.name}</span>
+                                </a>
+                                <span className="corso-utente">{this.state.currentCat}</span>
+                                <span>pubblicato il {this.printDate(this.state.annuncio.date)}</span>
                               </div>
                             </div>
+                          </div>
+                            <Imgblock mediaId={this.state.annuncio.featured_media}/>
                           </div>
                       </section>
 

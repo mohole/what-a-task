@@ -19,21 +19,21 @@ export default class UserList extends React.Component{
 					<section key={i}>
             <div className="container-user-list">
               <div className="mui-row">
-							<div className="mui-col-xs-2">
-								<a href="#"  onClick={()=>{this.props.goToPage('Profile|'+e.id)}}>
-									<div className="img-utente">
-										<Imgblock mediaId={e.acf.user_image} />
-									</div>
-								</a>
-							</div>
+    				<div className="mui-col-xs-2">
+    					<a href="#" onClick={()=>{this.props.goToPage('Profile|'+e.id)}}>
+    						<div className="img-utente">
+    							<Imgblock mediaId={e.acf.user_image} elem="UserList" />
+    						</div>
+    					</a>
+    				</div>
 
-							<div className="mui-col-xs-10">
-								<a href="#"  onClick={()=>{this.props.goToPage('Profile|'+e.id)}}>
-									<span className="nome-utente">{e.name}</span>
-								</a>
-								<span className="corso-utente"></span>
-							</div>
-						 </div>
+    				<div className="mui-col-xs-10">
+    					<a href="#" onClick={()=>{this.props.goToPage('Profile|'+e.id)}}>
+    						<span className="nome-utente">{e.name}</span>
+    					</a>
+    					<span className="corso-utente"></span>
+    				</div>
+				</div>
             </div>
             {hr}
           </section>
