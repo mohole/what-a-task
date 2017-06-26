@@ -156,7 +156,13 @@ export default class App extends React.Component{
             if(this.state.activePage.includes('Profile|')){
                 contentElem= <Spinner/>
                 const user = this.state.activePage.split('|');
-                contentElem = <Profile goToPage={this.goToPage.bind(this)} profileId={parseInt(user[1])} currentId={localStorage.getItem('user_id')}/>
+
+                function annunciUser(e,i) {
+                        return e.author==parseInt(user[1]);
+                }
+                let annunciUtente = this.state.annunci.filter(annunciUser);
+
+                contentElem = <Profile goToPage={this.goToPage.bind(this)} profileId={parseInt(user[1])} currentId={localStorage.getItem('user_id')} annunci={annunciUtente} />
             }
 			if(this.state.activePage=='UserList'){
                 contentElem= <Spinner/>
