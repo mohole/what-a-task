@@ -43,7 +43,7 @@ export default class AnnunciUtente extends React.Component {
                         </div>
                     </article>
 
-                    <div className="mui-container">
+                    <div className="mui-container">                        
                         {hr}
                     </div>
 

@@ -168,7 +168,7 @@ export default class Profile extends React.Component {
             </div>
         </div>
     </div>
-    <AnnunciUtente annunci={this.props.annunci} userId={this.props.profileId} />
+    <AnnunciUtente goToPage={this.props.goToPage.bind(this)} annunci={this.props.annunci} userId={this.props.profileId} />
 </section>
                 )
             } else {
