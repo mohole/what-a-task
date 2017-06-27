@@ -30,7 +30,7 @@ export default class Imgblock extends React.Component{
     componentDidMount(){
         if(this.props.mediaId!=0){
             Backend.getMedia(this.props.mediaId).then((data)=>{
-                if(this.props.elem&&this.props.elem=="UserBar"){
+                if(this.props.elem&&this.props.elem=="UserBar" || this.props.elem&&this.props.elem=="UserList"){
                     this.setState({
                         src:data.media_details.sizes.thumbnail.source_url
                     })

@@ -173,7 +173,8 @@ export default class NewItem extends React.Component{
                 <input onChange={this.uploadFile.bind(this)} type="file" name="file" id="add-img" className="inputfile" />
                 <label htmlFor="add-img" className="input-add-img"><i className="ion-images"></i></label>
                 <button type="submit" className="my-button mui-col-xs-12 mui-btn mui-btn--primary">AGGIUNGI ANNUNCIO</button>
-                <button onClick={this.resetForm.bind(this)} type="button" className="my-button mui-col-xs-12 mui-btn mui-btn--danger">ANNULLA</button>
+                <button onClick={this.resetForm.bind(this)} type="button" className="my-button mui-col-xs-12 mui-btn mui-btn--danger">PULISCI</button>
+                <button type="button" onClick={()=>{this.props.goToPage('List')}} className="my-button mui-col-xs-12 mui-btn mui-btn--danger">ANNULLA</button>
                 </form>
               </div>
             </div>

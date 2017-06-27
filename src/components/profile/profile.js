@@ -4,6 +4,7 @@ import ModifyProfile from './modify_profile';
 import {Backend} from './../../backend';
 import Imgblock from './../common/imgblock';
 import Spinner from './../common/spinner';
+import AnnunciUtente from './user-posts';
 
 export default class Profile extends React.Component {
     constructor(props) {
@@ -32,7 +33,7 @@ export default class Profile extends React.Component {
                         })
                     })
                 })
-       
+
     }
 
     undo(){
@@ -93,9 +94,9 @@ export default class Profile extends React.Component {
             }else{
                Backend.getUserInfo(nextProps.profileId).then((data) => {
                     this.setState({first_name: data.acf.user_firstname, last_name: data.acf.user_lastname, image_id: data.acf.user_image, email: data.acf.user_email, scuola:data.acf.user_scuola, description: data.description,role:data.acf.user_role})
-                }) 
+                })
             }
-        
+
     }
 
     render() {
@@ -122,11 +123,10 @@ export default class Profile extends React.Component {
             if (this.state.first_name != '') {
                 return (
                     <section>
-                    <section>
-        
+
                         <div className="poster-utente">
                             <Imgblock mediaId={this.state.image_id}/>
-                            <div className="mui-container">  
+                            <div className="mui-container">
                                 <div className="mui-row">
                                     {btnEdit}
                                 </div>
@@ -140,32 +140,37 @@ export default class Profile extends React.Component {
                 <span className="span-block my-span">Nome e Cognome</span>
                 <span className="span-block">{this.state.first_name} {this.state.last_name}</span>
               </div>
-              <div className="hr" />
+              <div className="hr"></div>
               <div className="info-profilo">
                 <span className="span-block my-span">Email</span>
                 <span className="span-block">{this.state.email}</span>
               </div>
-              <div className="hr" />
+              <div className="hr"></div>
               <div className="info-profilo">
                 <span className="span-block my-span">Ruolo</span>
                 <span className="span-block">{this.getRuolo()}</span>
               </div>
-              <div className="hr" />
+              <div className="hr"></div>
               <div className="info-profilo">
                 <span className="span-block my-span">Corso</span>
                 <span className="span-block">{this.state.textScuola}</span>
               </div>
-              <div className="hr" />
+              <div className="hr"></div>
               <div className="info-profilo">
                 <span className="span-block my-span">Descrizione</span>
                 <span className="span-block">{this.state.description}</span>
               </div>
-                    
-            </div>
           </div>
         </div>
+        <div className="hr"></div>
+        <div className="mui-row">
+            <div className="mui-col-xs-12">
+                <span className="span-block my-span">Annunci pubblicati</span>
+            </div>
+        </div>
+    </div>
+    <AnnunciUtente goToPage={this.props.goToPage.bind(this)} annunci={this.props.annunci} userId={this.props.profileId} />
 </section>
-                    </section>
                 )
             } else {
                 return (<Spinner/>)

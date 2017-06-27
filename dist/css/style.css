@@ -233,7 +233,6 @@ accepted
     height: 50px;
   }
   .poster-annuncio{
-    position: relative;
     margin-bottom: 20px;
   }
   .poster-annuncio img{
@@ -248,13 +247,13 @@ accepted
 .button-modify:hover{
     background-color: rgba(0,0,0,0.5) !important;
   }
-  .info-utente{
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: #ffffff;
-    text-align: right;
-  }
+  .info-utente {
+    color: #313131;
+    text-align: center;
+    background-color: #fff;
+    width: 100%;
+    padding: 10px 0;
+}
 .descrizione-annuncio + button{
     margin-bottom: 30px;
   }

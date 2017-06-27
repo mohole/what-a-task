@@ -27,25 +27,37 @@ export default class Userbar extends React.Component{
     }
     render(){
         if(this.state.name!=''){
-            return(
-                <section>
+            if(this.props.hidename){
 
-                    <div className="mui-col-xs-2">
-                        <a href="#"  onClick={()=>{this.props.goToPage('Profile|'+this.props.userId)}}>
-                            <div className="img-utente">
-                                <Imgblock mediaId={this.state.image} elem="UserBar"/>
-                            </div>
-                        </a>
-                    </div>
-                    <div className="mui-col-xs-10">
-                        <a href="#"  onClick={()=>{this.props.goToPage('Profile|'+this.props.userId)}}>
-                            <span className="nome-utente">{this.state.name}</span>
-                        </a>
-                        <span className="corso-utente">{this.state.currentCat}</span>
-                    </div>
+                return(
+                    <section>
+                        <div className="mui-col-xs-12">
+                            <span className="corso-utente">{this.state.currentCat}</span>
+                        </div>
+                    </section>
+                )
+            } else {
+                return(
+                    <section>
 
-                </section>
-            )
+                        <div className="mui-col-xs-2">
+                            <a href="#"  onClick={()=>{this.props.goToPage('Profile|'+this.props.userId)}}>
+                                <div className="img-utente">
+                                    <Imgblock mediaId={this.state.image} elem="UserBar"/>
+                                </div>
+                            </a>
+                        </div>
+                        <div className="mui-col-xs-10">
+                            <a href="#"  onClick={()=>{this.props.goToPage('Profile|'+this.props.userId)}}>
+                                <span className="nome-utente">{this.state.name}</span>
+                            </a>
+                            <span className="corso-utente">{this.state.currentCat}</span>
+                        </div>
+
+                    </section>
+                )
+            }
+            
         } else {
             return(
                 <section>

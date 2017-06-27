@@ -21,7 +21,8 @@ export default class App extends React.Component{
         super();
         console.log('app started');
 		this.state={
-			logged:false
+			logged:false,
+            searchArgs:''
 		}
 		if(window.localStorage.getItem('token')){
 			console.log(window.localStorage.getItem('token'));
@@ -129,6 +130,17 @@ export default class App extends React.Component{
 					console.log(this.state.annunci);
 				}
 			}
+			if(this.state.activePage.includes('List|')){
+				contentElem= <Spinner/>
+
+                let searchArgs = this.state.activePage.split('|');
+                let searchArgs2 = JSON.parse(searchArgs[1]);
+
+				if(this.state.annunci){
+					contentElem = <List annunci={this.state.annunci} searchArgs={searchArgs2} goToPage={this.goToPage.bind(this)}/>;
+					console.log(this.state.annunci);
+				}
+			}
 			if(this.state.activePage=='NewItem'){
 				contentElem= <Spinner/>
 				Backend.getCategory()
@@ -144,7 +156,13 @@ export default class App extends React.Component{
             if(this.state.activePage.includes('Profile|')){
                 contentElem= <Spinner/>
                 const user = this.state.activePage.split('|');
-                contentElem = <Profile goToPage={this.goToPage.bind(this)} profileId={parseInt(user[1])} currentId={localStorage.getItem('user_id')}/>
+
+                function annunciUser(e,i) {
+                        return e.author==parseInt(user[1]);
+                }
+                let annunciUtente = this.state.annunci.filter(annunciUser);
+
+                contentElem = <Profile goToPage={this.goToPage.bind(this)} profileId={parseInt(user[1])} currentId={localStorage.getItem('user_id')} annunci={annunciUtente} />
             }
 			if(this.state.activePage=='UserList'){
                 contentElem= <Spinner/>
@@ -175,7 +193,7 @@ export default class App extends React.Component{
             }
 			return(
 				<section>
-					<Topbar goToPage={this.goToPage.bind(this)} backTo={this.state.lastPage} pageNow={this.state.activePage}/>
+					<Topbar goToPage={this.goToPage.bind(this)} backTo={this.state.lastPage} pageNow={this.state.activePage} goToPage={this.goToPage.bind(this)} />
 					<div className="container">{contentElem}</div>
 					<Bottombar goToPage={this.goToPage.bind(this)} searchUser={this.searchUser.bind(this)}/>
 				</section>
