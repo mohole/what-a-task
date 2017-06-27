@@ -11,6 +11,11 @@ export default class Topbar extends React.Component{
 			postCategory:[]
 		}
     }
+	closeS(){
+		this.setState({
+			searchIsActive:false
+		})
+	}
 	activeSearch(evt){
 		console.log('search is active '+this.state.searchIsActive);
 
@@ -27,7 +32,7 @@ export default class Topbar extends React.Component{
 	}
 	render(){
 		if(this.state.searchIsActive){
-			var topSearchBar = <ItemSearchBar goToPage={this.props.goToPage.bind(this)} categoryList={this.state.postCategory}/>
+			var topSearchBar = <ItemSearchBar goToPage={this.props.goToPage.bind(this)} categoryList={this.state.postCategory} closeS={this.closeS.bind(this)}/>
 		}
 		let btnTop;
 		if(this.props.pageNow=='List'){
@@ -46,7 +51,7 @@ export default class Topbar extends React.Component{
 					  <span>WHAT A TASK</span>
 					</div>
 					<div className="mui-col-xs-3 align-right">
-						<button id="search" className="top-bar-button mui-btn mui-btn--small mui-btn mui-btn--fab" onClick={this.activeSearch.bind(this)}><i className="icon ion-ios-search"></i></button>
+						<button id="search" className="top-bar-button mui-btn mui-btn--small mui-btn mui-btn--fab" onClick={this.activeSearch.bind(this)}><i className="icon ion-ios-search" ></i></button>
 					</div>
 				</div>
 			</div>

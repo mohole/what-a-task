@@ -18,6 +18,7 @@ export default class UserSearchBar extends React.Component{
         });
     }
 	searchUser(){
+		this.props.closeS();
 		this.props.searchUser(this.state.searchTerm);
 	}
 	render(){

@@ -33,6 +33,7 @@ export default class ItemSearchBar extends React.Component{
 				search:this.state.searchTerm,
 				category:this.state.type
 			}
+			this.props.closeS();
         this.props.goToPage('List|'+JSON.stringify(searchArgs));
 	}
 	checkType(evt){

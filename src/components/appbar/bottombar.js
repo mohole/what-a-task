@@ -16,9 +16,14 @@ export default class Bottombar extends React.Component{
 			userSearchActive:!this.state.userSearchActive
 		})
 	}
+	closeS(){
+		this.setState({
+			userSearchActive:false
+		})
+	}
 	render(){
 		if(this.state.userSearchActive){
-			var userSearch = <UserSearchBar searchUser={this.props.searchUser}/>
+			var userSearch = <UserSearchBar searchUser={this.props.searchUser} closeS={this.closeS.bind(this)}/>
 		}
         return(
         <section>
