@@ -235,6 +235,9 @@ accepted
   .poster-annuncio{
     margin-bottom: 20px;
   }
+  .poster-annuncio img{
+    width: 100%;
+  }
  .button-modify, .button-upload{
     position: absolute;
     top: 10px;
@@ -262,7 +265,7 @@ accepted
   width: 100%;
 }
 .poster-utente img{
-   max-width:100%;
+   width:100%;
 }
 .info-profilo{
   padding-top: 25px;
