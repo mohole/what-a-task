@@ -2,6 +2,7 @@
 import React from 'react';
 import Spinner from './../common/spinner';
 import {Backend} from './../../backend';
+import Imgblock from './../common/imgblock';
 export default class NewItem extends React.Component{
     constructor(props){
         super(props);
@@ -170,8 +171,9 @@ export default class NewItem extends React.Component{
                 </div>
 
                 <span className="span-img">Aggiungi una foto</span>
+				
                 <input onChange={this.uploadFile.bind(this)} type="file" name="file" id="add-img" className="inputfile" />
-                <label htmlFor="add-img" className="input-add-img"><i className="ion-images"></i></label>
+                <label htmlFor="add-img" className="input-add-img"><Imgblock mediaId={this.state.media_id}/><i className="ion-images"></i></label>
                 <button type="submit" className="my-button mui-col-xs-12 mui-btn mui-btn--primary">AGGIUNGI ANNUNCIO</button>
                 <button onClick={this.resetForm.bind(this)} type="button" className="my-button mui-col-xs-12 mui-btn mui-btn--danger">PULISCI</button>
                 <button type="button" onClick={()=>{this.props.goToPage('List')}} className="my-button mui-col-xs-12 mui-btn mui-btn--danger">ANNULLA</button>

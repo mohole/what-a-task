@@ -1,7 +1,7 @@
 'use strict';
 import React from 'react';
 import {Backend} from './../../backend';
-
+import Imgblock from './../common/imgblock';
 export default class EditItem extends React.Component{
     constructor(props){
         super(props);
@@ -11,16 +11,14 @@ export default class EditItem extends React.Component{
           id:this.props.id,
           text:this.props.text,
           title:this.props.title,
-          image:this.props.image,
+          media_id:this.props.image,
           imageUrl:this.props.imageUrl,
           type:this.props.type,
           cat:this.props.categoryList,
           selectedCat: this.props.selectedCat[0],
-          privacyCheck:false,
-          ClassNameTitle:'form-group mui-textfield',
-          ClassNameText:'form-group mui-textfield',
-          ClassNamePrivacy:'form-group mui-checkbox',
-          ClassNameCategory:'form-group mui-select'
+          ClassNameTitle:'mui-textfield',
+          ClassNameText:'mui-textfield',
+          ClassNameCategory: 'mui-select'
         }
     }
 
@@ -29,12 +27,6 @@ export default class EditItem extends React.Component{
     		const elem=evt.target.getAttribute('name');
         this.setState({
             [elem] : input
-        });
-      }
-	checkPrivacy(evt){
-		console.log(!this.state.privacyCheck);
-        this.setState({
-            privacyCheck : !this.state.privacyCheck
         });
       }
     checkType(evt){
@@ -49,19 +41,6 @@ export default class EditItem extends React.Component{
 	    	selectedCat:evt.target.value
 	    })
     }
-    /*
-    uploadFile(evt){
-    	console.log(evt.target.files);
-    	const file=evt.target.files[0];
-    	console.log(file.size);
-    	var formData = new FormData();
-      	formData.append('image',  file, file.name);
-    	this.setState({
-            image : formData
-        });
-    	console.log(formData);
-    }
-*/
 
 	uploadFile(evt){
 		const file=evt.target.files[0];
@@ -80,42 +59,32 @@ export default class EditItem extends React.Component{
     	var error=0;
     	if(this.state.title===''||this.state.title.length<3){
     		this.setState({
-    			ClassNameTitle:'form-group error mui-textfield'
+    			ClassNameTitle:'error mui-textfield'
     		})
     		error++;
     	}else{
     		this.setState({
-    			ClassNameTitle:'form-group success'
+    			ClassNameTitle:'success mui-textfield'
     		})
     	}
     	if(this.state.text===''||this.state.text.length<5){
     		this.setState({
-    			ClassNameText:'form-group error mui-textfield'
+    			ClassNameText:'error mui-textfield'
     		})
     		error++;
     	}else{
     		this.setState({
-    			ClassNameText:'form-group success'
+    			ClassNameText:'success mui-textfield'
     		})
     	}
     	if(this.state.selectedCat==0){
     		this.setState({
-    			ClassNameCategory:'form-group error'
+    			ClassNameCategory:'error mui-select'
     		})
     		error++;
     	}else{
     		this.setState({
-    			ClassNameCategory:'form-group success'
-    		})
-    	}
-    	if(this.state.privacyCheck==false){
-    		this.setState({
-    			ClassNamePrivacy:'form-group error mui-checkbox'
-    		})
-    		error++;
-    	}else{
-    		this.setState({
-    			ClassNamePrivacy:'form-group success mui-checkbox'
+    			ClassNameCategory:'success mui-select'
     		})
     	}
     	if(error==0){
@@ -154,56 +123,27 @@ export default class EditItem extends React.Component{
             })
         }
     }
-
+	checkType(evt){
+		console.log(evt.target.value);
+		const input = parseInt(evt.target.value);
+		this.setState({
+            type : input
+        });
+	}
      resetEditForm(){
         console.log('reset');
         this.setState({
           type:this.props.type,
           text:this.props.text,
           title:this.props.title,
-          image:this.props.image,
+          media_id:this.props.image,
           type:this.props.type,
           selectedCat: this.props.selectedCat,
-          privacyCheck:this.state.privacyCheck,
-          ClassNameTitle:'form-group mui-textfield',
-          ClassNameText:'form-group mui-textfield',
-          ClassNamePrivacy:'form-group mui-checkbox',
-          ClassNameCategory:'form-group mui-select'
+          ClassNameTitle:'mui-textfield',
+          ClassNameText:'mui-textfield',
+          ClassNameCategory:'mui-select'
         });
       }
-
-/*
-
-nell'<input/>:
-  onClick={this.postEditedItem.bind(this)}
-
-postEditedItem(){
-  //create object following WP parameters,
-
-  //then:
-  fetch('https://mywebsite.com/endpoint/', {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      type:this.state.type,
-      text:this.state.text,
-      title:this.state.title,
-      image:this.state.image,
-      type:this.state.type,
-      privacyCheck:this.state.privacyCheck,
-      selectedCat: this.state.selectedCat,
-      ClassNameTitle:this.state.ClassNameTitle,
-      ClassNameText:this.state.ClassNameText,
-      ClassNamePrivacy:this.state.ClassNamePrivacy,
-      ClassNameCategory:this.state.ClassNameCategory
-    })
-  });
-}*/
-
-
 	render(){
 		if(this.state.cat.length!=0){
 		const catList =this.state.cat.map((e,i) =>{
@@ -213,49 +153,45 @@ postEditedItem(){
 		});
 
         return(
-            <section>
-			<div className="mui-container content">
+            <section className="background-add-annuncio">
+			<div className="mui-container">
 				<div className="mui-row">
-					<div className="mui-col-xs-12">
-						<h1>Modifica annuncio</h1>
-					</div>
 					<div className="mui-col-xs-12">
 						<form action="#" encType="multipart/form-data" method="POST" onSubmit={this.submitAnnuncio.bind(this)} className="mui-form">
     						<div className={this.state.ClassNameCategory}>
         						<label htmlFor="">Categoria</label>
-                                <select name="" id="ann_category" className="form-control" value={this.state.selectedCat} onChange={this.getCat.bind(this)}>
+                                <select name="" id="ann_category" value={this.state.selectedCat} onChange={this.getCat.bind(this)}>
                                 {catList}
                                 </select>
     					    </div>
-							<div className="mui-radio">
-								<label htmlFor="">Tipologia</label><br/>
-								<input type="radio" name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type==5} value="5"/> <span>Offro</span> <input type="radio" name="tipologia" aria-label="" onChange={this.checkType.bind(this)} checked={this.state.type==3} value="3"/> <span>Cerco</span>
-							</div>
+                            <div className="mui-select">
+                                <select onChange={this.checkType.bind(this)}>
+                                <option name="tipologia" aria-label="" value="3" >Cerco</option>
+                                <option name="tipologia" aria-label="" value="5" >Offro</option>
+                                </select>
+                                <label>Tipologia dell annuncio</label>
+                            </div>
                             <div>
                                 <img src={this.state.imageUrl} alt=""/>
                             </div>
-							<div className="mui-textfield">
-								<label htmlFor="">Immagine</label><br/>
-								<input type="file" placeholder="Immagine" onChange={this.uploadFile.bind(this)}/>
-							</div>
-							<div className={this.state.ClassNameTitle+" mui-textfield"}>
+                            <span className="span-img">Aggiungi una foto</span>
+                            
+                            <input type="file" placeholder="Immagine" name="file" className="inputfile" id="add-img" onChange={this.uploadFile.bind(this)}/>
+                            <label htmlFor="add-img" className="input-add-img"><Imgblock mediaId={this.state.media_id}/><i className="ion-images"></i></label>
+							<div className={this.state.ClassNameTitle}>
 								<label htmlFor="">Titolo annuncio</label>
-								<input type="text" className="form-control" placeholder="Titolo" value={this.state.title} onChange={this.writing.bind(this)} name="title"/>
+								<input type="text" placeholder="Titolo" value={this.state.title} onChange={this.writing.bind(this)} name="title"/>
 							</div>
-							<div className={this.state.ClassNameText+" mui-textfield"}>
+							<div className={this.state.ClassNameText}>
 								<label htmlFor="">Testo annuncio</label>
-								<textarea name="" id="" cols="30" rows="10" className="form-control" value={this.state.text} onChange={this.writing.bind(this)} name="text"></textarea>
+								<textarea name="" id="" cols="30" rows="10" value={this.state.text} onChange={this.writing.bind(this)} name="text"></textarea>
 							</div>
-							<div className={this.state.ClassNamePrivacy}>
-								<label htmlFor="">Termini e condizioni</label><br/>
-								<input type="checkbox" checked={this.state.privacyCheck} onChange={this.checkPrivacy.bind(this)}/><span>Accetto i <a href="#">termini della privacy</a></span>
-							</div>
-							<div className="form-group">
-								<button type="submit" className="mui-btn mui-btn--primary">Salva</button>
-								<button type="button" onClick={this.resetEditForm.bind(this)}  className="mui-btn mui-btn--danger">Pulisci</button>
-								<button type="button" onClick={this.props.undo} className="mui-btn mui-btn--danger">Annulla</button>
-								<button type="button" onClick={()=>{this.deleteThis()}} className="mui-btn mui-btn--danger">Elimina Annuncio</button>
-							</div>
+							
+								<button type="submit" className="my-button mui-col-xs-12 mui-btn mui-btn--primary">Salva</button>
+								<button type="button" onClick={this.resetEditForm.bind(this)}  className="my-button mui-col-xs-12 mui-btn mui-btn--danger">Pulisci</button>
+								<button type="button" onClick={this.props.undo} className="my-button mui-col-xs-12 mui-btn mui-btn--danger">Annulla</button>
+								<button type="button" onClick={()=>{this.deleteThis()}} className="my-button mui-col-xs-12 mui-btn mui-btn--danger">Elimina Annuncio</button>
+							
 						</form>
 					</div>
 				</div>
