@@ -101,7 +101,7 @@ export default class Profile extends React.Component {
     render() {
         let btnEdit = '';
         if (this.state.isEditable) {
-            btnEdit = <button onClick={this.editProfile.bind(this)} className="button-modify mui-btn mui-btn--flat"><i className="icon-big ion-edit"></i></button>;
+            btnEdit = ''/*<button onClick={this.editProfile.bind(this)} className="button-modify mui-btn mui-btn--flat"><i className="icon-big ion-edit"></i></button>*/;
         }
 
         if (this.state.editActive && this.state.isEditable && this.state.listaScuole) {

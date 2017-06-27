@@ -25,7 +25,7 @@ export default class Settings extends React.Component{
 
               <a className="link-scuola" href="http://scuola.mohole.it/">
               <div className="info-profilo">
-                <span>Realizzato dagli aglievi della scuola Mohole</span>
+                <span>Realizzato dagli allievi della scuola Mohole</span>
               </div>
               </a>
 

@@ -11,21 +11,6 @@ export default class Imgblock extends React.Component{
             src:''
         }
 	}
-/*
-    componentWillMount(){
-        if(this.props.mediaId!=0){
-            Backend.getMedia(this.props.mediaId).then((data)=>{
-                this.setState({
-                    src:data.guid.rendered
-                })
-            })
-        } else {
-            this.setState({
-                src:'http://lorempixel.com/200/200'
-            })
-        }
-        console.log('imgblock componentWillMount');
-    }*/
 
     componentDidMount(){
         if(this.props.mediaId!=0){
@@ -42,7 +27,7 @@ export default class Imgblock extends React.Component{
             })
         } else {
             this.setState({
-                src:'http://lorempixel.com/200/200'
+                src:'./images/placeholder.png'
             })
         }
         console.log('imgblock componentDidMount');
@@ -64,35 +49,12 @@ componentWillReceiveProps(nextProps) {
             })
         } else {
             this.setState({
-                src:'http://lorempixel.com/200/200'
+                src:'./images/placeholder.png'
             })
         }
         console.log('imgblock reciveProps');
     }
 }
-   /* shouldComponentUpdate(nextProps,nextState){
-        console.log(nextProps);
-        if(nextProps.mediaId!=0){
-            Backend.getMedia(nextProps.mediaId).then((data)=>{
-                if(nextProps.elem&&nextProps.elem=="UserBar"){
-                    this.setState({
-                        src:data.media_details.sizes.thumbnail.source_url
-                    })
-                }else{
-                    this.setState({
-                        src:data.media_details.sizes.watSize.source_url
-                    })
-                }
-            })
-        } else {
-            this.setState({
-                src:'http://lorempixel.com/200/200'
-            })
-        }
-        console.log('imgblock shouldComponentUpdate');
-        return true;
-    }*/
-
 
     render(){
         if(this.state.src!=''){
@@ -102,7 +64,7 @@ componentWillReceiveProps(nextProps) {
         } else {
             return(
                 <section>
-                    <i className="fa fa-spinner fa-spin"></i>
+                    <img src="./images/placeholder.png"/>
                 </section>
             )
         }

@@ -138,20 +138,12 @@ componentWillMount(){
                         <section>
                           <div className="poster-annuncio">
                             <Imgblock mediaId={this.state.annuncio.featured_media}/>
-                            <div className="mui-container">
-                              <div className="mui-row">
-                                <div className="info-utente">
-                                  <span className="nome-utente">{this.state.author.name}</span>
-                                  <span className="corso-utente">{this.state.currentCat}</span>
-                                  <span>pubblicato il {this.printDate(this.state.annuncio.date)}</span>
-                                </div>
-                              </div>
-                            </div>
+                            <div className="info-utente">
+                                <span className="nome-utente">{this.state.author.name}</span>
+                                <span className="corso-utente">{this.state.currentCat}</span>
+                                <span>pubblicato il {this.printDate(this.state.annuncio.date)}</span>
+                            </div>  
                           </div>
-                      </section>
-
-
-                      <section>
                           <div className="mui-container">
                           <div className="mui-row">
                           <div className="mui-col-xs-12">
