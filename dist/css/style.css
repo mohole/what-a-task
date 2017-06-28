@@ -2,7 +2,12 @@ body{
     font-family: 'Raleway', sans-serif;
 }
 a,a:hover,a:focus,a:visited{
+  cursor: pointer;
   color: #333;
+  text-decoration: none;
+}
+.logo-top-bar, .logo-top-bar:hover, .logo-top-bar:focus, .logo-top-bar:visited{
+  color: #ffffff;
   text-decoration: none;
 }
 .container{
@@ -251,7 +256,7 @@ accepted
     background-color: rgba(0,0,0,0.5) !important;
   }
 .button-modify:hover{
-    background-color: rgba(0,0,0,0.5) !important; 
+    background-color: rgba(0,0,0,0.5) !important;
   }
   .info-utente{
     position: absolute;
@@ -259,11 +264,12 @@ accepted
     right: 0px;
     color: #ffffff;
     width: 100%;
-    padding: 7px 12px;
     background-color: rgba(0,0,0,.3);
     text-align: right;
-    background-color: rgba(0,0,0,0.5) !important;
-
+    height: 98%;
+  }
+  .inner-info-utente{
+    padding: 15px 15px 0 0;
   }
 .descrizione-annuncio + button{
     margin-bottom: 30px;
@@ -328,6 +334,9 @@ accepted
   position: absolute;
   top: 10px;
   right: 40px;
+}
+.background-add-annuncio{
+  height: 105vh;
 }
 .background-add-annuncio, .background-search-annuncio{
   background: #FF5F6D;
