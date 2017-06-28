@@ -24,7 +24,7 @@ export default class App extends React.Component{
 			logged:false,
             searchArgs:''
 		}
-		if(window.localStorage.getItem('token')){
+		if(window.localStorage.getItem('token') && window.localStorage.getItem('user_id')){
 			console.log(window.localStorage.getItem('token'));
 			this.getLogin();
 		}else{
@@ -75,6 +75,7 @@ export default class App extends React.Component{
 			localStorage.setItem('user_image',data.acf.user_image );
 			localStorage.setItem('user_scuola',data.acf.user_scuola );
 		})
+
 		Backend.getAnnunci()
 		.then((data)=>{
 			this.setState({

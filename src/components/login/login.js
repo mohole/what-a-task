@@ -19,7 +19,11 @@ export default class Login extends React.Component{
             [elemento]: input.value
         });
       }
-
+    showError(control){
+        if (control=='mui-textfield error') {
+            return <p>Username o password errati.</p>;
+        }
+    }
     checkLogin(){
         if(this.state.utente != '' && this.state.password != ''){
 			Backend.setCredentials(this.state.utente,this.state.password);
@@ -30,8 +34,8 @@ export default class Login extends React.Component{
 				localStorage.setItem('token', btoa(this.state.utente + ':' + this.state.password));
 				console.log("Login ok");
 				console.log(data);
-      
-				if(data.code!='rest_forbidden'){
+
+				if(data.code!='rest_forbidden' && data.code!='rest_not_logged_in' && data.code!='rest_user_invalid_id'){
 					this.setState({
 						ClassNameControl:'mui-textfield success'
 					})
@@ -53,19 +57,17 @@ export default class Login extends React.Component{
     }
 
 	render(){
+return(
+    <section>
 
-        return(
-            
-        
-            <section>
-            
-      <div className="background">
+        <div className="background">
         <div className="vertical-center">
           <div className="mui-container">
             <div className="mui-row">
               <div className="mui-col-xs-12">
                 <form className="mui-form">
                   <legend className="logo">WHAT A TASK</legend>
+                  {this.showError(this.state.ClassNameControl)}
                   <div className="mui-textfield mui-textfield--float-label">
                     <input name="utente" className="my-input" type="text" onChange={this.writing.bind(this)} value={this.state.utente} />
                     <label className="my-label">Utente</label>
@@ -81,9 +83,9 @@ export default class Login extends React.Component{
             </div>
           </div>
         </div>
-      </div>
+        </div>
 
-			</section>
-        )
+    </section>
+    )
     }
 }
