@@ -47,9 +47,11 @@ export default class Topbar extends React.Component{
 					<div className="mui-col-xs-3">
 						{btnTop}
 					</div>
-					<div className="main-title mui-col-xs-6">
-					  <span>WHAT A TASK</span>
-					</div>
+          <a className="logo-top-bar" onClick={()=>{this.props.goToPage('List')}}>
+  					<div className="main-title mui-col-xs-6">
+              <span>WHAT A TASK</span>
+  					</div>
+          </a>
 					<div className="mui-col-xs-3 align-right">
 						<button id="search" className="top-bar-button mui-btn mui-btn--small mui-btn mui-btn--fab" onClick={this.activeSearch.bind(this)}><i className="icon ion-ios-search" ></i></button>
 					</div>
