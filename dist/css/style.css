@@ -266,10 +266,7 @@ accepted
     width: 100%;
     background-color: rgba(0,0,0,.3);
     text-align: right;
-    height: 98%;
-  }
-  .inner-info-utente{
-    padding: 15px 15px 0 0;
+    padding: 7px 12px;
   }
 .descrizione-annuncio + button{
     margin-bottom: 30px;
