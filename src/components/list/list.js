@@ -26,15 +26,15 @@ export default class List extends React.Component{
 
 componentWillReceiveProps(nextProps){
 console.warn('COMPONENT WILL RECEIVE PROPS');
-    if(this.props.searchArgs){
-        console.warn('SEARCHARGS LIST.JS: '+this.props.searchArgs);
+    if(nextProps.searchArgs){
+        console.warn('SEARCHARGS LIST.JS: '+nextProps.searchArgs);
 
-        var cat=this.props.searchArgs.category;
-        var search=this.props.searchArgs.search;
+        var cat=nextProps.searchArgs.category;
+        var search=nextProps.searchArgs.search;
         search=search.toUpperCase();
-        var tags=this.props.searchArgs.tags;
+        var tags=nextProps.searchArgs.tags;
         console.log('cat: '+cat+', search: '+search+', tags: '+tags);
-        function isBigEnough(e,i) {
+        function isResult(e,i) {
             if(tags!=0 && cat!=0){
                 return e.categories==cat && e.tags==tags && e.title.rendered.toUpperCase().indexOf(search) != -1;
             } else if(cat!=0){
@@ -46,10 +46,16 @@ console.warn('COMPONENT WILL RECEIVE PROPS');
             }
         }
 
-        var filtered = this.props.annunci.filter(isBigEnough);
-
+        var filtered = this.props.annunci.filter(isResult);
         this.setState({
             annunci:filtered
+        })
+    } else {
+        Backend.getAnnunci()
+        .then((data)=>{
+            this.setState({
+                annunci:data
+            });
         })
     }
 }

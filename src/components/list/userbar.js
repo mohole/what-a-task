@@ -25,6 +25,19 @@ export default class Userbar extends React.Component{
             this.setState({currentCat: data.name})
         });
     }
+
+    componentWillReceiveProps(nextProps){
+        Backend.getUserInfo(nextProps.userId).then((data)=>{
+            this.setState({
+                name:data.name,
+                image:data.acf.user_image
+            })
+        })
+
+        Backend.getCurrentCategoryName(nextProps.category).then((data) => {
+            this.setState({currentCat: data.name})
+        });
+    }
     render(){
         if(this.state.name!=''){
             if(this.props.hidename){
@@ -57,7 +70,7 @@ export default class Userbar extends React.Component{
                     </section>
                 )
             }
-            
+
         } else {
             return(
                 <section>
