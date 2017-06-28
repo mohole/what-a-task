@@ -63,6 +63,19 @@ console.warn('COMPONENT WILL RECEIVE PROPS');
 
     render(){
         if(this.state.annunci){
+            if(this.state.annunci.length<1){
+                return(
+                    <section>
+                        <article className="container-annuncio">
+                            <div className="mui-container">
+                                <div className="mui-row">
+                                    <p>Non esistono annunci corrispondenti a questa ricerca.</p>
+                                </div>
+                            </div>
+                        </article>
+                    </section>
+                )
+            } else {
     		const items = this.state.annunci.map((e,i) => {
           let hr= "";
             if(this.state.annunci.length>1 && i!=this.state.annunci.length-1){
@@ -104,6 +117,7 @@ console.warn('COMPONENT WILL RECEIVE PROPS');
     			{items}
     		</div>
     		)
+            }
         } else{
             return(
                 <div>
