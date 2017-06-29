@@ -333,7 +333,7 @@ accepted
   right: 40px;
 }
 .background-add-annuncio{
-  height: 105vh;
+  min-height: 105vh;
 }
 .background-add-annuncio, .background-search-annuncio{
   background: #FF5F6D;
