@@ -63,7 +63,7 @@ console.warn('COMPONENT WILL RECEIVE PROPS');
 
     render(){
         if(this.state.annunci){
-            if(this.state.annunci.length<1){
+            if(this.props.searchArgs && this.state.annunci.length<1){
                 return(
                     <section>
                         <article className="container-annuncio">
